@@ -1,71 +1,114 @@
-# PepVerify
-*On-chain transparency and scientific verification for the research peptide ecosystem.*
+<div align="center">
+  <img src="https://img.shields.io/badge/DeSci-Infrastructure-14F195?style=for-the-badge&logo=solana&logoColor=white" alt="DeSci Infrastructure" />
+  <img src="https://img.shields.io/badge/Status-Beta-emerald?style=for-the-badge" alt="Status Beta" />
+  <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License MIT" />
+  <br />
+  <br />
+  <h1>PepVerify</h1>
+  <p><strong>Decentralized Cryptographic Provenance for Peptide Research</strong></p>
+  <p>A DeSci (Decentralized Science) protocol leveraging the Solana Attestation Service (SAS) and IPFS to create an immutable, censorship-resistant layer of scientific evidence and transparency.</p>
+</div>
 
-![PepVerify Platform](https://img.shields.io/badge/Status-Beta-emerald.svg)
-![Solana](https://img.shields.io/badge/Built_on-Solana-14F195?logo=solana&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-blue.svg)
+<br />
 
-## 🧬 Overview
-
-**PepVerify** is a decentralized, enterprise-grade scientific transparency hub designed specifically for the research peptide ecosystem. It serves as an immutable ledger and verification layer where third-party lab reports (COAs, HPLC, LC-MS) are permanently stored, timestamped, and cryptographically signed.
-
-By shifting trust from opaque supplier claims to verifiable on-chain evidence, PepVerify functions as the definitive "Bloomberg Terminal" for peptide research intelligence.
-
----
-
-## 🛑 The Problem
-
-The current research peptide ecosystem suffers from a severe lack of trust:
-- **Fraudulent Documentation:** Certificates of Analysis (COAs) and High-Performance Liquid Chromatography (HPLC) reports are frequently forged, manipulated, or reused across completely different batches.
-- **Ephemeral Evidence:** Legitimate testing reports are often hosted on temporary links or centralized servers that can be deleted or altered after the fact.
-- **Subjective Reputation:** Supplier reputation is based on subjective, easily manipulated forum reviews rather than objective scientific data.
-
-## 💡 The Solution
-
-We introduce cryptographic provenance to scientific evidence. When a lab report is generated, it is uploaded to decentralized storage (IPFS) and anchored to the Solana blockchain via a cryptographic signature using the **Solana Attestation Service (SAS)**.
-
-This guarantees:
-1. **Immutable Evidence:** Reports cannot be secretly altered or deleted.
-2. **Public Provenance:** Anyone can trace the exact wallet that verified a specific batch.
-3. **Algorithmic Reputation:** Supplier Trust Scores are derived directly from the volume, recency, and quality of their verifiable on-chain attestations.
+## 📑 Table of Contents
+- [Abstract & Rationale](#-abstract--rationale)
+- [Protocol Architecture](#-protocol-architecture)
+- [Core Features](#-core-features)
+- [Technical Specifications](#-technical-specifications)
+- [Open Source Foundations](#-open-source-foundations)
+- [Getting Started](#-getting-started)
+- [Contributing](#-contributing)
+- [License](#-license)
 
 ---
 
-## 🏗️ How It Works
+## 🔬 Abstract & Rationale
 
-1. **Upload:** A user or supplier uploads a new 3rd-party lab report (PDF) to the platform.
-2. **IPFS Pinning:** The PDF is pinned to the InterPlanetary File System, generating a unique Content Identifier (CID).
-3. **Metadata Structuring:** Key data (Batch Number, Purity %, Testing Lab) is extracted.
-4. **On-Chain Signature:** The metadata and IPFS CID are bundled into a payload. The user signs this payload using their Solana wallet.
-5. **SAS Record:** The Solana Attestation Service records the hash on-chain, forever proving *who* uploaded the document and *when*.
+### The Crisis of Trust in Research Peptides
+The distribution and sourcing of research peptides suffer from a systemic reproducibility and trust crisis. Suppliers operate in opaque environments where analytical testing results—such as Certificates of Analysis (COAs), High-Performance Liquid Chromatography (HPLC), and Mass Spectrometry (MS) reports—are frequently manipulated, reused across disparate batches, or quietly deleted. 
 
----
+Without a decentralized source of truth, independent researchers are forced to rely on subjective, easily manipulated community forums for supplier validation, leading to compromised research integrity and potential safety hazards.
 
-## 💻 Tech Stack & Resources Used
+### The PepVerify Solution
+**PepVerify** introduces cryptographic provenance to the scientific supply chain. By anchoring analytical lab reports to decentralized storage (IPFS) and binding them to cryptographic signatures on the Solana blockchain, we shift the ecosystem from "trust-based" to "verification-based." 
 
-PepVerify is built with a highly performant, production-grade modern stack. 
-
-### Core Technologies & Open Source Repositories
-We stand on the shoulders of giants. This platform was built utilizing the following incredible open-source projects:
-
-* **[Next.js 15 (App Router)](https://github.com/vercel/next.js):** React framework for server-side rendering and static generation.
-* **[Tailwind CSS v4](https://github.com/tailwindlabs/tailwindcss):** Utility-first CSS framework for rapid UI development.
-* **[shadcn/ui](https://github.com/shadcn-ui/ui) & [Radix UI](https://github.com/radix-ui/primitives):** Accessible, unstyled React components for the enterprise-grade dark-mode design system.
-* **[Solana Web3.js](https://github.com/solana-labs/solana-web3.js):** Solana JavaScript API for interacting with the blockchain.
-* **[Solana Wallet Adapter](https://github.com/anza-xyz/wallet-adapter):** Modular wallet adapters for Solana applications.
-* **[Solana Attestation Service (SAS)](https://github.com/solana-foundation/solana-attestation-service):** The core primitive for recording immutable evidence and claims on-chain.
-* **[Zustand](https://github.com/pmndrs/zustand):** Small, fast, and scalable bearbones state-management.
-* **[Lucide Icons](https://github.com/lucide-icons/lucide):** Beautiful & consistent icon toolkit.
-
-### External Resources & Inspiration
-- Domain logic modeled after transparency hubs like [Janoshik Analytical](https://janoshik.com) and [PubMed](https://pubmed.ncbi.nlm.nih.gov/).
-- UX and UI philosophy inspired by modern compliance and fintech platforms (e.g., Stripe, Linear, Vercel).
+PepVerify acts as a public good: a highly dense, unalterable "Bloomberg Terminal" for scientific transparency, where reputation is algorithmically derived from immutable on-chain evidence rather than marketing claims.
 
 ---
 
-## 🚀 Local Setup & Installation
+## 🏛️ Protocol Architecture
 
-To run the platform locally on your machine:
+The PepVerify protocol operates through a deterministic verification pipeline:
+
+1. **Evidence Ingestion:** A researcher or supplier submits a 3rd-party analytical report (PDF).
+2. **Decentralized Storage (IPFS):** The document is pinned to the InterPlanetary File System, generating a permanent, tamper-proof Content Identifier (CID).
+3. **Metadata Extraction:** Critical structural data is parsed, including:
+   - Compound Sequence / Identifier
+   - Batch Number
+   - Analytical Purity Percentage
+   - Testing Methodology (e.g., LC-MS, HPLC-UV)
+   - Analytical Laboratory Identity
+4. **Cryptographic Anchoring (Solana SAS):** The extracted metadata and the IPFS CID are bundled into a JSON payload. The verifying party signs this payload using their Solana wallet. The Solana Attestation Service (SAS) records the hash of this payload on-chain.
+5. **Immutable Provenance:** The resulting on-chain record permanently proves *who* uploaded the document, *when* it was attested, and mathematically guarantees the document has not been altered since the attestation.
+
+---
+
+## ✨ Core Features
+
+- **Zero-Trust Verification:** Mathematical proof of document authenticity and timeline.
+- **Algorithmic Trust Scoring:** Supplier reputation is dynamically calculated based on the volume, recency, and verified purity of their on-chain attestations.
+- **Evidence Vault:** A decentralized, searchable repository of all historical lab reports linked to specific batches.
+- **DAO Governance:** Community-driven dispute resolution for conflicting reports and decentralized curation of verified suppliers.
+- **Enterprise-Grade UI/UX:** A high-density, document-centric interface built for researchers, avoiding the "crypto-casino" aesthetics typical of early Web3 projects.
+
+---
+
+## 💻 Technical Specifications
+
+PepVerify is engineered for high performance, utilizing a modern, production-ready stack designed for rapid data retrieval and seamless Web3 interaction.
+
+### Frontend Client
+- **Framework:** Next.js 15 (App Router)
+- **Language:** TypeScript (Strict Mode)
+- **Styling:** Tailwind CSS v4 + native `oklch` color spaces for an academic, deep-navy aesthetic.
+- **State Management:** Zustand for localized client states; TanStack Query for asynchronous data caching.
+
+### Web3 & Infrastructure Layer
+- **Blockchain:** Solana (Devnet/Mainnet) chosen for high throughput and micro-attestation economic viability.
+- **Wallet Integration:** `@solana/wallet-adapter-react` supporting Phantom, Solflare, and Backpack.
+- **Attestation Primitive:** `@solana/attestation-service` for standardized on-chain claims.
+- **Storage:** IPFS integration via `nft.storage` / `web3.storage`.
+
+---
+
+## 📚 Open Source Foundations
+
+This platform is a composite of extraordinary open-source technologies. We acknowledge and utilize the following foundational repositories:
+
+| Technology | Purpose | Repository |
+|:---|:---|:---|
+| **Next.js** | Core React SSR Framework | [vercel/next.js](https://github.com/vercel/next.js) |
+| **Tailwind CSS** | Utility-first CSS architecture | [tailwindlabs/tailwindcss](https://github.com/tailwindlabs/tailwindcss) |
+| **shadcn/ui** | Accessible UI primitives | [shadcn-ui/ui](https://github.com/shadcn-ui/ui) |
+| **Radix UI** | Unstyled accessible components | [radix-ui/primitives](https://github.com/radix-ui/primitives) |
+| **Solana Web3** | Core blockchain interaction RPC | [solana-labs/solana-web3.js](https://github.com/solana-labs/solana-web3.js) |
+| **Wallet Adapter** | Multi-wallet Solana connections | [anza-xyz/wallet-adapter](https://github.com/anza-xyz/wallet-adapter) |
+| **SAS** | Solana Attestation Service | [solana-foundation/solana-attestation-service](https://github.com/solana-foundation/solana-attestation-service) |
+| **Zustand** | Bearbones state management | [pmndrs/zustand](https://github.com/pmndrs/zustand) |
+| **Lucide** | Minimalist vector iconography | [lucide-icons/lucide](https://github.com/lucide-icons/lucide) |
+| **Recharts** | Composable charting library | [recharts/recharts](https://github.com/recharts/recharts) |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (v18.17.0 or higher)
+- npm or yarn
+- A Solana Wallet browser extension (e.g., Phantom)
+
+### Local Development Setup
 
 1. **Clone the repository:**
    ```bash
@@ -78,19 +121,40 @@ To run the platform locally on your machine:
    npm install
    ```
 
-3. **Start the development server:**
+3. **Configure Environment Variables:**
+   Create a `.env.local` file in the root directory and add your specific RPC and IPFS keys (if applicable):
+   ```env
+   NEXT_PUBLIC_SOLANA_RPC_URL=https://api.devnet.solana.com
+   NEXT_PUBLIC_IPFS_GATEWAY=https://ipfs.io/ipfs/
+   ```
+
+4. **Launch the development server:**
    ```bash
    npm run dev
    ```
 
-4. **Open the app:**
-   Navigate to [http://localhost:3000](http://localhost:3000) in your browser.
+5. **Access the application:**
+   Navigate to [http://localhost:3000](http://localhost:3000) in your preferred browser.
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions from researchers, scientists, and developers passionate about Decentralized Science. 
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+Please ensure your code adheres to the existing TypeScript strict guidelines and ESLint configurations.
 
 ---
 
 ## ⚖️ License
 
-This project is licensed under the **MIT License**.
+Distributed under the MIT License.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
