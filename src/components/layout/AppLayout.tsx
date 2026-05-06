@@ -8,7 +8,7 @@ interface AppLayoutProps {
 
 export function AppLayout({ children }: AppLayoutProps) {
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background bg-grid-pattern flex flex-col">
       <TopNav />
       <div className="flex flex-1">
         <Sidebar />

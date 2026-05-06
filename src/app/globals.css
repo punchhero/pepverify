@@ -72,7 +72,7 @@
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --radius: 0.5rem;
+  --radius: 0.25rem; /* Sharper clinical borders */
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -84,37 +84,37 @@
 }
 
 .dark {
-  --background: #0A1118;
-  --foreground: #F1F5F9;
-  --card: #0F172A;
-  --card-foreground: #F1F5F9;
-  --popover: #0F172A;
-  --popover-foreground: #F1F5F9;
-  --primary: #14B8A6;
-  --primary-foreground: #022C22;
-  --secondary: #1E293B;
-  --secondary-foreground: #F1F5F9;
-  --muted: #1E293B;
+  --background: #030508; /* Deep absolute black/charcoal */
+  --foreground: #F8FAFC;
+  --card: rgba(10, 15, 25, 0.4); /* Glass effect base */
+  --card-foreground: #F8FAFC;
+  --popover: #05080C;
+  --popover-foreground: #F8FAFC;
+  --primary: #06B6D4; /* Laser Cyan */
+  --primary-foreground: #000000;
+  --secondary: rgba(6, 182, 212, 0.1);
+  --secondary-foreground: #06B6D4;
+  --muted: rgba(255, 255, 255, 0.05);
   --muted-foreground: #94A3B8;
-  --accent: #1E293B;
-  --accent-foreground: #F1F5F9;
-  --destructive: #EF4444;
-  --border: #1E293B;
-  --input: #1E293B;
-  --ring: #14B8A6;
-  --chart-1: #14B8A6;
-  --chart-2: #10B981;
+  --accent: rgba(6, 182, 212, 0.15);
+  --accent-foreground: #F8FAFC;
+  --destructive: #FF3366; /* Sharper red */
+  --border: rgba(255, 255, 255, 0.08); /* Thinner subtle borders */
+  --input: rgba(255, 255, 255, 0.05);
+  --ring: #06B6D4;
+  --chart-1: #06B6D4;
+  --chart-2: #10B981; /* Bio-Green */
   --chart-3: #8B5CF6;
   --chart-4: #3B82F6;
   --chart-5: #F59E0B;
-  --sidebar: #0B1120;
-  --sidebar-foreground: #F1F5F9;
-  --sidebar-primary: #14B8A6;
-  --sidebar-primary-foreground: #022C22;
-  --sidebar-accent: #1E293B;
-  --sidebar-accent-foreground: #F1F5F9;
-  --sidebar-border: #1E293B;
-  --sidebar-ring: #14B8A6;
+  --sidebar: #020406;
+  --sidebar-foreground: #F8FAFC;
+  --sidebar-primary: #06B6D4;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: rgba(255, 255, 255, 0.05);
+  --sidebar-accent-foreground: #F8FAFC;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-ring: #06B6D4;
 }
 
 @layer base {
@@ -124,7 +124,11 @@
   body {
     @apply bg-background text-foreground;
   }
-  html {
-    @apply font-sans;
-  }
+}
+
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
 }
