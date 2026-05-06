@@ -2,18 +2,18 @@
 
 import Link from "next/link";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
-import { Search, Hexagon } from "lucide-react";
+import { Search, ShieldCheck } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
 export function TopNav() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/40 backdrop-blur-md supports-[backdrop-filter]:bg-background/40">
-      <div className="flex h-16 items-center px-6">
-        <div className="flex items-center gap-2 md:w-64 flex-shrink-0">
-          <Hexagon className="h-6 w-6 text-primary fill-primary/20" />
-          <Link href="/" className="flex items-center space-x-2">
-            <span className="font-bold text-lg tracking-tight">PepVerify</span>
-          </Link>
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-sm">
+      <div className="flex h-16 items-center px-6 max-w-[2000px] mx-auto w-full justify-between">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-sm bg-primary/10 flex items-center justify-center border border-primary/20 shadow-[0_0_15px_rgba(6,182,212,0.1)]">
+            <ShieldCheck className="w-4 h-4 text-primary" />
+          </div>
+          <span className="font-bold tracking-tight text-lg">PepVerify<span className="text-primary">.</span></span>
         </div>
         
         <div className="flex flex-1 items-center justify-between md:justify-end gap-4">

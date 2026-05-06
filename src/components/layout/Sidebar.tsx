@@ -26,44 +26,34 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-64 flex-shrink-0 border-r border-border bg-sidebar/50 backdrop-blur-md h-[calc(100vh-4rem)] sticky top-16 hidden md:block">
-      <div className="flex flex-col h-full py-6 px-4">
-        <nav className="flex-1 space-y-1">
+    <aside className="w-64 flex-shrink-0 border-r border-border bg-sidebar h-[calc(100vh-4rem)] sticky top-16 hidden md:block z-40">
+      <div className="flex flex-col h-full py-6 px-3">
+        <nav className="flex-1 space-y-0.5">
           {NAV_ITEMS.map((item) => {
-            const isActive = pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href));
+            const isActive = pathname === item.href;
+            const Icon = item.icon;
+            
             return (
-              <Link
-                key={item.name}
+              <Link 
+                key={item.name} 
                 href={item.href}
-                className={cn(
-                  "group flex items-center px-3 py-2 text-sm font-medium rounded-md transition-colors",
-                  isActive
-                    ? "bg-primary/10 text-primary"
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                )}
+                className={`flex items-center gap-3 px-3 py-2 rounded-sm transition-all duration-200 group
+                  ${isActive 
+                    ? 'bg-primary/5 text-primary border-l-2 border-primary' 
+                    : 'text-muted-foreground hover:bg-muted/50 hover:text-foreground border-l-2 border-transparent'
+                  }`}
               >
-                <item.icon
-                  className={cn(
-                    "mr-3 flex-shrink-0 h-5 w-5",
-                    isActive ? "text-primary" : "text-muted-foreground group-hover:text-foreground"
-                  )}
-                  aria-hidden="true"
-                />
-                {item.name}
+                <Icon className={`w-4 h-4 transition-colors ${isActive ? 'text-primary' : 'text-muted-foreground/70 group-hover:text-foreground'}`} />
+                <span className="font-medium text-sm tracking-wide">{item.name}</span>
               </Link>
             );
           })}
         </nav>
         
-        <div className="mt-8 pt-6 border-t border-border">
-          <div className="flex items-center gap-3 px-3">
-            <div className="w-8 h-8 rounded bg-primary/20 flex items-center justify-center">
-              <FlaskConical className="w-4 h-4 text-primary" />
-            </div>
-            <div>
-              <p className="text-xs font-medium text-foreground">Platform Status</p>
-              <p className="text-[10px] text-muted-foreground">All systems operational</p>
-            </div>
+        <div className="mt-auto border-t border-border/50 pt-4 px-3">
+          <div className="flex items-center gap-3 text-xs text-muted-foreground/50 font-mono">
+            <div className="w-2 h-2 rounded-full bg-emerald-500/50 shadow-[0_0_10px_rgba(16,185,129,0.2)]"></div>
+            Mainnet Beta Active
           </div>
         </div>
       </div>

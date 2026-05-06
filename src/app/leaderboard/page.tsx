@@ -91,71 +91,77 @@ export default function LeaderboardPage() {
         </div>
 
         <motion.div variants={itemVariants}>
-          <Card className="bg-card/40 backdrop-blur-sm border-border/50 overflow-hidden">
-            <CardHeader>
-              <CardTitle>Global Rankings</CardTitle>
-              <CardDescription>All indexed suppliers ordered by algorithmic trust score</CardDescription>
-            </CardHeader>
-            <CardContent className="p-0">
-              <div className="border-t border-border">
-                <div className="grid grid-cols-12 text-xs font-semibold text-muted-foreground border-b border-border p-4 bg-muted/20 uppercase tracking-wider">
-                  <div className="col-span-1 text-center">Rank</div>
-                  <div className="col-span-4">Supplier Name</div>
-                  <div className="col-span-2 text-center">Trust Score</div>
-                  <div className="col-span-2 text-center">Attestations</div>
-                  <div className="col-span-2 text-center">Trend</div>
-                  <div className="col-span-1"></div>
-                </div>
-                <div className="divide-y divide-border/50">
+          <div className="bg-card/40 border border-border/50 rounded-sm overflow-hidden">
+            <div className="px-6 py-4 border-b border-border/50 bg-muted/10 flex justify-between items-center">
+              <div>
+                <h2 className="text-lg font-semibold tracking-tight">Global Indexed Suppliers</h2>
+                <p className="text-xs text-muted-foreground">Ordered by algorithmic trust score</p>
+              </div>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm text-left">
+                <thead className="text-xs uppercase bg-muted/20 text-muted-foreground border-b border-border/50">
+                  <tr>
+                    <th className="px-6 py-3 font-semibold tracking-wider w-16 text-center">Rank</th>
+                    <th className="px-6 py-3 font-semibold tracking-wider">Supplier Entity</th>
+                    <th className="px-6 py-3 font-semibold tracking-wider text-center">Trust Score</th>
+                    <th className="px-6 py-3 font-semibold tracking-wider text-center">Attestations</th>
+                    <th className="px-6 py-3 font-semibold tracking-wider text-center">Trend (7d)</th>
+                    <th className="px-6 py-3 font-semibold tracking-wider text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-border/30">
                   {sortedSuppliers.map((supplier, index) => {
                     const trend = getTrend(index);
                     const TrendIcon = trend.icon;
                     return (
-                      <motion.div 
-                        key={supplier.id} 
-                        initial={{ opacity: 0, x: -20 }}
+                      <motion.tr 
+                        key={supplier.id}
+                        initial={{ opacity: 0, x: -10 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        transition={{ delay: index * 0.05 }}
-                        className="grid grid-cols-12 text-sm p-4 items-center hover:bg-muted/10 transition-colors"
+                        transition={{ delay: index * 0.03, duration: 0.3, ease: "easeOut" }}
+                        className="hover:bg-muted/10 transition-colors even:bg-muted/5"
                       >
-                        <div className="col-span-1 text-center font-bold text-muted-foreground font-mono">
+                        <td className="px-6 py-3 whitespace-nowrap text-center font-mono text-muted-foreground font-semibold">
                           {index + 1}
-                        </div>
-                        <div className="col-span-4 font-semibold flex items-center gap-2">
+                        </td>
+                        <td className="px-6 py-3 whitespace-nowrap font-medium flex items-center gap-2">
                           {supplier.name}
                           {supplier.verified && <ShieldCheck className="w-3 h-3 text-emerald-500" />}
-                        </div>
-                        <div className="col-span-2 flex justify-center">
-                          <Badge variant="outline" className={`font-mono text-xs rounded-sm border
-                            ${supplier.trustScore >= 90 ? 'bg-primary/10 text-primary border-primary/20' : 
-                              supplier.trustScore >= 80 ? 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20' : 
-                              'bg-destructive/10 text-destructive border-destructive/20'}
+                        </td>
+                        <td className="px-6 py-3 whitespace-nowrap text-center">
+                          <Badge variant="outline" className={`font-mono text-xs rounded-sm border px-2 py-0.5
+                            ${supplier.trustScore >= 90 ? 'bg-primary/5 text-primary border-primary/20' : 
+                              supplier.trustScore >= 80 ? 'bg-emerald-500/5 text-emerald-500 border-emerald-500/20' : 
+                              'bg-destructive/5 text-destructive border-destructive/20'}
                           `}>
                             {supplier.trustScore}
                           </Badge>
-                        </div>
-                        <div className="col-span-2 text-center font-mono text-muted-foreground">
+                        </td>
+                        <td className="px-6 py-3 whitespace-nowrap text-center font-mono text-muted-foreground">
                           {supplier.attestationCount}
-                        </div>
-                        <div className={`col-span-2 flex items-center justify-center gap-1 font-mono ${trend.color}`}>
-                          <TrendIcon className="w-3 h-3" />
-                          <span className="text-xs">{trend.value}</span>
-                        </div>
-                        <div className="col-span-1 flex justify-end">
+                        </td>
+                        <td className={`px-6 py-3 whitespace-nowrap text-center font-mono text-xs ${trend.color}`}>
+                          <div className="flex items-center justify-center gap-1">
+                            <TrendIcon className="w-3 h-3" />
+                            {trend.value}
+                          </div>
+                        </td>
+                        <td className="px-6 py-3 whitespace-nowrap text-right">
                           <Link href={`/supplier/${supplier.id}`}>
-                            <div className="text-primary hover:text-primary/80 transition-colors cursor-pointer text-xs uppercase tracking-wider font-semibold border border-primary/20 px-2 py-1 rounded-sm bg-primary/5 hover:bg-primary/10">
-                              View
-                            </div>
+                            <span className="text-primary hover:text-primary/80 transition-colors cursor-pointer text-[10px] uppercase tracking-wider font-bold border border-primary/20 px-3 py-1.5 rounded-sm bg-primary/5 hover:bg-primary/10">
+                              View Record
+                            </span>
                           </Link>
-                        </div>
-                      </motion.div>
+                        </td>
+                      </motion.tr>
                     );
                   })}
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </motion.div>
       </div>
     </motion.div>

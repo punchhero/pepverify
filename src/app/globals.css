@@ -84,36 +84,36 @@
 }
 
 .dark {
-  --background: #030508; /* Deep absolute black/charcoal */
+  --background: #020305; /* Deeper absolute black */
   --foreground: #F8FAFC;
-  --card: rgba(10, 15, 25, 0.4); /* Glass effect base */
+  --card: #05080C; /* Solid dark instead of glass for inner cards to create depth */
   --card-foreground: #F8FAFC;
   --popover: #05080C;
   --popover-foreground: #F8FAFC;
-  --primary: #06B6D4; /* Laser Cyan */
+  --primary: #06B6D4; /* Laser Cyan - Interactive */
   --primary-foreground: #000000;
-  --secondary: rgba(6, 182, 212, 0.1);
+  --secondary: rgba(6, 182, 212, 0.05); /* Softer secondary */
   --secondary-foreground: #06B6D4;
-  --muted: rgba(255, 255, 255, 0.05);
-  --muted-foreground: #94A3B8;
-  --accent: rgba(6, 182, 212, 0.15);
+  --muted: rgba(255, 255, 255, 0.03); /* Extremely subtle */
+  --muted-foreground: #64748B; /* Darker slate for less noise */
+  --accent: rgba(255, 255, 255, 0.03);
   --accent-foreground: #F8FAFC;
-  --destructive: #FF3366; /* Sharper red */
-  --border: rgba(255, 255, 255, 0.08); /* Thinner subtle borders */
-  --input: rgba(255, 255, 255, 0.05);
+  --destructive: #EF4444; 
+  --border: rgba(255, 255, 255, 0.04); /* Thinner subtle borders */
+  --input: rgba(255, 255, 255, 0.03);
   --ring: #06B6D4;
   --chart-1: #06B6D4;
-  --chart-2: #10B981; /* Bio-Green */
-  --chart-3: #8B5CF6;
+  --chart-2: #10B981; /* Verified/Emerald */
+  --chart-3: #8B5CF6; /* Governance/Violet */
   --chart-4: #3B82F6;
-  --chart-5: #F59E0B;
-  --sidebar: #020406;
+  --chart-5: #F59E0B; /* Warning/Amber */
+  --sidebar: #020305;
   --sidebar-foreground: #F8FAFC;
   --sidebar-primary: #06B6D4;
   --sidebar-primary-foreground: #000000;
-  --sidebar-accent: rgba(255, 255, 255, 0.05);
+  --sidebar-accent: rgba(255, 255, 255, 0.03);
   --sidebar-accent-foreground: #F8FAFC;
-  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-border: rgba(255, 255, 255, 0.04);
   --sidebar-ring: #06B6D4;
 }
 
@@ -129,6 +129,6 @@
 .bg-grid-pattern {
   background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
 }
