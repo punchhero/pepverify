@@ -1,7 +1,7 @@
 "use client";
 
 import { use } from "react";
-import { MOCK_SUPPLIERS, MOCK_REPORTS, MOCK_ATTESTATIONS } from "@/lib/data";
+import { MOCK_SUPPLIERS, MOCK_REPORTS, MOCK_ATTESTATIONS, MOCK_COMPOUNDS } from "@/lib/data";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ShieldCheck, ShieldAlert, FileText, CheckCircle2, Globe, ExternalLink, Hash } from "lucide-react";
