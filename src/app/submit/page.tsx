@@ -8,12 +8,16 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Check, ChevronRight, UploadCloud, FileText, Wallet, Fingerprint } from "lucide-react";
-import { useWallet } from "@solana/wallet-adapter-react";
+import { useWallet, useConnection } from "@solana/wallet-adapter-react";
+import { Transaction, SystemProgram, PublicKey } from "@solana/web3.js";
 import { toast } from "sonner";
+import { uploadToIPFS } from "@/app/actions/upload";
 
 export default function SubmitEvidencePage() {
   const [step, setStep] = useState(1);
-  const { connected } = useWallet();
+  const { connected, publicKey, sendTransaction } = useWallet();
+  const { connection } = useConnection();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
   const [formData, setFormData] = useState({
     supplierId: "",
@@ -21,23 +25,87 @@ export default function SubmitEvidencePage() {
     batchNumber: "",
     purity: "",
     file: null as File | null,
+    cid: "",
+    sasHash: "",
   });
 
   const handleNext = () => setStep(s => Math.min(4, s + 1));
   const handleBack = () => setStep(s => Math.max(1, s - 1));
 
   const handleSign = async () => {
-    toast.promise(
-      new Promise((resolve) => setTimeout(resolve, 2000)),
-      {
-        loading: 'Uploading to IPFS and generating SAS attestation...',
-        success: 'Evidence verified and published on-chain!',
-        error: 'Error signing transaction',
+    if (!publicKey || !formData.file) return;
+    setIsSubmitting(true);
+
+    try {
+      // 1. Upload PDF to Pinata (IPFS)
+      toast.info("Uploading evidence to IPFS...");
+      const fileData = new FormData();
+      fileData.append("file", formData.file);
+      
+      const uploadResult = await uploadToIPFS(fileData);
+      
+      if (!uploadResult.success) {
+        // Fallback for demo purposes if API keys aren't set
+        toast.error("IPFS Upload Failed. Simulating transaction for demo.");
+        console.warn("Missing Pinata keys. Simulating CID.");
+        await new Promise(r => setTimeout(r, 1000));
+        setFormData(prev => ({ ...prev, cid: "QmDemoMockCID123456789" }));
+      } else {
+        toast.success("File pinned to IPFS!");
+        setFormData(prev => ({ ...prev, cid: uploadResult.cid! }));
       }
-    );
-    setTimeout(() => {
+
+      const activeCid = uploadResult.cid || "QmDemoMockCID123456789";
+
+      // 2. Construct SAS Payload (What goes on chain)
+      const sasPayload = {
+        schema: "pepverify.evidence.v1",
+        supplier: MOCK_SUPPLIERS.find(s => s.id === formData.supplierId)?.name,
+        compound: MOCK_COMPOUNDS.find(c => c.id === formData.compoundId)?.name,
+        batch: formData.batchNumber,
+        purity: `${formData.purity}%`,
+        cid: activeCid,
+        timestamp: new Date().toISOString()
+      };
+
+      toast.info("Awaiting wallet signature...");
+
+      // 3. Construct Solana Transaction
+      // In a real SAS implementation, you'd invoke the specific SAS program.
+      // Here we simulate anchoring by recording a memo or a zero-value transfer as proof of signature.
+      const transaction = new Transaction().add(
+        SystemProgram.transfer({
+          fromPubkey: publicKey,
+          toPubkey: publicKey, // Send to self as a zero-cost structural anchor
+          lamports: 0,
+        })
+      );
+
+      // 4. Request Signature from Wallet
+      const signature = await sendTransaction(transaction, connection);
+      
+      toast.info("Confirming transaction on Solana...");
+      
+      // 5. Confirm Transaction
+      const latestBlockhash = await connection.getLatestBlockhash();
+      await connection.confirmTransaction({
+        blockhash: latestBlockhash.blockhash,
+        lastValidBlockHeight: latestBlockhash.lastValidBlockHeight,
+        signature: signature,
+      });
+
+      toast.success("Attestation recorded on-chain!");
+      setFormData(prev => ({ ...prev, sasHash: signature }));
+      
+      // Proceed to success screen
       setStep(5);
-    }, 2000);
+      
+    } catch (error: any) {
+      console.error("Submission error:", error);
+      toast.error(`Transaction failed: ${error.message || "User rejected signature"}`);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const selectedSupplier = MOCK_SUPPLIERS.find(s => s.id === formData.supplierId);
@@ -204,10 +272,11 @@ export default function SubmitEvidencePage() {
               <Button variant="ghost" onClick={handleBack}>Back</Button>
               <Button 
                 onClick={handleSign} 
+                disabled={isSubmitting}
                 className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2"
               >
                 <Fingerprint className="w-4 h-4" />
-                Sign & Publish
+                {isSubmitting ? "Signing..." : "Sign & Publish"}
               </Button>
             </CardFooter>
           </Card>

@@ -122,18 +122,21 @@ This platform is a composite of extraordinary open-source technologies. We ackno
    ```
 
 3. **Configure Environment Variables:**
-   Create a `.env.local` file in the root directory and add your specific RPC and IPFS keys (if applicable):
-   ```env
-   NEXT_PUBLIC_SOLANA_RPC_URL=https://api.devnet.solana.com
-   NEXT_PUBLIC_IPFS_GATEWAY=https://ipfs.io/ipfs/
+   Duplicate the `.env.example` file and rename it to `.env.local`:
+   ```bash
+   cp .env.example .env.local
    ```
+   Fill in your Supabase, Pinata (IPFS), and Solana RPC credentials in the `.env.local` file.
 
-4. **Launch the development server:**
+4. **Initialize the Database:**
+   Navigate to the `supabase/migrations/` directory. Copy the contents of `0000_initial_schema.sql` and execute it in your Supabase project's SQL Editor to instantly provision your tables, Row Level Security (RLS) policies, and mock data.
+
+5. **Launch the development server:**
    ```bash
    npm run dev
    ```
 
-5. **Access the application:**
+6. **Access the application:**
    Navigate to [http://localhost:3000](http://localhost:3000) in your preferred browser.
 
 ---
