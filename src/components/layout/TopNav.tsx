@@ -1,0 +1,37 @@
+"use client";
+
+import Link from "next/link";
+import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import { Search, Hexagon } from "lucide-react";
+import { Input } from "@/components/ui/input";
+
+export function TopNav() {
+  return (
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="flex h-16 items-center px-6">
+        <div className="flex items-center gap-2 md:w-64 flex-shrink-0">
+          <Hexagon className="h-6 w-6 text-primary fill-primary/20" />
+          <Link href="/" className="flex items-center space-x-2">
+            <span className="font-bold text-lg tracking-tight">PepVerify</span>
+          </Link>
+        </div>
+        
+        <div className="flex flex-1 items-center justify-between md:justify-end gap-4">
+          <div className="w-full max-w-sm hidden md:flex items-center relative">
+            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+            <Input
+              type="search"
+              placeholder="Search suppliers, compounds, CIDs..."
+              className="w-full bg-muted/50 pl-9 border-none focus-visible:ring-1 focus-visible:ring-primary h-9"
+            />
+          </div>
+          <nav className="flex items-center gap-4">
+            {/* Wallet adapter component handles its own dark mode depending on global classes, 
+                but we might need to override some CSS to match our dark green aesthetic later. */}
+            <WalletMultiButton className="!bg-primary/10 !text-primary hover:!bg-primary/20 !h-9 !px-4 !text-sm !font-medium !rounded-md !transition-colors !border !border-primary/20" />
+          </nav>
+        </div>
+      </div>
+    </header>
+  );
+}
