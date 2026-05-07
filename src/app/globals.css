@@ -84,37 +84,36 @@
 }
 
 .dark {
-  /* Linear-style: precise slate navy, never pure black */
-  --background: #0F1117; /* Very dark slate, not pure black */
-  --foreground: #EDEDED; /* Slightly off-white, easier on eyes */
-  --card: #161B22; /* 1 shade lighter for cards */
-  --card-foreground: #EDEDED;
-  --popover: #161B22;
-  --popover-foreground: #EDEDED;
-  --primary: #5E6AD2; /* Linear's signature indigo/violet */
+  --background: #080808;           /* Linear near-black */
+  --foreground: #F0F0F0;           /* Near-white, not pure */
+  --card: #0F0F0F;                 /* 1 step above background */
+  --card-foreground: #F0F0F0;
+  --popover: #141414;
+  --popover-foreground: #F0F0F0;
+  --primary: #5E6AD2;              /* Linear indigo */
   --primary-foreground: #ffffff;
-  --secondary: #21262D;
-  --secondary-foreground: #EDEDED;
-  --muted: #21262D;
-  --muted-foreground: #8B949E; /* GitHub-style slate gray */
-  --accent: #21262D;
-  --accent-foreground: #EDEDED;
+  --secondary: #141414;
+  --secondary-foreground: #F0F0F0;
+  --muted: #141414;
+  --muted-foreground: #888888;     /* Linear's muted gray */
+  --accent: #141414;
+  --accent-foreground: #F0F0F0;
   --destructive: #F85149;
-  --border: #30363D; /* GitHub dark border — subtle, not harsh */
-  --input: #21262D;
+  --border: rgba(255, 255, 255, 0.07); /* Ultra-subtle Linear border */
+  --input: #141414;
   --ring: #5E6AD2;
-  --chart-1: #5E6AD2; /* Primary violet */
-  --chart-2: #2EA043; /* Emerald verified */
-  --chart-3: #A371F7; /* Purple governance */
-  --chart-4: #388BFD; /* Blue */
-  --chart-5: #E3B341; /* Amber warning */
-  --sidebar: #0F1117;
-  --sidebar-foreground: #EDEDED;
+  --chart-1: #5E6AD2;
+  --chart-2: #2EA043;
+  --chart-3: #A371F7;
+  --chart-4: #388BFD;
+  --chart-5: #E3B341;
+  --sidebar: #080808;
+  --sidebar-foreground: #F0F0F0;
   --sidebar-primary: #5E6AD2;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #161B22;
-  --sidebar-accent-foreground: #EDEDED;
-  --sidebar-border: #30363D;
+  --sidebar-accent: #141414;
+  --sidebar-accent-foreground: #F0F0F0;
+  --sidebar-border: rgba(255, 255, 255, 0.07);
   --sidebar-ring: #5E6AD2;
 }
 
@@ -125,20 +124,18 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  /* Linear-style smooth scrolling and selection */
   ::selection {
-    background: rgba(94, 106, 210, 0.25);
+    background: rgba(94, 106, 210, 0.3);
   }
 }
 
-/* No grid pattern — clean Linear aesthetic */
-.bg-grid-pattern {
-  background: none;
-}
+.bg-grid-pattern { background: none; }
 
-/* Linear-style subtle scrollbar */
+/* Linear-style thin scrollbar */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #30363D; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #8B949E; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }

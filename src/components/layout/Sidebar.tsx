@@ -2,14 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { 
-  LayoutDashboard,
-  Database, 
-  ShieldCheck, 
-  Landmark, 
-  Trophy,
-  User,
-} from "lucide-react";
+import { LayoutDashboard, Database, ShieldCheck, Landmark, Trophy, User } from "lucide-react";
 
 const NAV_ITEMS = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
@@ -24,37 +17,33 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-64 flex-shrink-0 border-r border-border bg-card/30 h-[calc(100vh-4rem)] sticky top-16 hidden md:block z-40">
-      <div className="flex flex-col h-full py-6 px-4">
-        <nav className="flex-1 space-y-1">
+    <aside className="w-56 flex-shrink-0 border-r border-white/[0.06] bg-[#080808] h-[calc(100vh-3.5rem)] sticky top-14 hidden md:flex flex-col z-40">
+      <div className="flex flex-col flex-1 py-3 px-2">
+        <nav className="flex-1 space-y-0.5">
           {NAV_ITEMS.map((item) => {
             const isActive = pathname === item.href || (item.href !== "/dashboard" && pathname.startsWith(item.href));
             const Icon = item.icon;
-            
             return (
-              <Link 
-                key={item.name} 
+              <Link
+                key={item.name}
                 href={item.href}
-                className={`flex items-center gap-2.5 px-3 py-2 rounded-md text-sm transition-colors duration-150 group
-                  ${
-                    isActive 
-                      ? 'bg-muted/80 text-foreground font-medium' 
-                      : 'text-muted-foreground hover:bg-muted/40 hover:text-foreground'
+                className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] transition-colors duration-150 group
+                  ${isActive
+                    ? "bg-white/[0.06] text-white font-medium"
+                    : "text-[#666] hover:bg-white/[0.04] hover:text-[#ccc]"
                   }`}
               >
-                <Icon className={`w-4 h-4 shrink-0 ${
-                  isActive ? 'text-primary' : 'text-muted-foreground/60 group-hover:text-muted-foreground'
-                }`} />
-                <span>{item.name}</span>
+                <Icon className={`w-4 h-4 shrink-0 ${isActive ? "text-[#5E6AD2]" : "text-[#444] group-hover:text-[#888]"}`} />
+                {item.name}
               </Link>
             );
           })}
         </nav>
-        
-        <div className="mt-auto border-t border-border/50 pt-4 px-3">
-          <div className="flex items-center gap-3 text-xs text-muted-foreground font-mono">
-            <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
-            Mainnet Sync Active
+
+        <div className="px-3 pb-2">
+          <div className="flex items-center gap-2 text-[11px] text-[#333]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#2EA043] inline-block" />
+            Mainnet sync active
           </div>
         </div>
       </div>

@@ -3,10 +3,18 @@
 import Link from "next/link";
 import { useState } from "react";
 import { MOCK_SUPPLIERS } from "@/lib/data";
-import { Input } from "@/components/ui/input";
 import { Search, ShieldCheck, Globe, Filter } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { motion, Variants } from "framer-motion";
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 8 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.25, ease: "easeOut" } }
+};
+
+const container: Variants = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1, transition: { staggerChildren: 0.05 } }
+};
 
 export default function DirectoryPage() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -14,96 +22,104 @@ export default function DirectoryPage() {
   const filteredSuppliers = MOCK_SUPPLIERS.filter(s => 
     s.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
     s.compoundsSupported.some(c => c.toLowerCase().includes(searchTerm.toLowerCase()))
-  ).sort((a, b) => b.trustScore - a.trustScore); // Default sort by trust score
+  ).sort((a, b) => b.trustScore - a.trustScore);
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="px-6 py-8 border-b border-border bg-card">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+    <motion.div initial="hidden" animate="show" variants={container} className="flex flex-col bg-[#080808] text-[#F0F0F0] pb-12 min-h-full">
+      <div className="px-8 py-8 border-b border-white/[0.06]">
+        <motion.div variants={fadeUp} className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
           <div>
-            <h1 className="text-2xl font-bold tracking-tight">Supplier Directory</h1>
-            <p className="text-sm text-muted-foreground mt-1">Verified research peptide suppliers indexed by trust score and attestations.</p>
+            <h1 className="text-[22px] font-semibold tracking-[-0.02em] text-white mb-1.5">Supplier Directory</h1>
+            <p className="text-[14px] text-[#888]">Verified research peptide suppliers indexed by trust score and attestations.</p>
           </div>
           <div className="flex gap-3">
             <div className="relative w-full md:w-64">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-              <Input
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-[#666]" />
+              <input
                 placeholder="Search by name or compound..."
-                className="pl-9 bg-background"
+                className="h-9 w-full rounded-lg border border-white/[0.08] bg-white/[0.03] px-9 text-[13px] text-white placeholder:text-[#666] focus:outline-none focus:ring-1 focus:ring-[#5E6AD2]/50 transition-all"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
-            <Button variant="outline" size="icon">
-              <Filter className="h-4 w-4" />
-            </Button>
+            <button className="inline-flex h-9 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.03] px-3.5 text-[#888] hover:text-white hover:bg-white/[0.06] transition-colors">
+              <Filter className="h-3.5 w-3.5" />
+            </button>
           </div>
-        </div>
+        </motion.div>
 
         {/* Directory Table */}
-        <div className="rounded-md border border-border bg-background overflow-hidden">
-          <div className="grid grid-cols-12 text-xs font-semibold text-muted-foreground border-b border-border p-4 bg-muted/30">
-            <div className="col-span-4">Supplier</div>
+        <motion.div variants={fadeUp} className="rounded-xl border border-white/[0.06] bg-[#0C0C0C] overflow-hidden mt-8">
+          <div className="grid grid-cols-12 text-[12px] font-medium text-[#666] border-b border-white/[0.06] bg-white/[0.02] p-4">
+            <div className="col-span-4 pl-1">Supplier</div>
             <div className="col-span-2 text-center">Trust Score</div>
             <div className="col-span-3">Top Compounds</div>
             <div className="col-span-2 text-center">Attestations</div>
-            <div className="col-span-1 text-right">Action</div>
+            <div className="col-span-1 text-right pr-1">Action</div>
           </div>
-          <div className="divide-y divide-border">
-            {filteredSuppliers.map(supplier => (
-              <div key={supplier.id} className="grid grid-cols-12 text-sm p-4 items-center hover:bg-muted/10 transition-colors">
-                <div className="col-span-4 flex flex-col gap-1">
-                  <div className="font-semibold text-foreground flex items-center gap-2">
+          <div className="divide-y divide-white/[0.04]">
+            {filteredSuppliers.map((supplier, index) => (
+              <motion.div 
+                key={supplier.id} 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.1 + index * 0.04 }}
+                className="grid grid-cols-12 text-[14px] p-4 items-center hover:bg-white/[0.02] transition-colors group"
+              >
+                <div className="col-span-4 flex flex-col gap-1 pl-1">
+                  <div className="font-medium text-white flex items-center gap-2">
                     {supplier.name}
-                    {supplier.verified && <ShieldCheck className="h-3.5 w-3.5 text-emerald-500" />}
+                    {supplier.verified && <ShieldCheck className="h-3.5 w-3.5 text-[#2EA043]" />}
                   </div>
-                  <div className="text-xs text-muted-foreground flex items-center gap-1">
+                  <div className="text-[12px] text-[#666] flex items-center gap-1.5">
                     <Globe className="h-3 w-3" /> {supplier.shipsTo.join(", ")}
                   </div>
                 </div>
                 
                 <div className="col-span-2 flex justify-center">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm border 
-                    ${supplier.trustScore >= 90 ? 'bg-primary/10 text-primary border-primary/20' : 
-                      supplier.trustScore >= 80 ? 'bg-amber-500/10 text-amber-500 border-amber-500/20' : 
-                      'bg-destructive/10 text-destructive border-destructive/20'}`}>
+                  <div className={`w-9 h-9 rounded-lg flex items-center justify-center font-bold font-mono text-[13px]
+                    ${supplier.trustScore >= 95 ? 'bg-[#5E6AD2]/10 text-[#5E6AD2]' : 
+                      supplier.trustScore >= 88 ? 'bg-[#2EA043]/10 text-[#2EA043]' : 
+                      'bg-[#E3B341]/10 text-[#E3B341]'}`}>
                     {supplier.trustScore}
                   </div>
                 </div>
 
                 <div className="col-span-3 flex flex-wrap gap-1.5">
                   {supplier.compoundsSupported.slice(0, 3).map(c => (
-                    <Badge key={c} variant="secondary" className="text-[10px] font-normal px-1.5 py-0">
+                    <span key={c} className="text-[11px] font-medium px-2 py-0.5 bg-white/[0.04] rounded-md text-[#888] border border-white/[0.06]">
                       {c}
-                    </Badge>
+                    </span>
                   ))}
                   {supplier.compoundsSupported.length > 3 && (
-                    <span className="text-[10px] text-muted-foreground flex items-center px-1">
+                    <span className="text-[11px] font-medium px-2 py-0.5 border border-white/[0.06] rounded-md text-[#666]">
                       +{supplier.compoundsSupported.length - 3}
                     </span>
                   )}
                 </div>
 
                 <div className="col-span-2 flex justify-center">
-                  <span className="font-mono text-muted-foreground">{supplier.attestationCount}</span>
+                  <span className="font-mono font-medium text-[13px] text-[#ccc]">{supplier.attestationCount}</span>
                 </div>
 
-                <div className="col-span-1 flex justify-end">
+                <div className="col-span-1 flex justify-end pr-1">
                   <Link href={`/supplier/${supplier.id}`}>
-                    <Button variant="ghost" size="sm" className="h-8">View</Button>
+                    <button className="text-[12px] font-medium text-[#666] hover:text-white transition-colors group-hover:text-[#5E6AD2]">
+                      View
+                    </button>
                   </Link>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
           
           {filteredSuppliers.length === 0 && (
-            <div className="p-8 text-center text-muted-foreground text-sm">
+            <div className="p-8 text-center text-[#666] text-[13px]">
               No suppliers found matching your criteria.
             </div>
           )}
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }

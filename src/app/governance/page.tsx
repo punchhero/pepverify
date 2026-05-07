@@ -1,11 +1,7 @@
 "use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Landmark, AlertTriangle, Users, Wallet, ShieldQuestion } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function GovernancePage() {
   const activeProposals = [
@@ -45,159 +41,112 @@ export default function GovernancePage() {
   ];
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="px-6 py-8 border-b border-border bg-card">
-        <div className="max-w-6xl mx-auto w-full">
+    <div className="flex flex-col h-full bg-[#080808] text-[#F0F0F0] pb-12 min-h-full">
+      <div className="px-8 py-10 border-b border-white/[0.06] relative overflow-hidden">
+        <div className="absolute top-0 left-1/4 -translate-x-1/2 w-[500px] h-[300px] bg-[#A371F7]/10 blur-[100px] rounded-full pointer-events-none" />
+        <div className="max-w-5xl mx-auto w-full relative z-10">
           <div className="flex items-center gap-3 mb-2">
-            <Landmark className="w-8 h-8 text-primary" />
-            <h1 className="text-3xl font-bold tracking-tight">Governance Hub</h1>
+            <div className="w-10 h-10 rounded-xl bg-[#A371F7]/10 flex items-center justify-center border border-[#A371F7]/20">
+              <Landmark className="w-5 h-5 text-[#A371F7]" />
+            </div>
+            <h1 className="text-[28px] font-semibold tracking-[-0.03em] text-white">Governance Hub</h1>
           </div>
-          <p className="text-muted-foreground mb-8">Participate in platform governance, vote on supplier verifications, and resolve evidence disputes.</p>
+          <p className="text-[14px] text-[#888] mb-8 max-w-2xl">Participate in platform governance, vote on supplier verifications, and resolve evidence disputes.</p>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="bg-background">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground flex items-center justify-between">
-                  Treasury Balance
-                  <Wallet className="w-4 h-4" />
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">1,420,500 PEP</div>
-                <p className="text-xs text-muted-foreground mt-1">~$214,000 USD equivalent</p>
-              </CardContent>
-            </Card>
-            <Card className="bg-background">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground flex items-center justify-between">
-                  Active Voters
-                  <Users className="w-4 h-4" />
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">1,245</div>
-                <p className="text-xs text-muted-foreground mt-1">Unique wallets in last 30 days</p>
-              </CardContent>
-            </Card>
-            <Card className="bg-background">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-medium text-muted-foreground flex items-center justify-between">
-                  Open Disputes
-                  <AlertTriangle className="w-4 h-4" />
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold text-amber-500">1</div>
-                <p className="text-xs text-muted-foreground mt-1">Requires committee review</p>
-              </CardContent>
-            </Card>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-[#0C0C0C] border border-white/[0.06] rounded-xl p-5">
+              <h3 className="text-[12px] font-medium text-[#666] flex items-center justify-between mb-2">
+                Treasury Balance
+                <Wallet className="w-4 h-4 text-[#444]" />
+              </h3>
+              <div className="text-[24px] font-semibold tracking-[-0.03em] text-white">1,420,500 PEP</div>
+              <p className="text-[12px] text-[#555] mt-1">~$214,000 USD equivalent</p>
+            </div>
+            <div className="bg-[#0C0C0C] border border-white/[0.06] rounded-xl p-5">
+              <h3 className="text-[12px] font-medium text-[#666] flex items-center justify-between mb-2">
+                Active Voters
+                <Users className="w-4 h-4 text-[#444]" />
+              </h3>
+              <div className="text-[24px] font-semibold tracking-[-0.03em] text-white">1,245</div>
+              <p className="text-[12px] text-[#555] mt-1">Unique wallets in last 30 days</p>
+            </div>
+            <div className="bg-[#0C0C0C] border border-white/[0.06] rounded-xl p-5">
+              <h3 className="text-[12px] font-medium text-[#666] flex items-center justify-between mb-2">
+                Open Disputes
+                <AlertTriangle className="w-4 h-4 text-[#444]" />
+              </h3>
+              <div className="text-[24px] font-semibold tracking-[-0.03em] text-[#E3B341]">1</div>
+              <p className="text-[12px] text-[#555] mt-1">Requires committee review</p>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="flex-1 px-6 py-8 max-w-6xl mx-auto w-full">
-        <Tabs defaultValue="proposals" className="w-full">
-          <TabsList className="mb-6">
-            <TabsTrigger value="proposals">Active Proposals</TabsTrigger>
-            <TabsTrigger value="disputes">Dispute Resolution</TabsTrigger>
-            <TabsTrigger value="history">Voting History</TabsTrigger>
-          </TabsList>
+      <div className="flex-1 px-8 py-10 max-w-5xl mx-auto w-full">
+        {/* Simple Tabs replacement for minimal look */}
+        <div className="flex items-center gap-6 border-b border-white/[0.06] mb-8 pb-3">
+          <button className="text-[14px] font-medium text-white border-b-2 border-white pb-3 -mb-[14px]">Active Proposals</button>
+          <button className="text-[14px] font-medium text-[#666] hover:text-[#ccc] transition-colors pb-3 -mb-[14px]">Dispute Resolution</button>
+          <button className="text-[14px] font-medium text-[#666] hover:text-[#ccc] transition-colors pb-3 -mb-[14px]">Voting History</button>
+        </div>
 
-          <TabsContent value="proposals" className="space-y-6">
-            {activeProposals.map(proposal => {
-              const totalVotes = proposal.forVotes + proposal.againstVotes;
-              const forPercent = Math.round((proposal.forVotes / totalVotes) * 100) || 0;
-              
-              return (
-                <Card key={proposal.id}>
-                  <CardHeader>
-                    <div className="flex justify-between items-start mb-2">
-                      <div className="flex items-center gap-2">
-                        <Badge variant="outline" className="font-mono bg-primary/10 text-primary border-primary/20">{proposal.id}</Badge>
-                        <Badge variant="secondary">{proposal.type}</Badge>
-                      </div>
-                      <div className="text-sm text-muted-foreground">Ends in {proposal.timeRemaining}</div>
+        <div className="space-y-6">
+          {activeProposals.map(proposal => {
+            const totalVotes = proposal.forVotes + proposal.againstVotes;
+            const forPercent = Math.round((proposal.forVotes / totalVotes) * 100) || 0;
+            
+            return (
+              <div key={proposal.id} className="bg-[#0C0C0C] border border-white/[0.06] rounded-xl overflow-hidden">
+                <div className="p-6">
+                  <div className="flex justify-between items-start mb-3">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[11px] font-mono font-bold bg-[#A371F7]/10 text-[#A371F7] border border-[#A371F7]/20 px-2 py-0.5 rounded-md">{proposal.id}</span>
+                      <span className="text-[11px] font-medium bg-white/[0.04] text-[#888] border border-white/[0.06] px-2 py-0.5 rounded-md">{proposal.type}</span>
                     </div>
-                    <CardTitle className="text-xl">{proposal.title}</CardTitle>
-                    <CardDescription className="text-base">{proposal.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      <div>
-                        <div className="flex justify-between text-sm mb-1">
-                          <span className="font-medium">For ({forPercent}%)</span>
-                          <span className="text-muted-foreground">{proposal.forVotes.toLocaleString()} PEP</span>
-                        </div>
-                        <Progress value={forPercent} className="h-2" />
-                      </div>
-                      <div>
-                        <div className="flex justify-between text-sm mb-1">
-                          <span className="font-medium">Against ({100 - forPercent}%)</span>
-                          <span className="text-muted-foreground">{proposal.againstVotes.toLocaleString()} PEP</span>
-                        </div>
-                        <Progress value={100 - forPercent} className="h-2 bg-muted" />
-                      </div>
-                      <div className="flex items-center justify-between pt-4 border-t border-border">
-                        <div className="text-sm text-muted-foreground">
-                          Current Quorum: <span className={proposal.quorum >= 50 ? "text-emerald-500 font-medium" : ""}>{proposal.quorum}%</span> / 50% required
-                        </div>
-                        <div className="flex gap-2">
-                          <Button variant="outline" className="text-destructive hover:bg-destructive/10">Vote Against</Button>
-                          <Button className="bg-emerald-500 hover:bg-emerald-600 text-white">Vote For</Button>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </TabsContent>
-
-          <TabsContent value="disputes" className="space-y-6">
-            {disputes.map(dispute => (
-              <Card key={dispute.id} className="border-amber-500/20">
-                <CardHeader>
-                  <div className="flex justify-between items-start mb-2">
-                    <Badge variant="outline" className="font-mono bg-amber-500/10 text-amber-500 border-amber-500/20">{dispute.id}</Badge>
-                    <Badge variant="outline">{dispute.status}</Badge>
+                    <div className="text-[12px] text-[#666]">Ends in {proposal.timeRemaining}</div>
                   </div>
-                  <CardTitle className="text-lg flex items-center gap-2">
-                    <ShieldQuestion className="w-5 h-5 text-amber-500" />
-                    {dispute.target}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="p-4 bg-muted/50 rounded-lg border border-border">
-                      <p className="text-sm font-medium mb-1">Dispute Reason:</p>
-                      <p className="text-sm text-muted-foreground">{dispute.reason}</p>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                      <div>
-                        <span className="text-muted-foreground block">Reporter Stake</span>
-                        <span className="font-medium">{dispute.reporterStake}</span>
+                  <h2 className="text-[18px] font-semibold tracking-[-0.02em] text-white mb-2">{proposal.title}</h2>
+                  <p className="text-[14px] text-[#888] leading-relaxed mb-6">{proposal.description}</p>
+                  
+                  <div className="space-y-5">
+                    <div>
+                      <div className="flex justify-between text-[13px] mb-1.5">
+                        <span className="font-medium text-white">For ({forPercent}%)</span>
+                        <span className="text-[#666] font-mono">{proposal.forVotes.toLocaleString()} PEP</span>
                       </div>
-                      <div>
-                        <span className="text-muted-foreground block">Date Filed</span>
-                        <span className="font-medium">{dispute.date}</span>
+                      <div className="h-1.5 bg-white/[0.04] rounded-full overflow-hidden">
+                        <div className="h-full bg-[#2EA043]" style={{ width: `${forPercent}%` }} />
                       </div>
                     </div>
-                    <div className="flex justify-end gap-2 pt-4 border-t border-border mt-4">
-                      <Button variant="outline">View Evidence</Button>
-                      <Button variant="default">Join Committee</Button>
+                    <div>
+                      <div className="flex justify-between text-[13px] mb-1.5">
+                        <span className="font-medium text-white">Against ({100 - forPercent}%)</span>
+                        <span className="text-[#666] font-mono">{proposal.againstVotes.toLocaleString()} PEP</span>
+                      </div>
+                      <div className="h-1.5 bg-white/[0.04] rounded-full overflow-hidden">
+                        <div className="h-full bg-[#F85149]" style={{ width: `${100 - forPercent}%` }} />
+                      </div>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-            ))}
-          </TabsContent>
-
-          <TabsContent value="history">
-            <div className="text-center py-12 text-muted-foreground border border-dashed border-border rounded-lg">
-              Connect your wallet to view your voting history.
-            </div>
-          </TabsContent>
-        </Tabs>
+                </div>
+                
+                <div className="px-6 py-4 border-t border-white/[0.06] bg-white/[0.01] flex items-center justify-between">
+                  <div className="text-[13px] text-[#666]">
+                    Current Quorum: <span className={proposal.quorum >= 50 ? "text-[#2EA043] font-medium font-mono" : "font-mono"}>{proposal.quorum}%</span> / 50% required
+                  </div>
+                  <div className="flex gap-3">
+                    <button className="px-4 py-2 rounded-lg text-[13px] font-medium border border-white/[0.08] text-[#888] hover:text-white hover:bg-white/[0.06] transition-colors">
+                      Vote Against
+                    </button>
+                    <button className="px-4 py-2 rounded-lg text-[13px] font-medium bg-white text-black hover:bg-white/90 transition-colors">
+                      Vote For
+                    </button>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
