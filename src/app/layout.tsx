@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { WalletProvider } from "@/components/providers/WalletProvider";
-import { AppLayout } from "@/components/layout/AppLayout";
 import { Toaster } from "sonner";
 
 const inter = Inter({
@@ -27,7 +26,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <WalletProvider>
-          <AppLayout>{children}</AppLayout>
+          {children}
         </WalletProvider>
         <Toaster theme="dark" position="bottom-right" />
       </body>
