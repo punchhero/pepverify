@@ -7,13 +7,13 @@ import { Input } from "@/components/ui/input";
 
 export function TopNav() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-sm">
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-card/80 backdrop-blur-md">
       <div className="flex h-16 items-center px-6 max-w-[2000px] mx-auto w-full justify-between">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-sm bg-primary/10 flex items-center justify-center border border-primary/20 shadow-[0_0_15px_rgba(6,182,212,0.1)]">
+        <div className="flex items-center gap-3">
+          <div className="w-7 h-7 rounded bg-primary/10 flex items-center justify-center border border-primary/20">
             <ShieldCheck className="w-4 h-4 text-primary" />
           </div>
-          <span className="font-bold tracking-tight text-lg">PepVerify<span className="text-primary">.</span></span>
+          <span className="font-semibold tracking-tight text-lg text-foreground">PepVerify</span>
         </div>
         
         <div className="flex flex-1 items-center justify-between md:justify-end gap-4">

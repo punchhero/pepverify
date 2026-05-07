@@ -99,27 +99,16 @@ export const MOCK_SUPPLIERS: Supplier[] = [
 ];
 
 export const MOCK_COMPOUNDS: Compound[] = [
-  {
-    id: "cmp-001",
-    name: "BPC-157",
-    sequence: "L-Val-L-Pro-L-Pro-L-Pro-L-Pro-L-Gly-L-Lys-L-Pro-L-Pro-L-Asp",
-    casNumber: "137525-51-0",
-    description: "Body Protection Compound-157. A pentadecapeptide discovered in human gastric juice.",
-  },
-  {
-    id: "cmp-002",
-    name: "TB-500",
-    sequence: "Ac-Ser-Asp-Lys-Pro-Asp-Met-Ala-Glu-Ile-Glu-Lys-Phe-Asp-Lys-Ser-Lys-Leu-Lys-Lys-Thr-Glu-Thr-Gln-Glu-Lys-Asn-Pro-Leu-Pro-Ser-Lys-Glu-Thr-Ile-Glu-Gln-Glu-Lys-Gln-Ala-Gly-Glu-Ser",
-    casNumber: "77591-33-4",
-    description: "Synthetic fraction of the protein thymosin beta-4, utilized for tissue repair research.",
-  },
-  {
-    id: "cmp-003",
-    name: "GHK-Cu",
-    sequence: "Gly-His-Lys(Cu2+)",
-    casNumber: "49557-75-7",
-    description: "Naturally occurring copper complex of the glycyl-L-histidyl-L-lysine peptide.",
-  }
+  { id: "cmp-001", name: "BPC-157", sequence: "L-Val-L-Pro-L-Pro-L-Pro-L-Pro-L-Gly-L-Lys-L-Pro-L-Pro-L-Asp", casNumber: "137525-51-0", description: "Body Protection Compound-157. A pentadecapeptide discovered in human gastric juice." },
+  { id: "cmp-002", name: "TB-500", sequence: "Ac-Ser-Asp-Lys-Pro-Asp-Met-Ala-Glu-Ile-Glu-Lys-Phe-Asp-Lys-Ser-Lys-Leu-Lys-Lys-Thr-Glu-Thr-Gln-Glu-Lys-Asn-Pro-Leu-Pro-Ser-Lys-Glu-Thr-Ile-Glu-Gln-Glu-Lys-Gln-Ala-Gly-Glu-Ser", casNumber: "77591-33-4", description: "Synthetic fraction of the protein thymosin beta-4, utilized for tissue repair research." },
+  { id: "cmp-003", name: "GHK-Cu", sequence: "Gly-His-Lys(Cu2+)", casNumber: "49557-75-7", description: "Naturally occurring copper complex of the glycyl-L-histidyl-L-lysine peptide." },
+  { id: "cmp-004", name: "CJC-1295", sequence: "Tyr-d-Ala-Asp-Ala-Ile-Phe-Thr-Gln-Ser-Tyr-Arg-Lys-Val-Leu-Ala-Gln-Leu-Ser-Ala-Arg-Lys-Leu-Leu-Gln-Asp-Ile-Leu-Ser-Arg", casNumber: "863288-34-0", description: "Synthetic secretagogue stimulating growth hormone release." },
+  { id: "cmp-005", name: "Ipamorelin", sequence: "Aib-His-D-2-Nal-D-Phe-Lys-NH2", casNumber: "170851-70-4", description: "A selective growth hormone secretagogue and ghrelin receptor agonist." },
+  { id: "cmp-006", name: "Semax", sequence: "Met-Glu-His-Phe-Pro-Gly-Pro", casNumber: "80714-61-0", description: "A synthetic peptide drug based on a fragment of ACTH, studied for cognitive enhancement." },
+  { id: "cmp-007", name: "Selank", sequence: "Thr-Lys-Pro-Arg-Pro-Gly-Pro", casNumber: "129954-34-3", description: "A synthetic analogue of the immunomodulatory peptide tuftsin." },
+  { id: "cmp-008", name: "MOTS-c", sequence: "Met-Arg-Trp-Gln-Glu-Met-Gly-Tyr-Ile-Phe-Tyr-Pro-Arg-Lys-Leu-Arg", casNumber: "1627580-64-6", description: "A mitochondrial-derived peptide involved in metabolic regulation." },
+  { id: "cmp-009", name: "PT-141", sequence: "Ac-Nle-cyclo[Asp-His-D-Phe-Arg-Trp-Lys]-OH", casNumber: "189691-06-3", description: "Bremelanotide. A synthetic peptide analog of alpha-MSH." },
+  { id: "cmp-010", name: "AOD-9604", sequence: "Tyr-Leu-Arg-Ile-Val-Gln-Cys-Arg-Ser-Val-Glu-Gly-Ser-Cys-Gly-Phe", casNumber: "221231-10-3", description: "A modified fragment of human growth hormone." }
 ];
 
 export const MOCK_REPORTS: Report[] = [
@@ -127,11 +116,11 @@ export const MOCK_REPORTS: Report[] = [
     id: "rep-001",
     supplierId: "sup-001",
     compoundId: "cmp-001",
-    batchNumber: "BPC-24-001",
+    batchNumber: "BPC-26-04A",
     purityPercentage: 99.4,
     testMethod: "HPLC-UV",
     labName: "Janoshik Analytical",
-    reportDate: "2024-04-15",
+    reportDate: "2026-04-15",
     ipfsCid: "bafybeigdyrzt5sfp7udm7hu76uh7y26nf3efuylqabf3oclgtqy55fbzdi",
     uploaderWallet: "8Xb...3Fz",
   },
@@ -139,11 +128,11 @@ export const MOCK_REPORTS: Report[] = [
     id: "rep-002",
     supplierId: "sup-002",
     compoundId: "cmp-002",
-    batchNumber: "TB-23-112",
+    batchNumber: "TB-26-02B",
     purityPercentage: 98.8,
     testMethod: "LC-MS",
     labName: "MZ Biolabs",
-    reportDate: "2024-03-22",
+    reportDate: "2026-03-22",
     ipfsCid: "bafybeihdwdcefgh4dqkjv67uzcmw7ojee6xedzdetojuzjevtenxquvyku",
     uploaderWallet: "9Aa...4Gb",
   },
@@ -151,11 +140,11 @@ export const MOCK_REPORTS: Report[] = [
     id: "rep-003",
     supplierId: "sup-001",
     compoundId: "cmp-003",
-    batchNumber: "GHK-24-045",
+    batchNumber: "GHK-26-05C",
     purityPercentage: 99.1,
-    testMethod: "HPLC-UV",
+    testMethod: "HPLC-UV + NMR",
     labName: "Janoshik Analytical",
-    reportDate: "2024-05-01",
+    reportDate: "2026-05-01",
     ipfsCid: "bafybeigdyrzt5sfp7udm7hu76uh7y26nf3efuylqabf3oclgtqy55fbzdi",
     uploaderWallet: "8Xb...3Fz",
   }

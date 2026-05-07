@@ -84,37 +84,37 @@
 }
 
 .dark {
-  --background: #020305; /* Deeper absolute black */
-  --foreground: #F8FAFC;
-  --card: #05080C; /* Solid dark instead of glass for inner cards to create depth */
+  --background: #020617; /* Slate-950 Deep Navy */
+  --foreground: #F8FAFC; /* Slate-50 */
+  --card: #0F172A; /* Slate-900 Charcoal */
   --card-foreground: #F8FAFC;
-  --popover: #05080C;
+  --popover: #0F172A;
   --popover-foreground: #F8FAFC;
-  --primary: #06B6D4; /* Laser Cyan - Interactive */
-  --primary-foreground: #000000;
-  --secondary: rgba(6, 182, 212, 0.05); /* Softer secondary */
-  --secondary-foreground: #06B6D4;
-  --muted: rgba(255, 255, 255, 0.03); /* Extremely subtle */
-  --muted-foreground: #64748B; /* Darker slate for less noise */
-  --accent: rgba(255, 255, 255, 0.03);
+  --primary: #14B8A6; /* Teal-500 Subtle Teal */
+  --primary-foreground: #020617;
+  --secondary: #1E293B; /* Slate-800 */
+  --secondary-foreground: #F8FAFC;
+  --muted: #1E293B; 
+  --muted-foreground: #94A3B8; /* Slate-400 */
+  --accent: #1E293B;
   --accent-foreground: #F8FAFC;
   --destructive: #EF4444; 
-  --border: rgba(255, 255, 255, 0.04); /* Thinner subtle borders */
-  --input: rgba(255, 255, 255, 0.03);
-  --ring: #06B6D4;
-  --chart-1: #06B6D4;
-  --chart-2: #10B981; /* Verified/Emerald */
-  --chart-3: #8B5CF6; /* Governance/Violet */
-  --chart-4: #3B82F6;
-  --chart-5: #F59E0B; /* Warning/Amber */
-  --sidebar: #020305;
+  --border: #1E293B; /* Slate-800 Borders */
+  --input: #1E293B;
+  --ring: #14B8A6;
+  --chart-1: #14B8A6; /* Teal */
+  --chart-2: #10B981; /* Emerald Verified */
+  --chart-3: #8B5CF6; /* Violet Governance */
+  --chart-4: #3B82F6; /* Blue */
+  --chart-5: #F59E0B; /* Amber Warning */
+  --sidebar: #020617;
   --sidebar-foreground: #F8FAFC;
-  --sidebar-primary: #06B6D4;
-  --sidebar-primary-foreground: #000000;
-  --sidebar-accent: rgba(255, 255, 255, 0.03);
+  --sidebar-primary: #14B8A6;
+  --sidebar-primary-foreground: #020617;
+  --sidebar-accent: #0F172A;
   --sidebar-accent-foreground: #F8FAFC;
-  --sidebar-border: rgba(255, 255, 255, 0.04);
-  --sidebar-ring: #06B6D4;
+  --sidebar-border: #1E293B;
+  --sidebar-ring: #14B8A6;
 }
 
 @layer base {
@@ -122,13 +122,11 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
   }
 }
 
 .bg-grid-pattern {
-  background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  /* Completely removed hacker grid for enterprise aesthetic */
+  background: none;
 }
