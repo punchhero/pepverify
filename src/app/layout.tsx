@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { WalletProvider } from "@/components/providers/WalletProvider";
 import { Toaster } from "sonner";
@@ -7,6 +7,13 @@ import { Toaster } from "sonner";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -22,7 +29,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} font-sans h-full antialiased dark`}
+      className={`${inter.variable} ${jetbrainsMono.variable} font-sans h-full antialiased dark`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         <WalletProvider>

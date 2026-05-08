@@ -16,7 +16,7 @@ export function TopNav() {
         </Link>
 
         <div className="flex items-center gap-3">
-          <WalletMultiButton className="!bg-[#111] !text-[#A1A1AA] hover:!bg-[#1A1A1A] hover:!text-[#EAEAEA] !h-7 !px-3 !text-[12px] !font-medium !rounded-[4px] !transition-all !duration-200 !border !border-[#333]" />
+          <WalletMultiButton className="!bg-transparent !text-[#A1A1AA] hover:!text-[#EAEAEA] hover:!border-[#444] !h-[36px] !px-4 !text-[13px] !font-medium !rounded-md !transition-all !duration-200 !border !border-[#333]" />
         </div>
       </div>
     </header>

@@ -47,7 +47,7 @@ export default function LandingPage() {
           </Link>
           <Link
             href="/dashboard"
-            className="inline-flex items-center gap-1.5 text-[13px] font-medium bg-white text-black px-4 py-1.5 rounded-full hover:bg-white/90 transition-all duration-200"
+            className="inline-flex items-center gap-1.5 text-[13px] font-medium bg-[#EAEAEA] text-[#0A0A0A] px-4 py-2 rounded-md hover:bg-white transition-all duration-200 shadow-sm"
           >
             Open app <ArrowRight className="w-3.5 h-3.5" />
           </Link>
@@ -55,66 +55,89 @@ export default function LandingPage() {
       </nav>
 
       {/* ─── HERO ─── */}
-      <section ref={heroRef} className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-14 pb-24 overflow-hidden">
-        {/* Gradient glow – Linear signature */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-          <div className="w-[900px] h-[600px] rounded-full bg-[#5E6AD2]/10 blur-[160px]" />
-        </div>
-        <div className="absolute top-1/3 left-1/3 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-          <div className="w-[400px] h-[400px] rounded-full bg-[#7C85E0]/8 blur-[120px]" />
+      <section ref={heroRef} className="relative min-h-screen flex flex-col justify-center px-6 pt-14 pb-24 overflow-hidden">
+        {/* Subtle grid and ambient glow */}
+        <div className="absolute top-1/2 right-0 -translate-y-1/2 pointer-events-none opacity-40">
+          <div className="w-[800px] h-[800px] rounded-full bg-[#5E6AD2]/10 blur-[120px]" />
         </div>
 
-        <motion.div
-          initial="hidden"
-          animate="show"
-          variants={stagger}
-          className="relative z-10 max-w-5xl mx-auto"
-        >
-          {/* Pill badge */}
-          <motion.div variants={fade} className="inline-flex items-center gap-2 mb-10">
-            <div className="flex items-center gap-2 text-[12px] text-[#A1A1AA] border border-[#5E6AD2]/30 bg-[#5E6AD2]/5 px-3 py-1.5 rounded-full shadow-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#5E6AD2] animate-pulse" />
-              System Status: <span className="text-[#EAEAEA] font-medium">SAS Online</span>
+        <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <motion.div
+            initial="hidden"
+            animate="show"
+            variants={stagger}
+            className="relative z-10 text-left"
+          >
+            {/* Pill badge */}
+            <motion.div variants={fade} className="inline-flex items-center gap-2 mb-8">
+              <div className="flex items-center gap-2 text-[12px] text-[#A1A1AA] border border-[#333] bg-[#111] px-3 py-1.5 rounded-full shadow-sm font-mono tracking-tight">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#2EA043] animate-pulse" />
+                SAS: <span className="text-[#EAEAEA]">OPERATIONAL</span>
+              </div>
+            </motion.div>
+
+            {/* Headline */}
+            <motion.h1
+              variants={fade}
+              className="text-[52px] md:text-[68px] font-semibold tracking-[-0.04em] leading-[1.0] text-[#EAEAEA] mb-8"
+            >
+              Verifiable Peptide Intelligence.
+            </motion.h1>
+
+            {/* Subhead */}
+            <motion.p
+              variants={fade}
+              className="text-[17px] md:text-[19px] text-[#888] max-w-lg mb-12 leading-[1.6] tracking-tight"
+            >
+              PepVerify bridges off-chain analytical chemistry with immutable on-chain ledgers. 
+              Cryptographically secure provenance for COAs, HPLC, and LC-MS evidence.
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div variants={fade} className="flex flex-col sm:flex-row gap-3">
+              <Link
+                href="/dashboard"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md bg-[#EAEAEA] text-[#0A0A0A] text-[14px] font-medium hover:bg-white transition-all duration-200 shadow-sm"
+              >
+                Access Terminal <Terminal className="w-4 h-4" />
+              </Link>
+              <a
+                href="#how-it-works"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md border border-[#333] bg-transparent text-[#A1A1AA] text-[14px] font-medium hover:text-[#EAEAEA] hover:border-[#444] transition-all duration-200"
+              >
+                Read Whitepaper
+              </a>
+            </motion.div>
+          </motion.div>
+
+          {/* Abstract Data Viz */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+            className="hidden lg:block relative border border-[#222] bg-[#0A0A0A] rounded-xl overflow-hidden shadow-2xl h-[420px]"
+          >
+            {/* Terminal Header */}
+            <div className="h-10 border-b border-[#222] bg-[#111] flex items-center px-4 gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#333]" />
+              <div className="w-2.5 h-2.5 rounded-full bg-[#333]" />
+              <div className="w-2.5 h-2.5 rounded-full bg-[#333]" />
+              <div className="ml-4 text-[11px] font-mono text-[#666]">SAS_VERIFICATION_PROTOCOL</div>
+            </div>
+            {/* Terminal Body */}
+            <div className="p-6 font-mono text-[12px] leading-[1.9] text-[#555] overflow-hidden">
+              <div className="flex items-center gap-4 mb-2"><span className="text-[#5E6AD2]">10:04:12</span><span className="text-[#EAEAEA] w-10">INIT</span><span>establishing secure connection...</span></div>
+              <div className="flex items-center gap-4 mb-2"><span className="text-[#5E6AD2]">10:04:14</span><span className="text-[#2EA043] w-10">SYSC</span><span>handshake confirmed. node: sol-mainnet-beta</span></div>
+              <div className="flex items-center gap-4 mb-2"><span className="text-[#5E6AD2]">10:04:15</span><span className="text-[#E3B341] w-10">HASH</span><span>processing COA_BPC157_batch_09A.pdf</span></div>
+              <div className="flex items-center gap-4 mb-2 ml-14 text-[#888]">└─ Compound: BPC-157 (C62H98N16O22)</div>
+              <div className="flex items-center gap-4 mb-2 ml-14 text-[#888]">└─ Purity: 99.82% by HPLC-UV</div>
+              <div className="flex items-center gap-4 mb-2"><span className="text-[#5E6AD2]">10:04:18</span><span className="text-[#EAEAEA] w-10">IPFS</span><span>CID: QmXo4b7gU9r7M1... pinned successfully</span></div>
+              <div className="flex items-center gap-4 mb-2"><span className="text-[#5E6AD2]">10:04:21</span><span className="text-[#A371F7] w-10">SIGN</span><span>awaiting signature from 7Xvw...j9Pq</span></div>
+              <div className="flex items-center gap-4 mb-2"><span className="text-[#5E6AD2]">10:04:25</span><span className="text-[#2EA043] w-10">VRFY</span><span>transaction anchored: 5yV8...z2Kw</span></div>
+              <div className="flex items-center gap-4 mb-2 opacity-50"><span className="text-[#5E6AD2]">10:04:26</span><span className="text-[#EAEAEA] w-10">IDLE</span><span>awaiting next input_</span></div>
             </div>
           </motion.div>
-
-          {/* Headline */}
-          <motion.h1
-            variants={fade}
-            className="text-[64px] md:text-[88px] font-semibold tracking-[-0.04em] leading-[0.95] text-white mb-8 max-w-4xl mx-auto"
-          >
-            Scientific evidence,
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#7C85E0] to-[#5E6AD2] cursor-blink">
-              permanently verified
-            </span>
-          </motion.h1>
-
-          {/* Subhead */}
-          <motion.p
-            variants={fade}
-            className="text-[18px] md:text-[20px] text-[#666] max-w-xl mx-auto mb-12 leading-[1.55] tracking-[-0.01em]"
-          >
-            PepVerify anchors research peptide lab reports to the Solana blockchain. 
-            Immutable provenance for COAs, HPLC, and LC-MS — cryptographically signed, forever.
-          </motion.p>
-
-          {/* CTAs */}
-          <motion.div variants={fade} className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link
-              href="/dashboard"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded bg-white text-black text-[14px] font-semibold hover:bg-white/90 active:scale-[0.98] transition-all duration-200"
-            >
-              Access Terminal <Terminal className="w-4 h-4" />
-            </Link>
-            <a
-              href="#how-it-works"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded border border-white/[0.1] text-[#888] text-[14px] font-medium hover:text-white hover:border-white/20 active:scale-[0.98] transition-all duration-200"
-            >
-              System Protocols
-            </a>
-          </motion.div>
-        </motion.div>
+        </div>
 
         {/* Stat bar */}
         <motion.div
@@ -283,7 +306,7 @@ export default function LandingPage() {
               </p>
               <h2 className="text-[36px] font-semibold tracking-[-0.03em] text-[#EAEAEA]">Ranked by on-chain evidence.</h2>
             </div>
-            <Link href="/directory" className="text-[13px] font-medium text-[#A1A1AA] hover:text-[#EAEAEA] transition-colors flex items-center gap-1.5 border border-[#333] px-3.5 py-1.5 rounded-md shadow-sm">
+            <Link href="/directory" className="text-[13px] font-medium text-[#A1A1AA] hover:text-[#EAEAEA] hover:border-[#444] bg-transparent transition-colors flex items-center gap-1.5 border border-[#333] px-4 py-2 rounded-md shadow-sm">
               View All <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </motion.div>
@@ -362,7 +385,7 @@ export default function LandingPage() {
               ))}
             </ul>
             <div className="mt-10">
-              <Link href="/governance" className="text-[13px] font-medium text-[#A1A1AA] hover:text-[#EAEAEA] transition-colors flex items-center gap-1.5 border border-[#333] px-4 py-2 rounded-md inline-flex shadow-sm">
+              <Link href="/governance" className="text-[13px] font-medium text-[#A1A1AA] hover:text-[#EAEAEA] hover:border-[#444] bg-transparent transition-colors flex items-center gap-1.5 border border-[#333] px-4 py-2 rounded-md inline-flex shadow-sm">
                 Access Governance <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -406,13 +429,13 @@ export default function LandingPage() {
           <motion.div variants={fade} className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
               href="/dashboard"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded bg-white text-black text-[14px] font-semibold hover:bg-white/90 active:scale-[0.98] transition-all duration-200"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md bg-[#EAEAEA] text-[#0A0A0A] text-[14px] font-medium hover:bg-white transition-all duration-200 shadow-sm"
             >
               Initialize <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href="/submit"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-md border border-[#333] bg-[#0A0A0A] text-[#EAEAEA] text-[14px] font-medium hover:bg-[#111] hover:text-white hover:border-[#444] active:scale-[0.98] transition-all duration-200 shadow-sm"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md border border-[#333] bg-transparent text-[#A1A1AA] text-[14px] font-medium hover:text-[#EAEAEA] hover:border-[#444] transition-all duration-200"
             >
               Submit Evidence
             </Link>
