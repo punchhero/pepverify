@@ -27,13 +27,14 @@ export function Sidebar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`flex items-center gap-2.5 px-3 py-2 rounded-lg text-[13px] transition-colors duration-150 group
+                className={`flex items-center gap-3 px-3 py-2 text-[13px] transition-colors duration-150 group relative
                   ${isActive
-                    ? "bg-white/[0.06] text-white font-medium"
-                    : "text-[#666] hover:bg-white/[0.04] hover:text-[#ccc]"
+                    ? "text-[#EAEAEA] font-medium"
+                    : "text-[#A1A1AA] hover:text-[#EAEAEA]"
                   }`}
               >
-                <Icon className={`w-4 h-4 shrink-0 ${isActive ? "text-[#5E6AD2]" : "text-[#444] group-hover:text-[#888]"}`} />
+                {isActive && <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[2px] h-4 bg-[#5E6AD2] rounded-r-sm shadow-[0_0_8px_rgba(94,106,210,0.8)]" />}
+                <Icon className={`w-4 h-4 shrink-0 ${isActive ? "text-[#5E6AD2]" : "text-[#555] group-hover:text-[#A1A1AA]"}`} />
                 {item.name}
               </Link>
             );

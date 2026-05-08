@@ -29,87 +29,85 @@ export default function DirectoryPage() {
       <div className="px-8 py-8 border-b border-white/[0.06]">
         <motion.div variants={fadeUp} className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
           <div>
-            <h1 className="text-[22px] font-mono font-semibold tracking-[-0.02em] text-white mb-1.5 flex items-center gap-2">
-              <Dna className="w-5 h-5 text-[#5E6AD2]" /> SUPPLIER_DIRECTORY
+            <h1 className="text-[22px] font-medium tracking-tight text-[#EAEAEA] mb-1.5 flex items-center gap-2">
+              <Dna className="w-5 h-5 text-[#5E6AD2]" /> Supplier Directory
             </h1>
-            <p className="text-[13px] font-mono text-[#888]">// Verified research peptide suppliers indexed by trust score and attestations.</p>
+            <p className="text-[13px] text-[#A1A1AA]">// Verified research peptide suppliers indexed by trust score and attestations.</p>
           </div>
           <div className="flex gap-3">
             <div className="relative w-full md:w-64 flex items-center group">
-              <span className="absolute left-3 text-[#5E6AD2] font-mono text-[13px]">&gt;</span>
+              <Search className="absolute left-3 w-3.5 h-3.5 text-[#5E6AD2]" />
               <input
-                placeholder="search_name_or_compound..."
-                className="h-9 w-full rounded border border-[#333] bg-[#0C0C0C] px-7 font-mono text-[13px] text-white placeholder:text-[#666] focus:outline-none focus:border-[#5E6AD2]/50 transition-all"
+                placeholder="Search name or compound..."
+                className="h-9 w-full rounded-md border border-[#222] bg-[#0A0A0A] px-9 text-[13px] text-[#EAEAEA] placeholder:text-[#A1A1AA] focus:outline-none focus:border-[#5E6AD2]/50 transition-all shadow-sm"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
-              <span className="absolute right-3 w-1.5 h-4 bg-[#5E6AD2] animate-pulse opacity-0 group-focus-within:opacity-100"></span>
             </div>
-            <button className="inline-flex h-9 items-center justify-center rounded border border-[#333] bg-[#0C0C0C] px-3.5 font-mono text-[12px] text-[#888] hover:text-white hover:border-[#5E6AD2]/50 transition-colors card-crosshair">
-              <Filter className="h-3.5 w-3.5 mr-1.5" /> [FILTER]
+            <button className="inline-flex h-9 items-center justify-center gap-2 rounded-md border border-[#222] bg-[#0A0A0A] px-3.5 text-[12px] font-medium text-[#EAEAEA] hover:bg-[#111] transition-colors shadow-sm">
+              <Filter className="h-3.5 w-3.5 text-[#A1A1AA]" /> Filter
             </button>
           </div>
         </motion.div>
 
         {/* Directory Table */}
-        <motion.div variants={fadeUp} className="rounded border border-[#333] bg-[#0C0C0C] overflow-hidden mt-8 card-crosshair relative">
-          <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#5E6AD2]/20 to-transparent"></div>
-          <div className="grid grid-cols-12 text-[10px] font-mono font-medium text-[#666] border-b border-[#333] bg-[#141414]/50 p-4 uppercase tracking-widest">
-            <div className="col-span-4 pl-1">Supplier_Entity</div>
-            <div className="col-span-2 text-center">Trust_Metric</div>
-            <div className="col-span-3">Indexed_Compounds</div>
-            <div className="col-span-2 text-center">Network_Attests</div>
+        <motion.div variants={fadeUp} className="rounded-xl border border-[#222] bg-[#0A0A0A] overflow-hidden mt-8 shadow-sm">
+          <div className="grid grid-cols-12 text-[11px] font-medium text-[#A1A1AA] border-b border-[#222] bg-[#111]/50 p-3 px-4">
+            <div className="col-span-4 pl-1">Supplier Entity</div>
+            <div className="col-span-2 text-center">Trust Metric</div>
+            <div className="col-span-3">Indexed Compounds</div>
+            <div className="col-span-2 text-center">Network Attests</div>
             <div className="col-span-1 text-right pr-1">Action</div>
           </div>
-          <div className="divide-y divide-white/[0.04]">
+          <div className="divide-y divide-[#222]">
             {filteredSuppliers.map((supplier, index) => (
               <motion.div 
                 key={supplier.id} 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.1 + index * 0.04 }}
-                className="grid grid-cols-12 text-[14px] p-4 items-center hover:bg-white/[0.02] transition-colors group"
+                className="grid grid-cols-12 text-[13px] p-4 items-center hover:bg-[#111] transition-colors group"
               >
-                <div className="col-span-4 flex flex-col gap-1 pl-1 border-r border-[#333]/30 pr-2">
-                  <div className="font-mono font-medium text-white flex items-center gap-2">
+                <div className="col-span-4 flex flex-col gap-1 pl-1 border-r border-[#222]/50 pr-2">
+                  <div className="font-medium text-[#EAEAEA] flex items-center gap-2">
                     {supplier.name}
                     {supplier.verified && <ShieldCheck className="h-3.5 w-3.5 text-[#2EA043]" />}
                   </div>
-                  <div className="text-[10px] font-mono text-[#666] flex items-center gap-1.5 uppercase tracking-wider">
+                  <div className="text-[12px] text-[#A1A1AA] flex items-center gap-1.5">
                     <Globe className="h-3 w-3" /> {supplier.shipsTo.join(", ")}
                   </div>
                 </div>
                 
                 <div className="col-span-2 flex justify-center">
-                  <div className={`px-2 py-0.5 rounded border flex items-center justify-center font-bold font-mono text-[13px]
-                    ${supplier.trustScore >= 95 ? 'bg-[#5E6AD2]/10 text-[#5E6AD2] border-[#5E6AD2]/20' : 
-                      supplier.trustScore >= 88 ? 'bg-[#2EA043]/10 text-[#2EA043] border-[#2EA043]/20' : 
-                      'bg-[#E3B341]/10 text-[#E3B341] border-[#E3B341]/20'}`}>
+                  <div className={`px-2 py-0.5 rounded-md flex items-center justify-center font-medium text-[12px]
+                    ${supplier.trustScore >= 95 ? 'bg-[#5E6AD2]/10 text-[#5E6AD2] border border-[#5E6AD2]/20' : 
+                      supplier.trustScore >= 88 ? 'bg-[#2EA043]/10 text-[#2EA043] border border-[#2EA043]/20' : 
+                      'bg-[#E3B341]/10 text-[#E3B341] border border-[#E3B341]/20'}`}>
                     {supplier.trustScore}
                   </div>
                 </div>
 
                 <div className="col-span-3 flex flex-wrap gap-1.5">
                   {supplier.compoundsSupported.slice(0, 3).map(c => (
-                    <span key={c} className="text-[10px] font-mono font-medium px-1.5 py-0.5 bg-[#141414] rounded text-[#888] border border-[#333]">
+                    <span key={c} className="text-[11px] px-2 py-0.5 bg-[#111] rounded-md text-[#A1A1AA] border border-[#222]">
                       {c}
                     </span>
                   ))}
                   {supplier.compoundsSupported.length > 3 && (
-                    <span className="text-[10px] font-mono font-medium px-1.5 py-0.5 border border-[#333] rounded text-[#666]">
+                    <span className="text-[11px] px-2 py-0.5 border border-[#222] rounded-md text-[#666]">
                       +{supplier.compoundsSupported.length - 3}
                     </span>
                   )}
                 </div>
 
                 <div className="col-span-2 flex justify-center">
-                  <span className="font-mono font-medium text-[13px] text-[#ccc]">{supplier.attestationCount}</span>
+                  <span className="font-mono font-medium text-[13px] text-[#EAEAEA]">{supplier.attestationCount}</span>
                 </div>
 
                 <div className="col-span-1 flex justify-end pr-1">
                   <Link href={`/supplier/${supplier.id}`}>
-                    <button className="text-[11px] font-mono font-medium text-[#5E6AD2] hover:text-[#7C85E0] transition-colors border border-[#5E6AD2]/20 px-2 py-1 rounded-sm">
-                      [INSPECT]
+                    <button className="text-[12px] font-medium text-[#EAEAEA] hover:bg-[#111] transition-colors border border-[#333] px-3 py-1.5 rounded-md shadow-sm">
+                      Inspect
                     </button>
                   </Link>
                 </div>
@@ -118,8 +116,8 @@ export default function DirectoryPage() {
           </div>
           
           {filteredSuppliers.length === 0 && (
-            <div className="p-8 text-center text-[#666] text-[13px] font-mono">
-              [SYSTEM_WARNING] No suppliers found matching query: {searchTerm}
+            <div className="p-8 text-center text-[#A1A1AA] text-[13px]">
+              No suppliers found matching query: <span className="text-[#EAEAEA]">"{searchTerm}"</span>
             </div>
           )}
         </motion.div>
