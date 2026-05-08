@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, ShieldCheck, Database, Lock, Zap, FileText, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Microscope, Terminal, Cpu, Activity, Dna, TestTube2, ShieldCheck, Database, CheckCircle2 } from "lucide-react";
 import { MOCK_SUPPLIERS } from "@/lib/data";
 import { motion, useScroll, useTransform, Variants } from "framer-motion";
 import { useRef } from "react";
@@ -22,13 +22,14 @@ export default function LandingPage() {
   const heroRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="min-h-screen bg-[#080808] text-[#F0F0F0] overflow-x-hidden">
+    <div className="min-h-screen bg-[#080808] bg-grid-pattern text-[#F0F0F0] overflow-x-hidden relative">
+      <div className="scanline"></div>
 
       {/* ─── NAV ─── */}
       <nav className="fixed top-0 left-0 right-0 z-50 h-14 flex items-center justify-between px-8 border-b border-white/[0.06] bg-[#080808]/80 backdrop-blur-xl">
         <div className="flex items-center gap-2">
-          <div className="w-5 h-5 rounded-md bg-[#5E6AD2]/20 flex items-center justify-center">
-            <ShieldCheck className="w-3 h-3 text-[#5E6AD2]" />
+          <div className="w-5 h-5 rounded-md bg-[#5E6AD2]/20 border border-[#5E6AD2]/30 flex items-center justify-center">
+            <Dna className="w-3 h-3 text-[#5E6AD2]" />
           </div>
           <span className="text-sm font-semibold tracking-tight text-white">PepVerify</span>
         </div>
@@ -71,21 +72,21 @@ export default function LandingPage() {
         >
           {/* Pill badge */}
           <motion.div variants={fade} className="inline-flex items-center gap-2 mb-10">
-            <div className="flex items-center gap-2 text-[12px] text-[#888] border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 rounded-full">
+            <div className="flex items-center gap-2 text-[12px] text-[#888] font-mono border border-[#5E6AD2]/30 bg-[#5E6AD2]/5 px-3 py-1.5 rounded-sm data-highlight">
               <span className="w-1.5 h-1.5 rounded-full bg-[#5E6AD2] animate-pulse" />
-              Built on Solana Attestation Service
+              SYSTEM.STATUS: <span className="text-[#5E6AD2]">SAS_ONLINE</span>
             </div>
           </motion.div>
 
-          {/* Headline — Linear style: massive, tight, bold */}
+          {/* Headline */}
           <motion.h1
             variants={fade}
             className="text-[64px] md:text-[88px] font-semibold tracking-[-0.04em] leading-[0.95] text-white mb-8 max-w-4xl mx-auto"
           >
             Scientific evidence,
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#7C85E0] to-[#5E6AD2]">
-              permanently verified.
+            <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#7C85E0] to-[#5E6AD2] cursor-blink">
+              permanently verified
             </span>
           </motion.h1>
 
@@ -102,15 +103,15 @@ export default function LandingPage() {
           <motion.div variants={fade} className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
               href="/dashboard"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full bg-white text-black text-[14px] font-semibold hover:bg-white/90 active:scale-[0.98] transition-all duration-200"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded bg-white text-black text-[14px] font-semibold hover:bg-white/90 active:scale-[0.98] transition-all duration-200"
             >
-              Access the Platform <ArrowRight className="w-4 h-4" />
+              Access Terminal <Terminal className="w-4 h-4" />
             </Link>
             <a
               href="#how-it-works"
-              className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-full border border-white/[0.1] text-[#888] text-[14px] font-medium hover:text-white hover:border-white/20 active:scale-[0.98] transition-all duration-200"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded border border-white/[0.1] text-[#888] text-[14px] font-medium hover:text-white hover:border-white/20 active:scale-[0.98] transition-all duration-200"
             >
-              See how it works
+              System Protocols
             </a>
           </motion.div>
         </motion.div>
@@ -120,16 +121,16 @@ export default function LandingPage() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-0 border border-white/[0.07] rounded-2xl overflow-hidden bg-[#0F0F0F]"
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-0 border border-[#5E6AD2]/20 rounded-sm overflow-hidden bg-[#0C0C0C]/80 backdrop-blur-md"
         >
           {[
-            { n: `${MOCK_SUPPLIERS.length}`, label: "Suppliers indexed" },
-            { n: `${MOCK_SUPPLIERS.reduce((a, s) => a + s.attestationCount, 0)}`, label: "On-chain attestations" },
-            { n: "10", label: "Compounds tracked" },
+            { n: `${MOCK_SUPPLIERS.length}`, label: "SUPPLIERS_INDEXED" },
+            { n: `${MOCK_SUPPLIERS.reduce((a, s) => a + s.attestationCount, 0)}`, label: "ON_CHAIN_RECORDS" },
+            { n: "10", label: "COMPOUNDS_TRACKED" },
           ].map((stat, i) => (
-            <div key={stat.label} className={`px-8 py-4 ${i > 0 ? "border-l border-white/[0.07]" : ""}`}>
-              <div className="text-[22px] font-semibold tracking-[-0.03em] text-white">{stat.n}</div>
-              <div className="text-[12px] text-[#555] mt-0.5">{stat.label}</div>
+            <div key={stat.label} className={`px-8 py-4 ${i > 0 ? "border-l border-[#5E6AD2]/20" : ""}`}>
+              <div className="text-[22px] font-semibold font-mono tracking-tight text-white">{stat.n}</div>
+              <div className="text-[10px] font-mono text-[#5E6AD2] mt-0.5">{stat.label}</div>
             </div>
           ))}
         </motion.div>
@@ -143,8 +144,8 @@ export default function LandingPage() {
           viewport={{ once: true, margin: "-100px" }}
           variants={stagger}
         >
-          <motion.p variants={fade} className="text-[13px] font-semibold uppercase tracking-[0.12em] text-[#5E6AD2] mb-6">
-            The Problem
+          <motion.p variants={fade} className="text-[12px] font-mono font-semibold uppercase tracking-[0.15em] text-[#E3B341] mb-6 flex items-center justify-center gap-2">
+            <Activity className="w-4 h-4" /> SYSTEM_WARNING
           </motion.p>
           <motion.h2 variants={fade} className="text-[42px] md:text-[56px] font-semibold tracking-[-0.035em] leading-[1.05] text-white mb-8">
             The peptide market runs on 
@@ -166,7 +167,9 @@ export default function LandingPage() {
           variants={stagger}
         >
           <motion.div variants={fade} className="text-center mb-20">
-            <p className="text-[13px] font-semibold uppercase tracking-[0.12em] text-[#5E6AD2] mb-6">Provenance Workflow</p>
+            <p className="text-[12px] font-mono font-semibold uppercase tracking-[0.15em] text-[#5E6AD2] mb-6 flex items-center justify-center gap-2">
+              <Terminal className="w-4 h-4" /> PROVENANCE_PROTOCOL
+            </p>
             <h2 className="text-[40px] md:text-[52px] font-semibold tracking-[-0.035em] leading-[1.05] text-white">
               From lab report to blockchain<br />in four steps.
             </h2>
@@ -175,34 +178,34 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
               {
-                n: "01", icon: FileText, title: "Report Submitted",
+                n: "01", icon: TestTube2, title: "Report Submitted",
                 body: "A supplier uploads a third-party COA, HPLC-UV, or LC-MS PDF to the platform.",
               },
               {
-                n: "02", icon: Database, title: "IPFS Pinning",
+                n: "02", icon: Cpu, title: "IPFS Pinning",
                 body: "The document is pinned to IPFS via Pinata — a permanent, tamper-proof Content Identifier is generated.",
               },
               {
-                n: "03", icon: Lock, title: "On-Chain Attestation",
+                n: "03", icon: Activity, title: "On-Chain Attestation",
                 body: "Metadata and CID are signed by the submitter's Solana wallet and anchored via the SAS protocol.",
               },
               {
-                n: "04", icon: CheckCircle2, title: "Permanent Record",
+                n: "04", icon: Microscope, title: "Permanent Record",
                 body: "The evidence is now immutable. Trust scores update algorithmically. Anyone can verify the chain of custody.",
               },
             ].map(({ n, icon: Icon, title, body }) => (
               <motion.div
                 key={n}
                 variants={fade}
-                className="p-7 rounded-2xl border border-white/[0.06] bg-[#0C0C0C] hover:border-white/[0.1] transition-colors duration-300 group"
+                className="p-7 rounded border border-[#333] bg-[#0C0C0C] hover:border-[#5E6AD2]/50 transition-colors duration-300 group card-crosshair"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-[11px] font-mono font-bold text-[#5E6AD2] tracking-wider">{n}</span>
+                  <span className="text-[11px] font-mono font-bold text-[#5E6AD2] bg-[#5E6AD2]/10 px-1.5 py-0.5 rounded-sm tracking-wider">SEQ_{n}</span>
                   <div className="w-px h-3 bg-white/10" />
-                  <Icon className="w-4 h-4 text-[#555] group-hover:text-[#888] transition-colors" />
+                  <Icon className="w-4 h-4 text-[#555] group-hover:text-[#5E6AD2] transition-colors glow-pulse" />
                 </div>
-                <h3 className="text-[17px] font-semibold tracking-[-0.02em] text-white mb-2">{title}</h3>
-                <p className="text-[14px] text-[#555] leading-[1.65]">{body}</p>
+                <h3 className="text-[17px] font-semibold tracking-[-0.02em] text-white mb-2 font-mono">{title}</h3>
+                <p className="text-[14px] text-[#888] leading-[1.65] font-mono text-sm">{body}</p>
               </motion.div>
             ))}
           </div>
@@ -218,7 +221,9 @@ export default function LandingPage() {
           variants={stagger}
         >
           <motion.div variants={fade} className="text-center mb-20">
-            <p className="text-[13px] font-semibold uppercase tracking-[0.12em] text-[#5E6AD2] mb-6">Core Infrastructure</p>
+            <p className="text-[12px] font-mono font-semibold uppercase tracking-[0.15em] text-[#2EA043] mb-6 flex items-center justify-center gap-2">
+              <Cpu className="w-4 h-4" /> CORE_INFRASTRUCTURE
+            </p>
             <h2 className="text-[40px] md:text-[52px] font-semibold tracking-[-0.035em] leading-[1.05] text-white">
               Trust built on cryptography,<br />not reputation.
             </h2>
@@ -237,12 +242,12 @@ export default function LandingPage() {
                 accent: "#2EA043",
               },
               {
-                icon: Zap, title: "Solana Attestation Service",
+                icon: Activity, title: "Solana Attestation Service",
                 body: "SAS creates an immutable on-chain record — who verified it, what it said, and when. Sub-second finality.",
                 accent: "#A371F7",
               },
               {
-                icon: CheckCircle2, title: "Algorithmic Trust Scores",
+                icon: Microscope, title: "Algorithmic Trust Scores",
                 body: "Supplier trust derives from on-chain evidence only — not forums, reviews, or paid placements.",
                 accent: "#E3B341",
               },
@@ -250,13 +255,13 @@ export default function LandingPage() {
               <motion.div
                 key={title}
                 variants={fade}
-                className="p-7 rounded-2xl border border-white/[0.06] bg-[#0C0C0C] hover:border-white/[0.1] transition-colors duration-300 group"
+                className="p-7 rounded border border-white/[0.06] bg-[#0C0C0C] hover:border-white/[0.1] transition-colors duration-300 group card-crosshair"
               >
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center mb-5" style={{ backgroundColor: `${accent}15` }}>
+                <div className="w-8 h-8 rounded border flex items-center justify-center mb-5" style={{ backgroundColor: `${accent}10`, borderColor: `${accent}30` }}>
                   <Icon className="w-4 h-4" style={{ color: accent }} />
                 </div>
-                <h3 className="text-[17px] font-semibold tracking-[-0.02em] text-white mb-2">{title}</h3>
-                <p className="text-[14px] text-[#555] leading-[1.65]">{body}</p>
+                <h3 className="text-[17px] font-semibold tracking-[-0.02em] text-white mb-2 font-mono">{title}</h3>
+                <p className="text-[14px] text-[#888] leading-[1.65] font-mono text-sm">{body}</p>
               </motion.div>
             ))}
           </div>
@@ -273,11 +278,13 @@ export default function LandingPage() {
         >
           <motion.div variants={fade} className="flex items-end justify-between mb-14">
             <div>
-              <p className="text-[13px] font-semibold uppercase tracking-[0.12em] text-[#5E6AD2] mb-4">Verified Suppliers</p>
+              <p className="text-[12px] font-mono font-semibold uppercase tracking-[0.15em] text-[#5E6AD2] mb-4 flex items-center gap-2">
+                <Dna className="w-4 h-4" /> VERIFIED_SUPPLIERS
+              </p>
               <h2 className="text-[36px] font-semibold tracking-[-0.03em] text-white">Ranked by on-chain evidence.</h2>
             </div>
-            <Link href="/directory" className="text-[13px] text-[#555] hover:text-white transition-colors flex items-center gap-1.5">
-              View all <ArrowRight className="w-3.5 h-3.5" />
+            <Link href="/directory" className="text-[13px] font-mono text-[#5E6AD2] hover:text-[#7C85E0] transition-colors flex items-center gap-1.5 border border-[#5E6AD2]/20 px-3 py-1 rounded-sm">
+              [VIEW_ALL] <ArrowRight className="w-3 h-3" />
             </Link>
           </motion.div>
 
@@ -286,11 +293,11 @@ export default function LandingPage() {
               <motion.div key={supplier.id} variants={fade}>
                 <Link
                   href={`/supplier/${supplier.id}`}
-                  className="flex items-center justify-between p-5 rounded-2xl border border-white/[0.06] bg-[#0C0C0C] hover:border-white/[0.12] hover:bg-[#0F0F0F] transition-all duration-200 group"
+                  className="flex items-center justify-between p-5 rounded border border-[#333] bg-[#0C0C0C] hover:border-[#5E6AD2]/50 hover:bg-[#080808] transition-all duration-200 group card-crosshair"
                 >
                   <div className="flex items-center gap-5">
-                    <span className="text-[13px] font-mono text-[#333] w-5 text-center">{i + 1}</span>
-                    <div className="w-9 h-9 rounded-xl bg-[#141414] border border-white/[0.06] flex items-center justify-center text-sm font-bold text-[#555]">
+                    <span className="text-[12px] font-mono text-[#555] w-5 text-center">0{i + 1}</span>
+                    <div className="w-9 h-9 rounded bg-[#141414] border border-white/[0.06] flex items-center justify-center text-sm font-bold font-mono text-[#888]">
                       {supplier.name.charAt(0)}
                     </div>
                     <div>
@@ -304,7 +311,7 @@ export default function LandingPage() {
                   <div className="flex items-center gap-6">
                     <div className="hidden md:flex gap-1.5">
                       {supplier.compoundsSupported.slice(0, 3).map(c => (
-                        <span key={c} className="text-[11px] px-2 py-0.5 rounded-md bg-white/[0.04] text-[#555] border border-white/[0.06]">{c}</span>
+                        <span key={c} className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#141414] text-[#888] border border-[#333]">{c}</span>
                       ))}
                     </div>
                     <span className={`text-[15px] font-semibold font-mono tracking-tight
@@ -331,7 +338,9 @@ export default function LandingPage() {
           className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center"
         >
           <motion.div variants={fade}>
-            <p className="text-[13px] font-semibold uppercase tracking-[0.12em] text-[#A371F7] mb-6">DAO Governance</p>
+            <p className="text-[12px] font-mono font-semibold uppercase tracking-[0.15em] text-[#A371F7] mb-6 flex items-center gap-2">
+              <Terminal className="w-4 h-4" /> DAO_GOVERNANCE
+            </p>
             <h2 className="text-[36px] font-semibold tracking-[-0.03em] text-white mb-5 leading-[1.1]">
               Community-enforced scientific standards.
             </h2>
@@ -353,8 +362,8 @@ export default function LandingPage() {
               ))}
             </ul>
             <div className="mt-10">
-              <Link href="/governance" className="text-[13px] font-medium text-[#A371F7] hover:text-[#B891F7] transition-colors flex items-center gap-1.5">
-                View Governance Hub <ArrowRight className="w-3.5 h-3.5" />
+              <Link href="/governance" className="text-[13px] font-mono font-medium text-[#A371F7] hover:text-[#B891F7] transition-colors flex items-center gap-1.5 border border-[#A371F7]/20 px-3 py-1.5 rounded-sm inline-flex">
+                [ACCESS_GOVERNANCE] <ArrowRight className="w-3 h-3" />
               </Link>
             </div>
           </motion.div>
@@ -365,13 +374,13 @@ export default function LandingPage() {
               { label: "COA Dispute: Batch TB-26-02B", status: "UNDER REVIEW", votes: "38 votes", c: "text-[#E3B341]", bg: "bg-[#E3B341]/10 border-[#E3B341]/20" },
               { label: "Fund: Community Testing Round", status: "PASSED", votes: "201 votes", c: "text-[#2EA043]", bg: "bg-[#2EA043]/10 border-[#2EA043]/20" },
             ].map(item => (
-              <div key={item.label} className="flex items-center justify-between p-4 rounded-xl border border-white/[0.06] bg-[#0C0C0C]">
+              <div key={item.label} className="flex items-center justify-between p-4 rounded border border-[#333] bg-[#0C0C0C] card-crosshair">
                 <div>
-                  <p className="text-[14px] font-medium text-white">{item.label}</p>
-                  <p className="text-[12px] text-[#444] mt-0.5">{item.votes}</p>
+                  <p className="text-[14px] font-mono text-white">{item.label}</p>
+                  <p className="text-[12px] font-mono text-[#555] mt-0.5">{item.votes}</p>
                 </div>
-                <span className={`text-[10px] font-bold px-2.5 py-1 rounded-lg border ${item.bg} ${item.c}`}>
-                  {item.status}
+                <span className={`text-[10px] font-mono font-bold px-2.5 py-1 rounded border ${item.bg} ${item.c}`}>
+                  [{item.status}]
                 </span>
               </div>
             ))}
@@ -397,15 +406,15 @@ export default function LandingPage() {
           <motion.div variants={fade} className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
               href="/dashboard"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-white text-black text-[14px] font-semibold hover:bg-white/90 active:scale-[0.98] transition-all duration-200"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded bg-white text-black text-[14px] font-semibold hover:bg-white/90 active:scale-[0.98] transition-all duration-200"
             >
-              Get started <ArrowRight className="w-4 h-4" />
+              Initialize <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href="/submit"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full border border-white/[0.1] text-[#888] text-[14px] font-medium hover:text-white hover:border-white/20 active:scale-[0.98] transition-all duration-200"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded border border-[#5E6AD2]/30 text-[#5E6AD2] text-[14px] font-mono font-medium hover:bg-[#5E6AD2]/10 active:scale-[0.98] transition-all duration-200"
             >
-              Submit Evidence
+              [SUBMIT_EVIDENCE]
             </Link>
           </motion.div>
         </motion.div>
@@ -415,11 +424,11 @@ export default function LandingPage() {
       <footer className="border-t border-white/[0.05]">
         <div className="max-w-5xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2">
-            <div className="w-5 h-5 rounded-md bg-[#5E6AD2]/20 flex items-center justify-center">
-              <ShieldCheck className="w-3 h-3 text-[#5E6AD2]" />
+            <div className="w-5 h-5 rounded-md bg-[#5E6AD2]/20 border border-[#5E6AD2]/30 flex items-center justify-center">
+              <Dna className="w-3 h-3 text-[#5E6AD2]" />
             </div>
-            <span className="text-[13px] font-medium text-white">PepVerify</span>
-            <span className="text-[12px] text-[#333] ml-1">— Built on Solana. Secured by IPFS.</span>
+            <span className="text-[13px] font-mono font-medium text-white">PepVerify</span>
+            <span className="text-[12px] font-mono text-[#555] ml-1">v1.0.0</span>
           </div>
           <div className="flex items-center gap-6 text-[12px] text-[#444]">
             {[

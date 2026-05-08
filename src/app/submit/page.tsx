@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { MOCK_SUPPLIERS, MOCK_COMPOUNDS } from "@/lib/data";
-import { Check, ChevronRight, UploadCloud, FileText, Wallet, Fingerprint } from "lucide-react";
+import { Check, ChevronRight, UploadCloud, FileText, Wallet, Fingerprint, Terminal } from "lucide-react";
 import { useWallet, useConnection } from "@solana/wallet-adapter-react";
 import { Transaction, SystemProgram, PublicKey } from "@solana/web3.js";
 import { toast } from "sonner";
@@ -99,44 +99,48 @@ export default function SubmitEvidencePage() {
   const selectedCompound = MOCK_COMPOUNDS.find(c => c.id === formData.compoundId);
 
   return (
-    <div className="flex flex-col h-full bg-[#080808] text-[#F0F0F0] items-center py-16 px-8 min-h-full">
+    <div className="flex flex-col h-full bg-[#080808] bg-grid-fine text-[#F0F0F0] items-center py-16 px-8 min-h-full relative">
+      <div className="scanline"></div>
       <div className="max-w-2xl w-full">
-        <div className="mb-10 text-center relative">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[150px] bg-[#5E6AD2]/10 blur-[80px] rounded-full pointer-events-none" />
-          <h1 className="text-[28px] font-semibold tracking-[-0.03em] mb-2 text-white relative z-10">Submit Verification Evidence</h1>
-          <p className="text-[14px] text-[#888] relative z-10">Upload HPLC, MS, or COA reports to create an immutable on-chain record.</p>
+        <div className="mb-10 text-center relative flex flex-col items-center">
+          <div className="w-12 h-12 rounded border border-[#5E6AD2]/30 bg-[#5E6AD2]/10 flex items-center justify-center mb-4">
+            <Terminal className="w-5 h-5 text-[#5E6AD2]" />
+          </div>
+          <h1 className="text-[28px] font-mono font-semibold tracking-[-0.03em] mb-2 text-white relative z-10">SUBMIT_VERIFICATION_EVIDENCE</h1>
+          <p className="text-[13px] font-mono text-[#888] relative z-10">// Upload HPLC, MS, or COA reports to create an immutable on-chain record.</p>
         </div>
 
         {/* Stepper */}
         <div className="flex items-center justify-between mb-10 relative max-w-lg mx-auto">
-          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-full h-px bg-white/[0.06] -z-10"></div>
+          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-full h-[1px] bg-[#333] -z-10"></div>
           {[1, 2, 3, 4].map(s => (
-            <div key={s} className={`flex items-center justify-center w-7 h-7 rounded-full text-[12px] font-medium font-mono transition-all
+            <div key={s} className={`flex items-center justify-center px-3 py-1 rounded-sm text-[11px] font-medium font-mono transition-all
               ${step === s ? 'border border-[#5E6AD2] bg-[#5E6AD2]/10 text-[#5E6AD2] shadow-[0_0_15px_rgba(94,106,210,0.2)]' : 
-                step > s ? 'border border-[#5E6AD2] bg-[#5E6AD2] text-white' : 'border border-white/[0.1] bg-[#080808] text-[#666]'}`}>
-              {step > s ? <Check className="w-3.5 h-3.5" /> : s}
+                step > s ? 'border border-[#5E6AD2] bg-[#5E6AD2]/20 text-[#5E6AD2]' : 'border border-[#333] bg-[#080808] text-[#666]'}`}>
+              {step > s ? <Check className="w-3 h-3 mr-1" /> : ""}
+              SEQ_{s}
             </div>
           ))}
         </div>
 
         {step === 1 && (
-          <div className="bg-[#0C0C0C] border border-white/[0.06] rounded-xl overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="px-6 py-5 border-b border-white/[0.06] bg-white/[0.01]">
-              <h2 className="text-[16px] font-semibold text-white tracking-[-0.01em]">Select Supplier & Compound</h2>
-              <p className="text-[13px] text-[#666] mt-1">Choose the entity you are submitting evidence for.</p>
+          <div className="bg-[#0C0C0C] border border-[#333] rounded overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-500 card-crosshair">
+            <div className="px-6 py-5 border-b border-[#333] bg-[#141414]/50">
+              <h2 className="text-[14px] font-mono font-semibold text-white tracking-[-0.01em]">SELECT_ENTITY_AND_COMPOUND</h2>
+              <p className="text-[11px] font-mono text-[#666] mt-1">Choose the entity you are submitting evidence for.</p>
             </div>
             <div className="p-6 space-y-6">
               <div className="space-y-3">
-                <label className="text-[12px] font-medium text-[#888]">Supplier</label>
+                <label className="text-[10px] font-mono font-medium text-[#888] uppercase tracking-widest">Supplier_Entity</label>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {MOCK_SUPPLIERS.slice(0, 4).map(sup => (
                     <div 
                       key={sup.id}
                       onClick={() => setFormData({...formData, supplierId: sup.id})}
-                      className={`p-4 rounded-xl border cursor-pointer transition-all ${formData.supplierId === sup.id ? 'border-[#5E6AD2] bg-[#5E6AD2]/5' : 'border-white/[0.06] bg-white/[0.01] hover:border-white/[0.12] hover:bg-white/[0.02]'}`}
+                      className={`p-4 rounded border cursor-pointer transition-all ${formData.supplierId === sup.id ? 'border-[#5E6AD2] bg-[#5E6AD2]/5' : 'border-[#333] bg-[#141414] hover:border-[#5E6AD2]/30 hover:bg-[#141414]/80'}`}
                     >
-                      <div className="font-medium text-[14px] text-white">{sup.name}</div>
-                      <div className="text-[12px] text-[#666] mt-1">Trust Score: <span className="font-mono text-[#ccc]">{sup.trustScore}</span></div>
+                      <div className="font-mono font-medium text-[13px] text-white">{sup.name}</div>
+                      <div className="text-[10px] font-mono text-[#666] mt-1 uppercase">Trust Metric: <span className="font-mono text-[#ccc]">{sup.trustScore}</span></div>
                     </div>
                   ))}
                 </div>
@@ -144,13 +148,13 @@ export default function SubmitEvidencePage() {
 
               {formData.supplierId && (
                 <div className="space-y-3 animate-in fade-in slide-in-from-top-4">
-                  <label className="text-[12px] font-medium text-[#888]">Compound</label>
+                  <label className="text-[10px] font-mono font-medium text-[#888] uppercase tracking-widest">Compound_Identifier</label>
                   <select 
-                    className="flex h-10 w-full items-center justify-between rounded-lg border border-white/[0.08] bg-white/[0.02] px-3 py-2 text-[13px] text-white focus:outline-none focus:ring-1 focus:ring-[#5E6AD2]/50 transition-colors appearance-none"
+                    className="flex h-10 w-full items-center justify-between rounded border border-[#333] bg-[#0C0C0C] px-3 py-2 text-[13px] font-mono text-white focus:outline-none focus:border-[#5E6AD2]/50 transition-colors appearance-none"
                     value={formData.compoundId}
                     onChange={(e) => setFormData({...formData, compoundId: e.target.value})}
                   >
-                    <option value="" disabled className="text-[#666]">Select a compound...</option>
+                    <option value="" disabled className="text-[#666]">select_compound...</option>
                     {MOCK_COMPOUNDS.map(c => (
                       <option key={c.id} value={c.id} className="bg-[#0C0C0C]">{c.name}</option>
                     ))}
@@ -158,96 +162,96 @@ export default function SubmitEvidencePage() {
                 </div>
               )}
             </div>
-            <div className="px-6 py-4 border-t border-white/[0.06] bg-white/[0.01] flex justify-end">
+            <div className="px-6 py-4 border-t border-[#333] bg-[#141414]/50 flex justify-end">
               <button 
                 onClick={handleNext} 
                 disabled={!formData.supplierId || !formData.compoundId}
-                className="inline-flex items-center gap-2 rounded-lg bg-white text-black px-4 py-2 text-[13px] font-medium transition-colors hover:bg-white/90 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="inline-flex items-center gap-2 rounded border border-[#5E6AD2]/30 bg-[#5E6AD2]/10 text-[#5E6AD2] px-4 py-2 text-[11px] font-mono font-medium transition-colors hover:bg-[#5E6AD2]/20 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Next Step <ChevronRight className="w-4 h-4" />
+                [NEXT_STEP] <ChevronRight className="w-3 h-3" />
               </button>
             </div>
           </div>
         )}
 
         {step === 2 && (
-          <div className="bg-[#0C0C0C] border border-white/[0.06] rounded-xl overflow-hidden animate-in fade-in slide-in-from-right-4 duration-300">
-            <div className="px-6 py-5 border-b border-white/[0.06] bg-white/[0.01]">
-              <h2 className="text-[16px] font-semibold text-white tracking-[-0.01em]">Upload Evidence</h2>
-              <p className="text-[13px] text-[#666] mt-1">Upload the verified COA, HPLC, or MS report PDF.</p>
+          <div className="bg-[#0C0C0C] border border-[#333] rounded overflow-hidden animate-in fade-in slide-in-from-right-4 duration-300 card-crosshair">
+            <div className="px-6 py-5 border-b border-[#333] bg-[#141414]/50">
+              <h2 className="text-[14px] font-mono font-semibold text-white tracking-[-0.01em]">UPLOAD_EVIDENCE</h2>
+              <p className="text-[11px] font-mono text-[#666] mt-1">Upload the verified COA, HPLC, or MS report PDF.</p>
             </div>
             <div className="p-6">
-              <div className="border-2 border-dashed border-white/[0.08] rounded-xl p-16 flex flex-col items-center justify-center text-center hover:border-white/[0.15] hover:bg-white/[0.01] transition-all cursor-pointer group"
+              <div className="border border-dashed border-[#333] rounded p-16 flex flex-col items-center justify-center text-center hover:border-[#5E6AD2]/50 hover:bg-[#5E6AD2]/5 transition-all cursor-pointer group"
                 onClick={() => setFormData({...formData, file: new File([""], "dummy.pdf")})}
               >
-                <div className={`w-14 h-14 rounded-full flex items-center justify-center mb-4 transition-colors ${formData.file ? 'bg-[#2EA043]/10 text-[#2EA043]' : 'bg-white/[0.03] text-[#666] group-hover:text-white'}`}>
+                <div className={`w-14 h-14 rounded-full flex items-center justify-center mb-4 transition-colors ${formData.file ? 'bg-[#2EA043]/10 text-[#2EA043]' : 'bg-[#141414] text-[#666] group-hover:text-[#5E6AD2]'}`}>
                   {formData.file ? <FileText className="w-6 h-6" /> : <UploadCloud className="w-6 h-6" />}
                 </div>
-                <div className="font-medium text-[15px] mb-1.5 text-white">{formData.file ? 'evidence_report.pdf' : 'Click to upload PDF'}</div>
-                <div className="text-[12px] text-[#666]">Max file size 10MB. Must be original lab report.</div>
+                <div className="font-mono font-medium text-[13px] mb-1.5 text-white">{formData.file ? 'evidence_report.pdf' : '[CLICK_TO_UPLOAD_PDF]'}</div>
+                <div className="text-[10px] font-mono text-[#666] uppercase">Max_file_size: 10MB. Must be original lab report.</div>
               </div>
             </div>
-            <div className="px-6 py-4 border-t border-white/[0.06] bg-white/[0.01] flex justify-between">
-              <button onClick={handleBack} className="text-[13px] font-medium text-[#888] hover:text-white transition-colors">Back</button>
+            <div className="px-6 py-4 border-t border-[#333] bg-[#141414]/50 flex justify-between items-center">
+              <button onClick={handleBack} className="text-[11px] font-mono font-medium text-[#888] hover:text-white transition-colors">[BACK]</button>
               <button 
                 onClick={handleNext} 
                 disabled={!formData.file}
-                className="inline-flex items-center gap-2 rounded-lg bg-white text-black px-4 py-2 text-[13px] font-medium transition-colors hover:bg-white/90 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="inline-flex items-center gap-2 rounded border border-[#5E6AD2]/30 bg-[#5E6AD2]/10 text-[#5E6AD2] px-4 py-2 text-[11px] font-mono font-medium transition-colors hover:bg-[#5E6AD2]/20 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Next Step <ChevronRight className="w-4 h-4" />
+                [NEXT_STEP] <ChevronRight className="w-3 h-3" />
               </button>
             </div>
           </div>
         )}
 
         {step === 3 && (
-          <div className="bg-[#0C0C0C] border border-white/[0.06] rounded-xl overflow-hidden animate-in fade-in slide-in-from-right-4 duration-300">
-            <div className="px-6 py-5 border-b border-white/[0.06] bg-white/[0.01]">
-              <h2 className="text-[16px] font-semibold text-white tracking-[-0.01em]">Extract Metadata</h2>
-              <p className="text-[13px] text-[#666] mt-1">Enter the precise metadata from the lab report for indexing.</p>
+          <div className="bg-[#0C0C0C] border border-[#333] rounded overflow-hidden animate-in fade-in slide-in-from-right-4 duration-300 card-crosshair">
+            <div className="px-6 py-5 border-b border-[#333] bg-[#141414]/50">
+              <h2 className="text-[14px] font-mono font-semibold text-white tracking-[-0.01em]">EXTRACT_METADATA</h2>
+              <p className="text-[11px] font-mono text-[#666] mt-1">Enter the precise metadata from the lab report for indexing.</p>
             </div>
             <div className="p-6 space-y-5">
               <div className="space-y-2">
-                <label className="text-[12px] font-medium text-[#888]">Batch Number</label>
+                <label className="text-[10px] font-mono font-medium text-[#888] uppercase tracking-widest">Batch_Number</label>
                 <input 
-                  placeholder="e.g. BPC-24-001" 
-                  className="h-10 w-full rounded-lg border border-white/[0.08] bg-white/[0.02] px-3 py-2 text-[13px] text-white placeholder:text-[#666] focus:outline-none focus:ring-1 focus:ring-[#5E6AD2]/50 transition-all font-mono"
+                  placeholder="e.g._BPC-24-001" 
+                  className="h-10 w-full rounded border border-[#333] bg-[#0C0C0C] px-3 py-2 text-[13px] font-mono text-white placeholder:text-[#666] focus:outline-none focus:border-[#5E6AD2]/50 transition-all"
                   value={formData.batchNumber}
                   onChange={(e) => setFormData({...formData, batchNumber: e.target.value})}
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-[12px] font-medium text-[#888]">Purity Percentage (%)</label>
+                <label className="text-[10px] font-mono font-medium text-[#888] uppercase tracking-widest">Purity_Percentage_(%)</label>
                 <input 
                   type="number" 
-                  placeholder="e.g. 99.4" 
-                  className="h-10 w-full rounded-lg border border-white/[0.08] bg-white/[0.02] px-3 py-2 text-[13px] text-white placeholder:text-[#666] focus:outline-none focus:ring-1 focus:ring-[#5E6AD2]/50 transition-all font-mono"
+                  placeholder="99.4" 
+                  className="h-10 w-full rounded border border-[#333] bg-[#0C0C0C] px-3 py-2 text-[13px] font-mono text-white placeholder:text-[#666] focus:outline-none focus:border-[#5E6AD2]/50 transition-all"
                   value={formData.purity}
                   onChange={(e) => setFormData({...formData, purity: e.target.value})}
                 />
               </div>
             </div>
-            <div className="px-6 py-4 border-t border-white/[0.06] bg-white/[0.01] flex justify-between">
-              <button onClick={handleBack} className="text-[13px] font-medium text-[#888] hover:text-white transition-colors">Back</button>
+            <div className="px-6 py-4 border-t border-[#333] bg-[#141414]/50 flex justify-between items-center">
+              <button onClick={handleBack} className="text-[11px] font-mono font-medium text-[#888] hover:text-white transition-colors">[BACK]</button>
               <button 
                 onClick={handleNext} 
                 disabled={!formData.batchNumber || !formData.purity}
-                className="inline-flex items-center gap-2 rounded-lg bg-white text-black px-4 py-2 text-[13px] font-medium transition-colors hover:bg-white/90 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="inline-flex items-center gap-2 rounded border border-[#5E6AD2]/30 bg-[#5E6AD2]/10 text-[#5E6AD2] px-4 py-2 text-[11px] font-mono font-medium transition-colors hover:bg-[#5E6AD2]/20 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Review <ChevronRight className="w-4 h-4" />
+                [REVIEW] <ChevronRight className="w-3 h-3" />
               </button>
             </div>
           </div>
         )}
 
         {step === 4 && (
-          <div className="bg-[#0C0C0C] border border-white/[0.06] rounded-xl overflow-hidden animate-in fade-in slide-in-from-right-4 duration-300">
-            <div className="px-6 py-5 border-b border-white/[0.06] bg-white/[0.01]">
-              <h2 className="text-[16px] font-semibold text-white tracking-[-0.01em]">Review & Sign SAS Payload</h2>
-              <p className="text-[13px] text-[#666] mt-1">Verify the payload before pinning to IPFS and signing the on-chain attestation.</p>
+          <div className="bg-[#0C0C0C] border border-[#333] rounded overflow-hidden animate-in fade-in slide-in-from-right-4 duration-300 card-crosshair">
+            <div className="px-6 py-5 border-b border-[#333] bg-[#141414]/50">
+              <h2 className="text-[14px] font-mono font-semibold text-white tracking-[-0.01em]">REVIEW_&_SIGN_SAS_PAYLOAD</h2>
+              <p className="text-[11px] font-mono text-[#666] mt-1">Verify the payload before pinning to IPFS and signing the on-chain attestation.</p>
             </div>
             <div className="p-6 space-y-6">
-              <div className="bg-[#141414] p-5 rounded-xl font-mono text-[12px] text-[#ccc] overflow-x-auto border border-white/[0.04]">
+              <div className="bg-[#080808] p-5 rounded font-mono text-[11px] text-[#A371F7] overflow-x-auto border border-[#333] glow-pulse">
                 <pre>
 {JSON.stringify({
   schema: "pepverify.evidence.v1",
@@ -261,49 +265,50 @@ export default function SubmitEvidencePage() {
               </div>
 
               {!connected && (
-                <div className="p-4 bg-[#E3B341]/10 border border-[#E3B341]/20 rounded-xl flex items-start gap-3">
-                  <Wallet className="w-5 h-5 text-[#E3B341] shrink-0 mt-0.5" />
+                <div className="p-4 bg-[#E3B341]/5 border border-[#E3B341]/30 rounded flex items-start gap-3">
+                  <Wallet className="w-4 h-4 text-[#E3B341] shrink-0 mt-0.5" />
                   <div>
-                    <h4 className="font-semibold text-[#E3B341] text-[13px]">Wallet Not Connected</h4>
-                    <p className="text-[12px] text-[#E3B341]/80 mt-1">You must connect a Solana wallet to sign and submit this attestation.</p>
+                    <h4 className="font-mono font-medium text-[#E3B341] text-[11px]">[WALLET_NOT_CONNECTED]</h4>
+                    <p className="text-[10px] font-mono text-[#E3B341]/80 mt-1 uppercase tracking-widest">You must connect a Solana wallet to sign and submit this attestation.</p>
                   </div>
                 </div>
               )}
             </div>
-            <div className="px-6 py-4 border-t border-white/[0.06] bg-white/[0.01] flex justify-between">
-              <button onClick={handleBack} className="text-[13px] font-medium text-[#888] hover:text-white transition-colors">Back</button>
+            <div className="px-6 py-4 border-t border-[#333] bg-[#141414]/50 flex justify-between items-center">
+              <button onClick={handleBack} className="text-[11px] font-mono font-medium text-[#888] hover:text-white transition-colors">[BACK]</button>
               <button 
                 onClick={handleSign} 
                 disabled={isSubmitting}
-                className="inline-flex items-center gap-2 rounded-lg bg-[#5E6AD2] text-white px-5 py-2 text-[13px] font-medium transition-colors hover:bg-[#5E6AD2]/90 disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(94,106,210,0.3)]"
+                className="inline-flex items-center gap-2 rounded border border-[#5E6AD2]/30 bg-[#5E6AD2]/10 text-[#5E6AD2] px-5 py-2 text-[11px] font-mono font-medium transition-colors hover:bg-[#5E6AD2]/20 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <Fingerprint className="w-4 h-4" />
-                {isSubmitting ? "Signing..." : "Sign & Publish"}
+                <Fingerprint className="w-3 h-3" />
+                {isSubmitting ? "[SIGNING...]" : "[SIGN_&_PUBLISH]"}
               </button>
             </div>
           </div>
         )}
 
         {step === 5 && (
-          <div className="bg-[#0C0C0C] border border-[#2EA043]/30 rounded-xl overflow-hidden animate-in zoom-in-95 duration-500 shadow-[0_0_40px_rgba(46,160,67,0.1)]">
+          <div className="bg-[#0C0C0C] border border-[#2EA043]/30 rounded overflow-hidden animate-in zoom-in-95 duration-500 card-crosshair relative">
+            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#2EA043]/50 to-transparent"></div>
             <div className="p-12 flex flex-col items-center text-center">
-              <div className="w-20 h-20 bg-[#2EA043]/10 text-[#2EA043] rounded-full flex items-center justify-center mb-6 border border-[#2EA043]/20">
-                <Check className="w-10 h-10" />
+              <div className="w-16 h-16 bg-[#2EA043]/10 text-[#2EA043] rounded flex items-center justify-center mb-6 border border-[#2EA043]/30">
+                <Check className="w-8 h-8" />
               </div>
-              <h2 className="text-[24px] font-semibold tracking-[-0.03em] mb-2 text-white">Evidence Verified</h2>
-              <p className="text-[14px] text-[#888] max-w-md mb-8 leading-relaxed">
-                Your lab report has been securely pinned to IPFS and the SAS attestation has been successfully recorded on the Solana blockchain.
+              <h2 className="text-[20px] font-mono font-semibold tracking-[-0.03em] mb-2 text-white">EVIDENCE_VERIFIED</h2>
+              <p className="text-[13px] font-mono text-[#888] max-w-md mb-8 leading-relaxed">
+                // Your lab report has been securely pinned to IPFS and the SAS attestation has been successfully recorded on the Solana blockchain.
               </p>
               <div className="flex gap-4">
                 <button 
                   onClick={() => setStep(1)}
-                  className="rounded-lg border border-white/[0.08] bg-white/[0.03] px-5 py-2 text-[13px] font-medium text-white hover:bg-white/[0.06] transition-colors"
+                  className="rounded border border-[#333] bg-[#0C0C0C] px-5 py-2 text-[11px] font-mono font-medium text-white hover:border-[#5E6AD2]/50 transition-colors"
                 >
-                  Submit Another
+                  [SUBMIT_ANOTHER]
                 </button>
                 <Link href={`/supplier/${formData.supplierId}`}>
-                  <button className="rounded-lg bg-white text-black px-5 py-2 text-[13px] font-medium hover:bg-white/90 transition-colors">
-                    View Supplier Profile
+                  <button className="rounded border border-[#5E6AD2]/30 bg-[#5E6AD2]/10 text-[#5E6AD2] px-5 py-2 text-[11px] font-mono font-medium hover:bg-[#5E6AD2]/20 transition-colors">
+                    [VIEW_SUPPLIER_PROFILE]
                   </button>
                 </Link>
               </div>

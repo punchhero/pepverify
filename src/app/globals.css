@@ -132,10 +132,131 @@
   }
 }
 
-.bg-grid-pattern { background: none; }
+/* ── Scientific Grid Background ── */
+.bg-grid-pattern {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
 
-/* Linear-style thin scrollbar */
+.bg-grid-fine {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.bg-dot-pattern {
+  background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* ── Crosshair Card Corners (technical/lab-readout feel) ── */
+.card-crosshair {
+  position: relative;
+}
+.card-crosshair::before,
+.card-crosshair::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  opacity: 0.3;
+}
+.card-crosshair::before {
+  top: -1px; left: -1px;
+  border-top: 1px solid rgba(94, 106, 210, 0.8);
+  border-left: 1px solid rgba(94, 106, 210, 0.8);
+}
+.card-crosshair::after {
+  bottom: -1px; right: -1px;
+  border-bottom: 1px solid rgba(94, 106, 210, 0.8);
+  border-right: 1px solid rgba(94, 106, 210, 0.8);
+}
+
+/* ── Scientific Scan Line ── */
+@keyframes scanline {
+  0% { transform: translateY(-100%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+.scanline {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(94, 106, 210, 0.3), transparent);
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ── Terminal Text Blink ── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink::after {
+  content: '_';
+  animation: blink 1s step-end infinite;
+  color: #5E6AD2;
+  margin-left: 1px;
+}
+
+/* ── Data Ticker Scroll ── */
+@keyframes ticker-scroll {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+.ticker-scroll {
+  animation: ticker-scroll 20s linear infinite;
+}
+
+/* ── Ambient Glow Pulse ── */
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.08; }
+  50% { opacity: 0.15; }
+}
+.glow-pulse {
+  animation: glow-pulse 4s ease-in-out infinite;
+}
+
+/* ── Counter Animation (number rolling feel) ── */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Linear-style thin scrollbar ── */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+
+/* ── Science Data Highlight ── */
+.data-highlight {
+  position: relative;
+  display: inline-block;
+}
+.data-highlight::before {
+  content: '';
+  position: absolute;
+  inset: -2px -4px;
+  background: rgba(94, 106, 210, 0.08);
+  border: 1px solid rgba(94, 106, 210, 0.15);
+  border-radius: 3px;
+  pointer-events: none;
+}
+
+/* ── Progress Bar Pulse for verification status ── */
+@keyframes verifying {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+.bar-verifying {
+  background: linear-gradient(90deg, #5E6AD2, #A371F7, #5E6AD2);
+  background-size: 200% 100%;
+  animation: verifying 2s linear infinite;
+}
