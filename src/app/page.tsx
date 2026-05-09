@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowRight, Microscope, Terminal, Cpu, Activity, Dna, TestTube2, ShieldCheck, Database, CheckCircle2 } from "lucide-react";
 import { MOCK_SUPPLIERS } from "@/lib/data";
 import { motion, useScroll, useTransform, Variants } from "framer-motion";
@@ -18,6 +17,20 @@ const stagger: Variants = {
 };
 
 const topSuppliers = [...MOCK_SUPPLIERS].sort((a, b) => b.trustScore - a.trustScore).slice(0, 3);
+
+const SCATTER_POINTS = Array.from({ length: 150 }).map((_, i) => {
+  const rand1 = Math.sin(i * 123.45) * 10000;
+  const rand2 = Math.cos(i * 678.9) * 10000;
+  const r1 = rand1 - Math.floor(rand1);
+  const r2 = rand2 - Math.floor(rand2);
+  return {
+    x: r1 * 100,
+    y: r2 * 100,
+    size: r1 * 2 + 1,
+    color: r1 > 0.9 ? 'bg-[#2DD4BF]' : (r1 > 0.75 ? 'bg-[#3B82F6]' : 'bg-[#333]'),
+    opacity: r2 * 0.6 + 0.2
+  };
+});
 
 export default function LandingPage() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -111,32 +124,66 @@ export default function LandingPage() {
             </motion.div>
           </motion.div>
 
-          {/* Abstract Data Viz */}
+          {/* Minimalist Abstract Scatter Plot */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
-            className="hidden lg:block relative rounded-2xl overflow-hidden shadow-2xl h-[420px] w-full border border-white/[0.05] bg-[#0A0A0A]"
+            className="hidden lg:block relative rounded-2xl overflow-hidden shadow-2xl h-[420px] w-full border border-[#222] bg-[#0A0A0A]"
           >
-            <Image 
-              src="/images/peptide_molecule.png" 
-              alt="Peptide Molecule Structure" 
-              fill 
-              className="object-cover opacity-80 mix-blend-screen"
-            />
-            {/* Overlay gradient */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#080808] via-transparent to-transparent opacity-80" />
+            {/* Fine background grid */}
+            <div className="absolute inset-0 bg-grid-fine opacity-50" />
             
-            {/* Terminal Overlay */}
-            <div className="absolute bottom-4 left-4 right-4 bg-[#111]/80 backdrop-blur-md border border-[#333] rounded-xl p-4">
-               <div className="flex items-center justify-between text-[11px] font-mono mb-2">
-                 <span className="text-[#A1A1AA] flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[#2DD4BF] animate-pulse"></span> SAS_VERIFICATION_PROTOCOL</span>
-                 <span className="text-[#2DD4BF]">ACTIVE</span>
-               </div>
-               <div className="text-[12px] font-mono text-[#EAEAEA] flex justify-between">
-                 <span>Compound: BPC-157</span>
-                 <span className="text-[#A1A1AA]">C62H98N16O22</span>
-               </div>
+            {/* Reference axes */}
+            <div className="absolute top-[35%] left-0 right-0 h-px bg-[#333]/40" />
+            <div className="absolute top-[65%] left-0 right-0 h-px bg-[#333]/40" />
+            <div className="absolute top-0 bottom-0 left-[50%] w-px bg-[#333]/40" />
+
+            {/* Scatter Points */}
+            {SCATTER_POINTS.map((p, i) => (
+              <div 
+                key={i} 
+                className={`absolute rounded-full ${p.color}`} 
+                style={{ 
+                  left: `${p.x}%`, top: `${p.y}%`, 
+                  width: `${p.size}px`, height: `${p.size}px`, 
+                  opacity: p.opacity,
+                  boxShadow: p.color !== 'bg-[#333]' ? `0 0 8px ${p.color === 'bg-[#2DD4BF]' ? '#2DD4BF' : '#3B82F6'}` : 'none'
+                }} 
+              />
+            ))}
+
+            <div className="absolute inset-0 bg-gradient-to-tr from-[#080808]/40 via-transparent to-[#080808]/80 pointer-events-none" />
+
+            {/* Linear-style Pulse Card */}
+            <div className="absolute left-6 bottom-6 bg-[#111]/90 backdrop-blur-md border border-[#333] rounded-xl p-5 w-72 shadow-2xl">
+              <div className="flex items-center justify-between mb-4 pb-4 border-b border-[#222]">
+                <span className="text-[13px] font-medium text-[#EAEAEA]">Network Consensus</span>
+                <div className="flex items-center gap-1.5 bg-[#222] rounded-full px-2 py-0.5 border border-[#333]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#2EA043] animate-pulse" />
+                  <span className="text-[10px] text-[#A1A1AA] uppercase tracking-wider">Live</span>
+                </div>
+              </div>
+              <div className="space-y-4">
+                <div>
+                  <div className="flex justify-between text-[11px] mb-1.5">
+                    <span className="text-[#A1A1AA]">BPC-157 Synthesis</span>
+                    <span className="text-[#2DD4BF]">Verified</span>
+                  </div>
+                  <div className="h-1 bg-[#222] rounded-full overflow-hidden">
+                    <div className="h-full bg-[#2DD4BF] w-[92%]" />
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between text-[11px] mb-1.5">
+                    <span className="text-[#A1A1AA]">TB-500 Batch #09A</span>
+                    <span className="text-[#E3B341]">Pending</span>
+                  </div>
+                  <div className="h-1 bg-[#222] rounded-full overflow-hidden">
+                    <div className="h-full bg-[#E3B341] w-[64%]" />
+                  </div>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -200,14 +247,38 @@ export default function LandingPage() {
                 From lab report to blockchain<br />in four steps.
               </h2>
             </motion.div>
-            <motion.div variants={fade} className="relative h-[250px] w-full rounded-2xl overflow-hidden border border-[#222] shadow-xl hidden lg:block bg-[#0A0A0A]">
-              <Image 
-                src="/images/clinical_data.png" 
-                alt="Clinical Chromatography Data" 
-                fill 
-                className="object-cover opacity-80 mix-blend-screen"
-              />
-              <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#080808]/50 to-[#080808] opacity-90" />
+            <motion.div variants={fade} className="relative h-[250px] w-full rounded-2xl overflow-hidden border border-[#222] shadow-xl hidden lg:block bg-[#0A0A0A] flex items-center justify-center">
+              <svg viewBox="0 0 200 200" className="w-full h-full opacity-60 mix-blend-screen px-8 py-4" stroke="#444" strokeWidth="0.5" fill="none" strokeLinejoin="round">
+                <g transform="translate(0, 15)">
+                  {/* Center Block */}
+                  <path d="M100,70 L130,85 L100,100 L70,85 Z" fill="#111" />
+                  <path d="M70,85 L70,115 L100,130 L100,100 Z" fill="#050505" />
+                  <path d="M130,85 L130,115 L100,130 L100,100 Z" fill="#080808" />
+                  {/* Glowing center indicator */}
+                  <path d="M100,80 L110,85 L100,90 L90,85 Z" fill="#2DD4BF" opacity="0.8" />
+                  
+                  {/* Top Left Block */}
+                  <path d="M60,50 L90,65 L60,80 L30,65 Z" fill="#0A0A0A" />
+                  <path d="M30,65 L30,95 L60,110 L60,80 Z" fill="#050505" />
+                  <path d="M90,65 L90,95 L60,110 L60,80 Z" fill="#000" />
+                  
+                  {/* Top Right Block */}
+                  <path d="M140,50 L170,65 L140,80 L110,65 Z" fill="#0A0A0A" />
+                  <path d="M110,65 L110,95 L140,110 L140,80 Z" fill="#050505" />
+                  <path d="M170,65 L170,95 L140,110 L140,80 Z" fill="#000" />
+                  
+                  {/* Bottom Block */}
+                  <path d="M100,110 L130,125 L100,140 L70,125 Z" fill="#0A0A0A" />
+                  <path d="M70,125 L70,155 L100,170 L100,140 Z" fill="#050505" />
+                  <path d="M130,125 L130,155 L100,170 L100,140 Z" fill="#000" />
+                  
+                  {/* Connections */}
+                  <path d="M100,100 L60,80 M100,100 L140,80 M100,130 L100,140" stroke="#444" strokeDasharray="2 2" />
+                </g>
+              </svg>
+              <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#080808]/30 to-[#080808] pointer-events-none" />
+              {/* FIG Label */}
+              <div className="absolute top-4 left-4 text-[10px] font-mono text-[#555] tracking-widest">FIG 0.1</div>
             </motion.div>
           </div>
 
