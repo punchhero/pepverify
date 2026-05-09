@@ -90,8 +90,8 @@
   --card-foreground: #F0F0F0;
   --popover: #141414;
   --popover-foreground: #F0F0F0;
-  --primary: #5E6AD2;              /* Linear indigo */
-  --primary-foreground: #ffffff;
+  --primary: #2DD4BF;              /* Clinical Bioluminescent Teal */
+  --primary-foreground: #080808;
   --secondary: #141414;
   --secondary-foreground: #F0F0F0;
   --muted: #141414;
@@ -101,20 +101,20 @@
   --destructive: #F85149;
   --border: rgba(255, 255, 255, 0.07); /* Ultra-subtle Linear border */
   --input: #141414;
-  --ring: #5E6AD2;
-  --chart-1: #5E6AD2;
+  --ring: #2DD4BF;
+  --chart-1: #2DD4BF;
   --chart-2: #2EA043;
-  --chart-3: #A371F7;
+  --chart-3: #3B82F6;              /* Medical Blue */
   --chart-4: #388BFD;
   --chart-5: #E3B341;
   --sidebar: #080808;
   --sidebar-foreground: #F0F0F0;
-  --sidebar-primary: #5E6AD2;
-  --sidebar-primary-foreground: #ffffff;
+  --sidebar-primary: #2DD4BF;
+  --sidebar-primary-foreground: #080808;
   --sidebar-accent: #141414;
   --sidebar-accent-foreground: #F0F0F0;
   --sidebar-border: rgba(255, 255, 255, 0.07);
-  --sidebar-ring: #5E6AD2;
+  --sidebar-ring: #2DD4BF;
 }
 
 @layer base {
@@ -133,6 +133,11 @@
 }
 
 /* ── Scientific Grid Background ── */
+.bg-hex-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='103.923' viewBox='0 0 60 103.923' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.981 15v30L30 60 4.019 45V15zM30 103.923l25.981-15v-30L30 43.923l-25.981 15v30z' fill-rule='evenodd' stroke='rgba(255,255,255,0.015)' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+  background-size: 60px 103.923px;
+}
+
 .bg-grid-pattern {
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
@@ -194,7 +199,33 @@
   100% { background-position: 200% 50%; }
 }
 .bar-verifying {
-  background: linear-gradient(90deg, #5E6AD2, #A371F7, #5E6AD2);
+  background: linear-gradient(90deg, #2DD4BF, #3B82F6, #2DD4BF);
   background-size: 200% 100%;
   animation: verifying 2s linear infinite;
+}
+
+/* ── Override Solana Wallet Adapter Button ── */
+.wallet-adapter-button {
+  background-color: transparent !important;
+  color: #A1A1AA !important;
+  border: 1px solid #333 !important;
+  border-radius: 6px !important;
+  height: 36px !important;
+  padding: 0 16px !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  font-family: var(--font-inter), sans-serif !important;
+  transition: all 0.2s !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+  line-height: normal !important;
+}
+.wallet-adapter-button:hover {
+  background-color: rgba(255, 255, 255, 0.02) !important;
+  color: #EAEAEA !important;
+  border-color: #444 !important;
+}
+.wallet-adapter-button-start-icon {
+  margin-right: 8px !important;
+  width: 16px !important;
+  height: 16px !important;
 }

@@ -22,14 +22,14 @@ export default function LandingPage() {
   const heroRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="min-h-screen bg-[#080808] bg-grid-pattern text-[#F0F0F0] overflow-x-hidden relative">
+    <div className="min-h-screen bg-[#080808] bg-hex-pattern text-[#F0F0F0] overflow-x-hidden relative">
       <div className="scanline"></div>
 
       {/* ─── NAV ─── */}
       <nav className="fixed top-0 left-0 right-0 z-50 h-14 flex items-center justify-between px-8 border-b border-white/[0.06] bg-[#080808]/80 backdrop-blur-xl">
         <div className="flex items-center gap-2">
-          <div className="w-5 h-5 rounded-md bg-[#5E6AD2]/20 border border-[#5E6AD2]/30 flex items-center justify-center">
-            <Dna className="w-3 h-3 text-[#5E6AD2]" />
+          <div className="w-5 h-5 rounded-md bg-[#2DD4BF]/20 border border-[#2DD4BF]/30 flex items-center justify-center">
+            <Dna className="w-3 h-3 text-[#2DD4BF]" />
           </div>
           <span className="text-sm font-semibold tracking-tight text-white">PepVerify</span>
         </div>
@@ -58,7 +58,7 @@ export default function LandingPage() {
       <section ref={heroRef} className="relative min-h-screen flex flex-col justify-center px-6 pt-14 pb-24 overflow-hidden">
         {/* Subtle grid and ambient glow */}
         <div className="absolute top-1/2 right-0 -translate-y-1/2 pointer-events-none opacity-40">
-          <div className="w-[800px] h-[800px] rounded-full bg-[#5E6AD2]/10 blur-[120px]" />
+          <div className="w-[800px] h-[800px] rounded-full bg-[#2DD4BF]/10 blur-[120px]" />
         </div>
 
         <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -126,15 +126,15 @@ export default function LandingPage() {
             </div>
             {/* Terminal Body */}
             <div className="p-6 font-mono text-[12px] leading-[1.9] text-[#555] overflow-hidden">
-              <div className="flex items-center gap-4 mb-2"><span className="text-[#5E6AD2]">10:04:12</span><span className="text-[#EAEAEA] w-10">INIT</span><span>establishing secure connection...</span></div>
-              <div className="flex items-center gap-4 mb-2"><span className="text-[#5E6AD2]">10:04:14</span><span className="text-[#2EA043] w-10">SYSC</span><span>handshake confirmed. node: sol-mainnet-beta</span></div>
-              <div className="flex items-center gap-4 mb-2"><span className="text-[#5E6AD2]">10:04:15</span><span className="text-[#E3B341] w-10">HASH</span><span>processing COA_BPC157_batch_09A.pdf</span></div>
+              <div className="flex items-center gap-4 mb-2"><span className="text-[#2DD4BF]">10:04:12</span><span className="text-[#EAEAEA] w-10">INIT</span><span>establishing secure connection...</span></div>
+              <div className="flex items-center gap-4 mb-2"><span className="text-[#2DD4BF]">10:04:14</span><span className="text-[#2EA043] w-10">SYSC</span><span>handshake confirmed. node: sol-mainnet-beta</span></div>
+              <div className="flex items-center gap-4 mb-2"><span className="text-[#2DD4BF]">10:04:15</span><span className="text-[#E3B341] w-10">HASH</span><span>processing COA_BPC157_batch_09A.pdf</span></div>
               <div className="flex items-center gap-4 mb-2 ml-14 text-[#888]">└─ Compound: BPC-157 (C62H98N16O22)</div>
               <div className="flex items-center gap-4 mb-2 ml-14 text-[#888]">└─ Purity: 99.82% by HPLC-UV</div>
-              <div className="flex items-center gap-4 mb-2"><span className="text-[#5E6AD2]">10:04:18</span><span className="text-[#EAEAEA] w-10">IPFS</span><span>CID: QmXo4b7gU9r7M1... pinned successfully</span></div>
-              <div className="flex items-center gap-4 mb-2"><span className="text-[#5E6AD2]">10:04:21</span><span className="text-[#A371F7] w-10">SIGN</span><span>awaiting signature from 7Xvw...j9Pq</span></div>
-              <div className="flex items-center gap-4 mb-2"><span className="text-[#5E6AD2]">10:04:25</span><span className="text-[#2EA043] w-10">VRFY</span><span>transaction anchored: 5yV8...z2Kw</span></div>
-              <div className="flex items-center gap-4 mb-2 opacity-50"><span className="text-[#5E6AD2]">10:04:26</span><span className="text-[#EAEAEA] w-10">IDLE</span><span>awaiting next input_</span></div>
+              <div className="flex items-center gap-4 mb-2"><span className="text-[#2DD4BF]">10:04:18</span><span className="text-[#EAEAEA] w-10">IPFS</span><span>CID: QmXo4b7gU9r7M1... pinned successfully</span></div>
+              <div className="flex items-center gap-4 mb-2"><span className="text-[#2DD4BF]">10:04:21</span><span className="text-[#A371F7] w-10">SIGN</span><span>awaiting signature from 7Xvw...j9Pq</span></div>
+              <div className="flex items-center gap-4 mb-2"><span className="text-[#2DD4BF]">10:04:25</span><span className="text-[#2EA043] w-10">VRFY</span><span>transaction anchored: 5yV8...z2Kw</span></div>
+              <div className="flex items-center gap-4 mb-2 opacity-50"><span className="text-[#2DD4BF]">10:04:26</span><span className="text-[#EAEAEA] w-10">IDLE</span><span>awaiting next input_</span></div>
             </div>
           </motion.div>
         </div>
@@ -190,7 +190,7 @@ export default function LandingPage() {
           variants={stagger}
         >
           <motion.div variants={fade} className="text-center mb-20">
-            <p className="text-[12px] font-medium uppercase tracking-[0.15em] text-[#5E6AD2] mb-6 flex items-center justify-center gap-2">
+            <p className="text-[12px] font-medium uppercase tracking-[0.15em] text-[#2DD4BF] mb-6 flex items-center justify-center gap-2">
               <Terminal className="w-4 h-4" /> Provenance Protocol
             </p>
             <h2 className="text-[40px] md:text-[52px] font-semibold tracking-[-0.035em] leading-[1.05] text-white">
@@ -223,7 +223,7 @@ export default function LandingPage() {
                 className="p-7 rounded-xl border border-[#222] bg-[#0A0A0A] hover:border-[#333] hover:bg-[#111] transition-colors duration-300 group shadow-sm"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-[12px] font-medium text-[#5E6AD2] bg-[#5E6AD2]/10 px-2 py-0.5 rounded-md tracking-wider">Step {n}</span>
+                  <span className="text-[12px] font-medium text-[#2DD4BF] bg-[#2DD4BF]/10 px-2 py-0.5 rounded-md tracking-wider">Step {n}</span>
                   <div className="w-px h-3 bg-[#333]" />
                   <Icon className="w-4 h-4 text-[#A1A1AA] group-hover:text-[#EAEAEA] transition-colors" />
                 </div>
@@ -257,7 +257,7 @@ export default function LandingPage() {
               {
                 icon: ShieldCheck, title: "Cryptographic Provenance",
                 body: "Every report is signed by the submitter's Solana wallet. Forgery is mathematically impossible.",
-                accent: "#5E6AD2",
+                accent: "#2DD4BF",
               },
               {
                 icon: Database, title: "Permanent IPFS Storage",
@@ -301,7 +301,7 @@ export default function LandingPage() {
         >
           <motion.div variants={fade} className="flex items-end justify-between mb-14">
             <div>
-              <p className="text-[12px] font-medium uppercase tracking-[0.15em] text-[#5E6AD2] mb-4 flex items-center gap-2">
+              <p className="text-[12px] font-medium uppercase tracking-[0.15em] text-[#2DD4BF] mb-4 flex items-center gap-2">
                 <Dna className="w-4 h-4" /> Verified Suppliers
               </p>
               <h2 className="text-[36px] font-semibold tracking-[-0.03em] text-[#EAEAEA]">Ranked by on-chain evidence.</h2>
@@ -338,7 +338,7 @@ export default function LandingPage() {
                       ))}
                     </div>
                     <span className={`text-[15px] font-medium tracking-tight
-                      ${supplier.trustScore >= 95 ? 'text-[#5E6AD2]' :
+                      ${supplier.trustScore >= 95 ? 'text-[#2DD4BF]' :
                         supplier.trustScore >= 88 ? 'text-[#2EA043]' : 'text-[#E3B341]'}`}>
                       {supplier.trustScore}
                     </span>
@@ -393,7 +393,7 @@ export default function LandingPage() {
 
           <motion.div variants={fade} className="space-y-3">
             {[
-              { label: "Supplier: Peptide Sciences", status: "Tier 1 Verified", votes: "142 votes", c: "text-[#5E6AD2]", bg: "bg-[#5E6AD2]/10 border-[#5E6AD2]/20" },
+              { label: "Supplier: Peptide Sciences", status: "Tier 1 Verified", votes: "142 votes", c: "text-[#2DD4BF]", bg: "bg-[#2DD4BF]/10 border-[#2DD4BF]/20" },
               { label: "COA Dispute: Batch TB-26-02B", status: "Under Review", votes: "38 votes", c: "text-[#E3B341]", bg: "bg-[#E3B341]/10 border-[#E3B341]/20" },
               { label: "Fund: Community Testing Round", status: "Passed", votes: "201 votes", c: "text-[#2EA043]", bg: "bg-[#2EA043]/10 border-[#2EA043]/20" },
             ].map(item => (
@@ -447,8 +447,8 @@ export default function LandingPage() {
       <footer className="border-t border-white/[0.05]">
         <div className="max-w-5xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2">
-            <div className="w-5 h-5 rounded-md bg-[#5E6AD2]/20 border border-[#5E6AD2]/30 flex items-center justify-center">
-              <Dna className="w-3 h-3 text-[#5E6AD2]" />
+            <div className="w-5 h-5 rounded-md bg-[#2DD4BF]/20 border border-[#2DD4BF]/30 flex items-center justify-center">
+              <Dna className="w-3 h-3 text-[#2DD4BF]" />
             </div>
             <span className="text-[13px] font-mono font-medium text-white">PepVerify</span>
             <span className="text-[12px] font-mono text-[#555] ml-1">v1.0.0</span>

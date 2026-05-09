@@ -33,8 +33,8 @@ export function Sidebar() {
                     : "text-[#A1A1AA] hover:text-[#EAEAEA]"
                   }`}
               >
-                {isActive && <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[2px] h-4 bg-[#5E6AD2] rounded-r-sm shadow-[0_0_8px_rgba(94,106,210,0.8)]" />}
-                <Icon className={`w-4 h-4 shrink-0 ${isActive ? "text-[#5E6AD2]" : "text-[#555] group-hover:text-[#A1A1AA]"}`} />
+                {isActive && <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[2px] h-4 bg-[#2DD4BF] rounded-r-sm shadow-[0_0_8px_rgba(45,212,191,0.8)]" />}
+                <Icon className={`w-4 h-4 shrink-0 ${isActive ? "text-[#2DD4BF]" : "text-[#555] group-hover:text-[#A1A1AA]"}`} />
                 {item.name}
               </Link>
             );

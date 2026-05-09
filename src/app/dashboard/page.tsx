@@ -21,23 +21,23 @@ export default function DashboardPage() {
   const sortedSuppliers = [...MOCK_SUPPLIERS].sort((a, b) => b.trustScore - a.trustScore);
 
   return (
-    <div className="flex flex-col bg-[#080808] bg-grid-fine text-[#F0F0F0] pb-12 min-h-full">
+    <div className="flex flex-col bg-[#080808] bg-hex-pattern text-[#F0F0F0] pb-12 min-h-full">
       {/* Page Header */}
       <div className="px-8 py-8 border-b border-white/[0.06]">
         <motion.div variants={fadeUp} className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
           <div>
             <h1 className="text-[22px] font-medium tracking-tight text-[#EAEAEA] mb-1.5 flex items-center gap-2">
-              <Terminal className="w-5 h-5 text-[#5E6AD2]" /> System Index
+              <Microscope className="w-5 h-5 text-[#2DD4BF]" /> Clinical Data Index
             </h1>
-            <p className="text-[13px] text-[#A1A1AA]">// On-chain provenance for research compound suppliers.</p>
+            <p className="text-[13px] text-[#A1A1AA]">Cryptographic Provenance Protocol for Chemical Entities.</p>
           </div>
           <div className="flex gap-3">
             <div className="relative flex items-center group">
-              <Search className="absolute left-3 w-3.5 h-3.5 text-[#5E6AD2]" />
+              <Search className="absolute left-3 w-3.5 h-3.5 text-[#2DD4BF]" />
               <input
                 type="text"
                 placeholder="Search queries..."
-                className="h-9 w-64 rounded-md border border-[#222] bg-[#0A0A0A] px-9 text-[13px] text-[#EAEAEA] placeholder:text-[#A1A1AA] focus:outline-none focus:border-[#5E6AD2]/50 transition-all shadow-sm"
+                className="h-9 w-64 rounded-md border border-[#222] bg-[#0A0A0A] px-9 text-[13px] text-[#EAEAEA] placeholder:text-[#A1A1AA] focus:outline-none focus:border-[#2DD4BF]/50 transition-all shadow-sm"
               />
             </div>
             <button className="inline-flex h-9 items-center gap-2 rounded-md border border-[#222] bg-[#0A0A0A] px-3.5 text-[12px] font-medium text-[#EAEAEA] hover:bg-[#111] transition-colors shadow-sm">
@@ -49,10 +49,10 @@ export default function DashboardPage() {
         {/* Stats Row */}
         <motion.div variants={container} className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { label: "Indexed Suppliers", value: MOCK_SUPPLIERS.length, icon: Users, color: "text-white" },
+            { label: "Indexed Laboratories", value: MOCK_SUPPLIERS.length, icon: Users, color: "text-white" },
             { label: "Verified Entities", value: verifiedCount, icon: ShieldCheck, color: "text-[#2EA043]" },
-            { label: "On-Chain Attests", value: totalAttests, icon: Database, color: "text-[#5E6AD2]" },
-            { label: "Network Scans", value: "2,419", icon: Activity, color: "text-white" },
+            { label: "On-Chain Attests", value: totalAttests, icon: Database, color: "text-[#2DD4BF]" },
+            { label: "Spectrometry Scans", value: "2,419", icon: Activity, color: "text-white" },
           ].map((stat, i) => (
             <motion.div key={i} variants={fadeUp}>
               <div className="rounded-lg border border-[#222] bg-[#0A0A0A] p-5 flex items-center justify-between shadow-sm hover:border-[#333] transition-colors">
@@ -105,7 +105,7 @@ export default function DashboardPage() {
                             {supplier.verified && <ShieldCheck className="w-3.5 h-3.5 text-[#2EA043]" />}
                           </div>
                           <a href={supplier.website} target="_blank" rel="noopener noreferrer"
-                            className="text-[12px] text-[#A1A1AA] hover:text-[#5E6AD2] transition-colors">
+                            className="text-[12px] text-[#A1A1AA] hover:text-[#2DD4BF] transition-colors">
                             {supplier.website.replace("https://", "")}
                           </a>
                         </div>
@@ -113,7 +113,7 @@ export default function DashboardPage() {
                     </td>
                     <td className="px-5 py-4 text-center">
                       <span className={`inline-flex items-center justify-center font-medium text-[12px] px-2 py-0.5 rounded-md
-                        ${supplier.trustScore >= 95 ? 'bg-[#5E6AD2]/10 text-[#5E6AD2] border border-[#5E6AD2]/20' :
+                        ${supplier.trustScore >= 95 ? 'bg-[#2DD4BF]/10 text-[#2DD4BF] border border-[#2DD4BF]/20' :
                           supplier.trustScore >= 88 ? 'bg-[#2EA043]/10 text-[#2EA043] border border-[#2EA043]/20' :
                           'bg-[#E3B341]/10 text-[#E3B341] border border-[#E3B341]/20'}`}>
                         {supplier.trustScore}
