@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Microscope, Terminal, Cpu, Activity, Dna, TestTube2, ShieldCheck, Database, CheckCircle2 } from "lucide-react";
 import { MOCK_SUPPLIERS } from "@/lib/data";
 import { motion, useScroll, useTransform, Variants } from "framer-motion";
@@ -115,26 +116,27 @@ export default function LandingPage() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
-            className="hidden lg:block relative border border-[#222] bg-[#0A0A0A] rounded-xl overflow-hidden shadow-2xl h-[420px]"
+            className="hidden lg:block relative rounded-2xl overflow-hidden shadow-2xl h-[420px] w-full border border-white/[0.05] bg-[#0A0A0A]"
           >
-            {/* Terminal Header */}
-            <div className="h-10 border-b border-[#222] bg-[#111] flex items-center px-4 gap-2">
-              <div className="w-2.5 h-2.5 rounded-full bg-[#333]" />
-              <div className="w-2.5 h-2.5 rounded-full bg-[#333]" />
-              <div className="w-2.5 h-2.5 rounded-full bg-[#333]" />
-              <div className="ml-4 text-[11px] font-mono text-[#666]">SAS_VERIFICATION_PROTOCOL</div>
-            </div>
-            {/* Terminal Body */}
-            <div className="p-6 font-mono text-[12px] leading-[1.9] text-[#555] overflow-hidden">
-              <div className="flex items-center gap-4 mb-2"><span className="text-[#2DD4BF]">10:04:12</span><span className="text-[#EAEAEA] w-10">INIT</span><span>establishing secure connection...</span></div>
-              <div className="flex items-center gap-4 mb-2"><span className="text-[#2DD4BF]">10:04:14</span><span className="text-[#2EA043] w-10">SYSC</span><span>handshake confirmed. node: sol-mainnet-beta</span></div>
-              <div className="flex items-center gap-4 mb-2"><span className="text-[#2DD4BF]">10:04:15</span><span className="text-[#E3B341] w-10">HASH</span><span>processing COA_BPC157_batch_09A.pdf</span></div>
-              <div className="flex items-center gap-4 mb-2 ml-14 text-[#888]">└─ Compound: BPC-157 (C62H98N16O22)</div>
-              <div className="flex items-center gap-4 mb-2 ml-14 text-[#888]">└─ Purity: 99.82% by HPLC-UV</div>
-              <div className="flex items-center gap-4 mb-2"><span className="text-[#2DD4BF]">10:04:18</span><span className="text-[#EAEAEA] w-10">IPFS</span><span>CID: QmXo4b7gU9r7M1... pinned successfully</span></div>
-              <div className="flex items-center gap-4 mb-2"><span className="text-[#2DD4BF]">10:04:21</span><span className="text-[#A371F7] w-10">SIGN</span><span>awaiting signature from 7Xvw...j9Pq</span></div>
-              <div className="flex items-center gap-4 mb-2"><span className="text-[#2DD4BF]">10:04:25</span><span className="text-[#2EA043] w-10">VRFY</span><span>transaction anchored: 5yV8...z2Kw</span></div>
-              <div className="flex items-center gap-4 mb-2 opacity-50"><span className="text-[#2DD4BF]">10:04:26</span><span className="text-[#EAEAEA] w-10">IDLE</span><span>awaiting next input_</span></div>
+            <Image 
+              src="/images/peptide_molecule.png" 
+              alt="Peptide Molecule Structure" 
+              fill 
+              className="object-cover opacity-80 mix-blend-screen"
+            />
+            {/* Overlay gradient */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-[#080808] via-transparent to-transparent opacity-80" />
+            
+            {/* Terminal Overlay */}
+            <div className="absolute bottom-4 left-4 right-4 bg-[#111]/80 backdrop-blur-md border border-[#333] rounded-xl p-4">
+               <div className="flex items-center justify-between text-[11px] font-mono mb-2">
+                 <span className="text-[#A1A1AA] flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-[#2DD4BF] animate-pulse"></span> SAS_VERIFICATION_PROTOCOL</span>
+                 <span className="text-[#2DD4BF]">ACTIVE</span>
+               </div>
+               <div className="text-[12px] font-mono text-[#EAEAEA] flex justify-between">
+                 <span>Compound: BPC-157</span>
+                 <span className="text-[#A1A1AA]">C62H98N16O22</span>
+               </div>
             </div>
           </motion.div>
         </div>
@@ -182,23 +184,34 @@ export default function LandingPage() {
       </section>
 
       {/* ─── HOW IT WORKS ─── */}
-      <section id="how-it-works" className="max-w-5xl mx-auto px-6 py-24 border-t border-white/[0.05]">
+      <section id="how-it-works" className="max-w-6xl mx-auto px-6 py-24 border-t border-white/[0.05]">
         <motion.div
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-80px" }}
           variants={stagger}
         >
-          <motion.div variants={fade} className="text-center mb-20">
-            <p className="text-[12px] font-medium uppercase tracking-[0.15em] text-[#2DD4BF] mb-6 flex items-center justify-center gap-2">
-              <Terminal className="w-4 h-4" /> Provenance Protocol
-            </p>
-            <h2 className="text-[40px] md:text-[52px] font-semibold tracking-[-0.035em] leading-[1.05] text-white">
-              From lab report to blockchain<br />in four steps.
-            </h2>
-          </motion.div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
+            <motion.div variants={fade}>
+              <p className="text-[12px] font-medium uppercase tracking-[0.15em] text-[#2DD4BF] mb-6 flex items-center gap-2">
+                <Terminal className="w-4 h-4" /> Provenance Protocol
+              </p>
+              <h2 className="text-[40px] md:text-[52px] font-semibold tracking-[-0.035em] leading-[1.05] text-white">
+                From lab report to blockchain<br />in four steps.
+              </h2>
+            </motion.div>
+            <motion.div variants={fade} className="relative h-[250px] w-full rounded-2xl overflow-hidden border border-[#222] shadow-xl hidden lg:block bg-[#0A0A0A]">
+              <Image 
+                src="/images/clinical_data.png" 
+                alt="Clinical Chromatography Data" 
+                fill 
+                className="object-cover opacity-80 mix-blend-screen"
+              />
+              <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#080808]/50 to-[#080808] opacity-90" />
+            </motion.div>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl mx-auto">
             {[
               {
                 n: "01", icon: TestTube2, title: "Report Submitted",
