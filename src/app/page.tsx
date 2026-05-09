@@ -139,19 +139,39 @@ export default function LandingPage() {
             <div className="absolute top-[65%] left-0 right-0 h-px bg-[#333]/40" />
             <div className="absolute top-0 bottom-0 left-[50%] w-px bg-[#333]/40" />
 
-            {/* Scatter Points */}
-            {SCATTER_POINTS.map((p, i) => (
-              <div 
-                key={i} 
-                className={`absolute rounded-full ${p.color}`} 
-                style={{ 
-                  left: `${p.x}%`, top: `${p.y}%`, 
-                  width: `${p.size}px`, height: `${p.size}px`, 
-                  opacity: p.opacity,
-                  boxShadow: p.color !== 'bg-[#333]' ? `0 0 8px ${p.color === 'bg-[#2DD4BF]' ? '#2DD4BF' : '#3B82F6'}` : 'none'
-                }} 
-              />
-            ))}
+            {/* Molecular Network SVG */}
+            <svg viewBox="0 0 400 400" className="absolute inset-0 w-full h-full opacity-50 mix-blend-screen" stroke="#333" strokeWidth="1" fill="none" strokeLinejoin="round" strokeLinecap="round">
+              <g transform="translate(60, 150) scale(1.1)">
+                {/* Hexagon 1 */}
+                <polygon points="50,0 100,28.8 100,86.6 50,115.4 0,86.6 0,28.8" />
+                <line x1="10" y1="34" x2="10" y2="80" stroke="#444" />
+                <line x1="50" y1="12" x2="90" y2="34" stroke="#444" />
+                <line x1="50" y1="103" x2="90" y2="80" stroke="#444" />
+                
+                {/* Connection to Pentagram */}
+                <line x1="100" y1="28.8" x2="150" y2="0" />
+                <line x1="100" y1="86.6" x2="150" y2="115.4" />
+                
+                {/* Pentagon */}
+                <polygon points="150,0 210,20 210,95 150,115.4 100,57.7" strokeDasharray="3 3" />
+                
+                {/* Peptide Chain Extending */}
+                <path d="M210,20 L250,-10 L300,10 L320,-20 L360,-5" stroke="#3B82F6" strokeWidth="1.5" />
+                
+                {/* Highlight Nodes */}
+                <circle cx="50" cy="0" r="3" fill="#2DD4BF" stroke="none" />
+                <circle cx="100" cy="86.6" r="3" fill="#2DD4BF" stroke="none" />
+                <circle cx="210" cy="20" r="4" fill="#3B82F6" stroke="none" />
+                <circle cx="300" cy="10" r="3" fill="#2EA043" stroke="none" />
+                
+                {/* Annotations */}
+                <text x="50" y="-15" fontSize="8" fill="#666" textAnchor="middle" letterSpacing="2">NH2</text>
+                <text x="375" y="-5" fontSize="8" fill="#666" textAnchor="middle" letterSpacing="2">COOH</text>
+              </g>
+              
+              {/* Abstract geometric background lines */}
+              <path d="M-50,300 L450,-50 M-50,350 L450,0" stroke="#222" strokeWidth="0.5" />
+            </svg>
 
             <div className="absolute inset-0 bg-gradient-to-tr from-[#080808]/40 via-transparent to-[#080808]/80 pointer-events-none" />
 
@@ -248,32 +268,30 @@ export default function LandingPage() {
               </h2>
             </motion.div>
             <motion.div variants={fade} className="relative h-[250px] w-full rounded-2xl overflow-hidden border border-[#222] shadow-xl hidden lg:block bg-[#0A0A0A] flex items-center justify-center">
-              <svg viewBox="0 0 200 200" className="w-full h-full opacity-60 mix-blend-screen px-8 py-4" stroke="#444" strokeWidth="0.5" fill="none" strokeLinejoin="round">
-                <g transform="translate(0, 15)">
-                  {/* Center Block */}
-                  <path d="M100,70 L130,85 L100,100 L70,85 Z" fill="#111" />
-                  <path d="M70,85 L70,115 L100,130 L100,100 Z" fill="#050505" />
-                  <path d="M130,85 L130,115 L100,130 L100,100 Z" fill="#080808" />
-                  {/* Glowing center indicator */}
-                  <path d="M100,80 L110,85 L100,90 L90,85 Z" fill="#2DD4BF" opacity="0.8" />
-                  
-                  {/* Top Left Block */}
-                  <path d="M60,50 L90,65 L60,80 L30,65 Z" fill="#0A0A0A" />
-                  <path d="M30,65 L30,95 L60,110 L60,80 Z" fill="#050505" />
-                  <path d="M90,65 L90,95 L60,110 L60,80 Z" fill="#000" />
-                  
-                  {/* Top Right Block */}
-                  <path d="M140,50 L170,65 L140,80 L110,65 Z" fill="#0A0A0A" />
-                  <path d="M110,65 L110,95 L140,110 L140,80 Z" fill="#050505" />
-                  <path d="M170,65 L170,95 L140,110 L140,80 Z" fill="#000" />
-                  
-                  {/* Bottom Block */}
-                  <path d="M100,110 L130,125 L100,140 L70,125 Z" fill="#0A0A0A" />
-                  <path d="M70,125 L70,155 L100,170 L100,140 Z" fill="#050505" />
-                  <path d="M130,125 L130,155 L100,170 L100,140 Z" fill="#000" />
-                  
-                  {/* Connections */}
-                  <path d="M100,100 L60,80 M100,100 L140,80 M100,130 L100,140" stroke="#444" strokeDasharray="2 2" />
+              <svg viewBox="0 0 200 200" className="w-full h-full opacity-80 mix-blend-screen px-8 py-4" stroke="#444" strokeWidth="0.5" fill="none" strokeLinejoin="round">
+                <g transform="translate(100, 180) scale(1.3)">
+                  {[...Array(6)].map((_, i) => {
+                    const yOffset = -i * 25;
+                    const width = 25 + Math.sin(i * 1.5) * 12;
+                    const isHighlight1 = i === 3;
+                    const isHighlight2 = i === 4;
+                    const color = isHighlight1 ? "#2DD4BF" : (isHighlight2 ? "#3B82F6" : "#0A0A0A");
+                    const strokeColor = isHighlight1 || isHighlight2 ? color : "#333";
+                    return (
+                      <g key={i}>
+                        {/* Left strand node */}
+                        <path d={`M${-width},${yOffset} L${-width-10},${yOffset-5} L${-width},${yOffset-10} L${-width+10},${yOffset-5} Z`} fill={color} stroke={strokeColor} />
+                        {/* Right strand node */}
+                        <path d={`M${width},${yOffset-10} L${width-10},${yOffset-15} L${width},${yOffset-20} L${width+10},${yOffset-15} Z`} fill={color} stroke={strokeColor} />
+                        {/* Connecting peptide bond */}
+                        <line x1={-width+5} y1={yOffset-5} x2={width-5} y2={yOffset-15} stroke={strokeColor} strokeDasharray={isHighlight1 ? "none" : "2 2"} opacity={0.6} />
+                        {/* Vertical backbone left */}
+                        {i < 5 && <line x1={-width} y1={yOffset-10} x2={-(25 + Math.sin((i+1) * 1.5) * 12)} y2={-(i+1)*25} stroke="#333" />}
+                        {/* Vertical backbone right */}
+                        {i < 5 && <line x1={width} y1={yOffset-20} x2={25 + Math.sin((i+1) * 1.5) * 12} y2={-(i+1)*25 - 10} stroke="#333" />}
+                      </g>
+                    );
+                  })}
                 </g>
               </svg>
               <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#080808]/30 to-[#080808] pointer-events-none" />
