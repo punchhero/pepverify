@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, ShieldCheck, Activity, Users, Database, Filter, Search, Terminal, Cpu } from "lucide-react";
+import { ArrowRight, ShieldCheck, Activity, Users, Database, Filter, Search, Terminal, Cpu, Microscope } from "lucide-react";
 import { MOCK_SUPPLIERS } from "@/lib/data";
 import { motion, Variants } from "framer-motion";
 
