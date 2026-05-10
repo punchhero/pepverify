@@ -138,7 +138,9 @@ export default function LandingPage() {
             {/* Reference axes */}
             <div className="absolute top-[35%] left-0 right-0 h-px bg-[#333]/40" />
             <div className="absolute top-[65%] left-0 right-0 h-px bg-[#333]/40" />
-            <div className="absolute top-0 bottom-0 left-[50%]            {/* Hero Image */}
+            <div className="absolute top-0 bottom-0 left-[50%] w-px bg-[#333]/40" />
+            
+            {/* Hero Image */}
             <Image 
               src="/images/hero_molecule.png" 
               alt="Peptide Molecule Data" 
@@ -148,7 +150,7 @@ export default function LandingPage() {
             />
             {/* Overlay gradients to blend seamlessly into background */}
             <div className="absolute inset-0 bg-gradient-to-tr from-[#080808]/80 via-[#080808]/20 to-[#080808]/80 pointer-events-none" />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#080808] pointer-events-none" /> pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#080808] pointer-events-none" />
 
             {/* Linear-style Pulse Card */}
             <div className="absolute left-6 bottom-6 bg-[#111]/90 backdrop-blur-md border border-[#333] rounded-xl p-5 w-72 shadow-2xl">
