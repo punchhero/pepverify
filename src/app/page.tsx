@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Microscope, Terminal, Cpu, Activity, Dna, TestTube2, ShieldCheck, Database, CheckCircle2 } from "lucide-react";
 import { MOCK_SUPPLIERS } from "@/lib/data";
 import { motion, useScroll, useTransform, Variants } from "framer-motion";
@@ -137,43 +138,17 @@ export default function LandingPage() {
             {/* Reference axes */}
             <div className="absolute top-[35%] left-0 right-0 h-px bg-[#333]/40" />
             <div className="absolute top-[65%] left-0 right-0 h-px bg-[#333]/40" />
-            <div className="absolute top-0 bottom-0 left-[50%] w-px bg-[#333]/40" />
-
-            {/* Molecular Network SVG */}
-            <svg viewBox="0 0 400 400" className="absolute inset-0 w-full h-full opacity-50 mix-blend-screen" stroke="#333" strokeWidth="1" fill="none" strokeLinejoin="round" strokeLinecap="round">
-              <g transform="translate(60, 150) scale(1.1)">
-                {/* Hexagon 1 */}
-                <polygon points="50,0 100,28.8 100,86.6 50,115.4 0,86.6 0,28.8" />
-                <line x1="10" y1="34" x2="10" y2="80" stroke="#444" />
-                <line x1="50" y1="12" x2="90" y2="34" stroke="#444" />
-                <line x1="50" y1="103" x2="90" y2="80" stroke="#444" />
-                
-                {/* Connection to Pentagram */}
-                <line x1="100" y1="28.8" x2="150" y2="0" />
-                <line x1="100" y1="86.6" x2="150" y2="115.4" />
-                
-                {/* Pentagon */}
-                <polygon points="150,0 210,20 210,95 150,115.4 100,57.7" strokeDasharray="3 3" />
-                
-                {/* Peptide Chain Extending */}
-                <path d="M210,20 L250,-10 L300,10 L320,-20 L360,-5" stroke="#3B82F6" strokeWidth="1.5" />
-                
-                {/* Highlight Nodes */}
-                <circle cx="50" cy="0" r="3" fill="#2DD4BF" stroke="none" />
-                <circle cx="100" cy="86.6" r="3" fill="#2DD4BF" stroke="none" />
-                <circle cx="210" cy="20" r="4" fill="#3B82F6" stroke="none" />
-                <circle cx="300" cy="10" r="3" fill="#2EA043" stroke="none" />
-                
-                {/* Annotations */}
-                <text x="50" y="-15" fontSize="8" fill="#666" textAnchor="middle" letterSpacing="2">NH2</text>
-                <text x="375" y="-5" fontSize="8" fill="#666" textAnchor="middle" letterSpacing="2">COOH</text>
-              </g>
-              
-              {/* Abstract geometric background lines */}
-              <path d="M-50,300 L450,-50 M-50,350 L450,0" stroke="#222" strokeWidth="0.5" />
-            </svg>
-
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#080808]/40 via-transparent to-[#080808]/80 pointer-events-none" />
+            <div className="absolute top-0 bottom-0 left-[50%]            {/* Hero Image */}
+            <Image 
+              src="/images/hero_molecule.png" 
+              alt="Peptide Molecule Data" 
+              fill 
+              className="object-cover opacity-60 mix-blend-screen"
+              priority
+            />
+            {/* Overlay gradients to blend seamlessly into background */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-[#080808]/80 via-[#080808]/20 to-[#080808]/80 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#080808] pointer-events-none" /> pointer-events-none" />
 
             {/* Linear-style Pulse Card */}
             <div className="absolute left-6 bottom-6 bg-[#111]/90 backdrop-blur-md border border-[#333] rounded-xl p-5 w-72 shadow-2xl">
@@ -229,25 +204,39 @@ export default function LandingPage() {
       </section>
 
       {/* ─── PROBLEM STATEMENT ─── */}
-      <section className="max-w-4xl mx-auto px-6 py-32 text-center border-t border-white/[0.05]">
-        <motion.div
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={stagger}
-        >
-          <motion.p variants={fade} className="text-[12px] font-medium uppercase tracking-[0.15em] text-[#E3B341] mb-6 flex items-center justify-center gap-2">
-            <Activity className="w-4 h-4" /> System Warning
-          </motion.p>
-          <motion.h2 variants={fade} className="text-[42px] md:text-[56px] font-semibold tracking-[-0.035em] leading-[1.05] text-white mb-8">
-            The peptide market runs on 
-            <br />unverifiable claims.
-          </motion.h2>
-          <motion.p variants={fade} className="text-[18px] text-[#555] max-w-2xl mx-auto leading-[1.6]">
-            COAs are forged. Testing reports are recycled across batches. Supplier reputation is based on forum posts, not science.
-            Researchers have no way to verify what they are studying.
-          </motion.p>
-        </motion.div>
+      <section className="relative py-32 border-t border-white/[0.05] overflow-hidden">
+        {/* Full width dark cinematic background */}
+        <div className="absolute inset-0 pointer-events-none">
+          <Image 
+            src="/images/lab_spectrometer.png" 
+            alt="Laboratory Spectrometer" 
+            fill 
+            className="object-cover opacity-20 mix-blend-screen grayscale-[0.5]"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#080808] via-[#080808]/60 to-[#080808]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#080808] via-transparent to-[#080808]" />
+        </div>
+        
+        <div className="relative max-w-4xl mx-auto px-6 text-center z-10">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={stagger}
+          >
+            <motion.p variants={fade} className="text-[12px] font-medium uppercase tracking-[0.15em] text-[#E3B341] mb-6 flex items-center justify-center gap-2 drop-shadow-md">
+              <Activity className="w-4 h-4" /> System Warning
+            </motion.p>
+            <motion.h2 variants={fade} className="text-[42px] md:text-[56px] font-semibold tracking-[-0.035em] leading-[1.05] text-white mb-8 drop-shadow-2xl">
+              The peptide market runs on 
+              <br />unverifiable claims.
+            </motion.h2>
+            <motion.p variants={fade} className="text-[18px] text-[#A1A1AA] max-w-2xl mx-auto leading-[1.6] drop-shadow-lg">
+              COAs are forged. Testing reports are recycled across batches. Supplier reputation is based on forum posts, not science.
+              Researchers have no way to verify what they are studying.
+            </motion.p>
+          </motion.div>
+        </div>
       </section>
 
       {/* ─── HOW IT WORKS ─── */}
@@ -267,36 +256,16 @@ export default function LandingPage() {
                 From lab report to blockchain<br />in four steps.
               </h2>
             </motion.div>
-            <motion.div variants={fade} className="relative h-[250px] w-full rounded-2xl overflow-hidden border border-[#222] shadow-xl hidden lg:block bg-[#0A0A0A] flex items-center justify-center">
-              <svg viewBox="0 0 200 200" className="w-full h-full opacity-80 mix-blend-screen px-8 py-4" stroke="#444" strokeWidth="0.5" fill="none" strokeLinejoin="round">
-                <g transform="translate(100, 180) scale(1.3)">
-                  {[...Array(6)].map((_, i) => {
-                    const yOffset = -i * 25;
-                    const width = 25 + Math.sin(i * 1.5) * 12;
-                    const isHighlight1 = i === 3;
-                    const isHighlight2 = i === 4;
-                    const color = isHighlight1 ? "#2DD4BF" : (isHighlight2 ? "#3B82F6" : "#0A0A0A");
-                    const strokeColor = isHighlight1 || isHighlight2 ? color : "#333";
-                    return (
-                      <g key={i}>
-                        {/* Left strand node */}
-                        <path d={`M${-width},${yOffset} L${-width-10},${yOffset-5} L${-width},${yOffset-10} L${-width+10},${yOffset-5} Z`} fill={color} stroke={strokeColor} />
-                        {/* Right strand node */}
-                        <path d={`M${width},${yOffset-10} L${width-10},${yOffset-15} L${width},${yOffset-20} L${width+10},${yOffset-15} Z`} fill={color} stroke={strokeColor} />
-                        {/* Connecting peptide bond */}
-                        <line x1={-width+5} y1={yOffset-5} x2={width-5} y2={yOffset-15} stroke={strokeColor} strokeDasharray={isHighlight1 ? "none" : "2 2"} opacity={0.6} />
-                        {/* Vertical backbone left */}
-                        {i < 5 && <line x1={-width} y1={yOffset-10} x2={-(25 + Math.sin((i+1) * 1.5) * 12)} y2={-(i+1)*25} stroke="#333" />}
-                        {/* Vertical backbone right */}
-                        {i < 5 && <line x1={width} y1={yOffset-20} x2={25 + Math.sin((i+1) * 1.5) * 12} y2={-(i+1)*25 - 10} stroke="#333" />}
-                      </g>
-                    );
-                  })}
-                </g>
-              </svg>
-              <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#080808]/30 to-[#080808] pointer-events-none" />
+            <motion.div variants={fade} className="relative h-[250px] w-full rounded-2xl overflow-hidden border border-[#222] shadow-xl hidden lg:block bg-[#0A0A0A]">
+              <Image 
+                src="/images/clinical_data.png" 
+                alt="Clinical Chromatography Data" 
+                fill 
+                className="object-cover opacity-70 mix-blend-screen"
+              />
+              <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#080808]/50 to-[#080808] opacity-90 pointer-events-none" />
               {/* FIG Label */}
-              <div className="absolute top-4 left-4 text-[10px] font-mono text-[#555] tracking-widest">FIG 0.1</div>
+              <div className="absolute top-4 left-4 text-[10px] font-mono text-[#555] tracking-widest z-10">FIG 0.1</div>
             </motion.div>
           </div>
 
