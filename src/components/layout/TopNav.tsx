@@ -12,7 +12,7 @@ export function TopNav() {
           <div className="w-6 h-6 rounded flex items-center justify-center border border-[#333] bg-[#111] group-hover:border-[#444] transition-colors">
             <ShieldCheck className="w-3.5 h-3.5 text-[#EAEAEA]" />
           </div>
-          <span className="text-[13px] font-medium tracking-tight text-[#EAEAEA]">PepVerify</span>
+          <span className="text-[13px] font-medium tracking-tight text-[#EAEAEA]">PepTrace</span>
         </Link>
 
         <div className="flex items-center gap-3">

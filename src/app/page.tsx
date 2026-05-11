@@ -46,25 +46,21 @@ export default function LandingPage() {
           <div className="w-5 h-5 rounded-md bg-[#2DD4BF]/20 border border-[#2DD4BF]/30 flex items-center justify-center">
             <Dna className="w-3 h-3 text-[#2DD4BF]" />
           </div>
-          <span className="text-sm font-semibold tracking-tight text-white">PepVerify</span>
+          <span className="text-sm font-semibold tracking-tight text-white">PepTrace</span>
         </div>
 
         <div className="hidden md:flex items-center gap-7 text-[13px] text-[#888]">
           <a href="#how-it-works" className="hover:text-white transition-colors duration-200">How it works</a>
           <a href="#suppliers" className="hover:text-white transition-colors duration-200">Suppliers</a>
           <a href="#governance" className="hover:text-white transition-colors duration-200">Governance</a>
-          <Link href="/dashboard" className="hover:text-white transition-colors duration-200">Dashboard</Link>
         </div>
 
         <div className="flex items-center gap-3">
-          <Link href="/dashboard" className="text-[13px] text-[#888] hover:text-white transition-colors duration-200 hidden md:block">
-            Sign in
-          </Link>
           <Link
-            href="/dashboard"
+            href="/waitlist"
             className="inline-flex items-center gap-1.5 text-[13px] font-medium bg-[#EAEAEA] text-[#0A0A0A] px-4 py-2 rounded-md hover:bg-white transition-all duration-200 shadow-sm"
           >
-            Open app <ArrowRight className="w-3.5 h-3.5" />
+            Join Waitlist <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
       </nav>
@@ -104,23 +100,23 @@ export default function LandingPage() {
               variants={fade}
               className="text-[17px] md:text-[19px] text-[#888] max-w-lg mb-12 leading-[1.6] tracking-tight"
             >
-              PepVerify bridges off-chain analytical chemistry with immutable on-chain ledgers. 
+              PepTrace bridges off-chain analytical chemistry with immutable on-chain ledgers. 
               Cryptographically secure provenance for COAs, HPLC, and LC-MS evidence.
             </motion.p>
 
             {/* CTAs */}
             <motion.div variants={fade} className="flex flex-col sm:flex-row gap-3">
               <Link
-                href="/dashboard"
+                href="/waitlist"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md bg-[#EAEAEA] text-[#0A0A0A] text-[14px] font-medium hover:bg-white transition-all duration-200 shadow-sm"
               >
-                Access Terminal <Terminal className="w-4 h-4" />
+                Join Waitlist <ArrowRight className="w-4 h-4" />
               </Link>
               <a
                 href="#how-it-works"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md border border-[#333] bg-transparent text-[#A1A1AA] text-[14px] font-medium hover:text-[#EAEAEA] hover:border-[#444] transition-all duration-200"
               >
-                Read Whitepaper
+                Learn More
               </a>
             </motion.div>
           </motion.div>
@@ -379,8 +375,8 @@ export default function LandingPage() {
               </p>
               <h2 className="text-[36px] font-semibold tracking-[-0.03em] text-[#EAEAEA]">Ranked by on-chain evidence.</h2>
             </div>
-            <Link href="/directory" className="text-[13px] font-medium text-[#A1A1AA] hover:text-[#EAEAEA] hover:border-[#444] bg-transparent transition-colors flex items-center gap-1.5 border border-[#333] px-4 py-2 rounded-md shadow-sm">
-              View All <ArrowRight className="w-3.5 h-3.5" />
+            <Link href="/waitlist" className="text-[13px] font-medium text-[#A1A1AA] hover:text-[#EAEAEA] hover:border-[#444] bg-transparent transition-colors flex items-center gap-1.5 border border-[#333] px-4 py-2 rounded-md shadow-sm">
+              Join Waitlist <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </motion.div>
 
@@ -441,7 +437,7 @@ export default function LandingPage() {
               Community-enforced scientific standards.
             </h2>
             <p className="text-[15px] text-[#555] leading-[1.7] mb-8">
-              PepVerify governance allows token holders to review disputed reports, vote on supplier verification tiers, 
+              PepTrace governance allows token holders to review disputed reports, vote on supplier verification tiers, 
               and allocate treasury funds for independent testing.
             </p>
             <ul className="space-y-3">
@@ -458,8 +454,8 @@ export default function LandingPage() {
               ))}
             </ul>
             <div className="mt-10">
-              <Link href="/governance" className="text-[13px] font-medium text-[#A1A1AA] hover:text-[#EAEAEA] hover:border-[#444] bg-transparent transition-colors flex items-center gap-1.5 border border-[#333] px-4 py-2 rounded-md inline-flex shadow-sm">
-                Access Governance <ArrowRight className="w-3.5 h-3.5" />
+              <Link href="/waitlist" className="text-[13px] font-medium text-[#A1A1AA] hover:text-[#EAEAEA] hover:border-[#444] bg-transparent transition-colors flex items-center gap-1.5 border border-[#333] px-4 py-2 rounded-md inline-flex shadow-sm">
+                Join Waitlist <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
           </motion.div>
@@ -501,16 +497,10 @@ export default function LandingPage() {
           </motion.p>
           <motion.div variants={fade} className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
-              href="/dashboard"
+              href="/waitlist"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md bg-[#EAEAEA] text-[#0A0A0A] text-[14px] font-medium hover:bg-white transition-all duration-200 shadow-sm"
             >
-              Initialize <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              href="/submit"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md border border-[#333] bg-transparent text-[#A1A1AA] text-[14px] font-medium hover:text-[#EAEAEA] hover:border-[#444] transition-all duration-200"
-            >
-              Submit Evidence
+              Join the Waitlist <ArrowRight className="w-4 h-4" />
             </Link>
           </motion.div>
         </motion.div>
@@ -523,16 +513,12 @@ export default function LandingPage() {
             <div className="w-5 h-5 rounded-md bg-[#2DD4BF]/20 border border-[#2DD4BF]/30 flex items-center justify-center">
               <Dna className="w-3 h-3 text-[#2DD4BF]" />
             </div>
-            <span className="text-[13px] font-mono font-medium text-white">PepVerify</span>
+            <span className="text-[13px] font-mono font-medium text-white">PepTrace</span>
             <span className="text-[12px] font-mono text-[#555] ml-1">v1.0.0</span>
           </div>
           <div className="flex items-center gap-6 text-[12px] text-[#444]">
             {[
-              { label: "Dashboard", href: "/dashboard" },
-              { label: "Directory", href: "/directory" },
-              { label: "Governance", href: "/governance" },
-              { label: "Submit", href: "/submit" },
-              { label: "Leaderboard", href: "/leaderboard" },
+              { label: "Join Waitlist", href: "/waitlist" },
             ].map(l => (
               <Link key={l.href} href={l.href} className="hover:text-[#888] transition-colors">{l.label}</Link>
             ))}

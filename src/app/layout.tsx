@@ -17,7 +17,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PepVerify | On-chain Transparency for Research Peptides",
+  title: "PepTrace | On-chain Transparency for Research Peptides",
   description: "A scientific transparency and verification platform for the peptide research ecosystem.",
 };
 

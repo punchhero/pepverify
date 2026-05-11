@@ -4,7 +4,7 @@
   <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License MIT" />
   <br />
   <br />
-  <h1>PepVerify</h1>
+  <h1>PepTrace</h1>
   <p><strong>Decentralized Cryptographic Provenance for Peptide Research</strong></p>
   <p>A DeSci (Decentralized Science) protocol leveraging the Solana Attestation Service (SAS) and IPFS to create an immutable, censorship-resistant layer of scientific evidence and transparency.</p>
 </div>
@@ -30,16 +30,16 @@ The distribution and sourcing of research peptides suffer from a systemic reprod
 
 Without a decentralized source of truth, independent researchers are forced to rely on subjective, easily manipulated community forums for supplier validation, leading to compromised research integrity and potential safety hazards.
 
-### The PepVerify Solution
-**PepVerify** introduces cryptographic provenance to the scientific supply chain. By anchoring analytical lab reports to decentralized storage (IPFS) and binding them to cryptographic signatures on the Solana blockchain, we shift the ecosystem from "trust-based" to "verification-based." 
+### The PepTrace Solution
+**PepTrace** introduces cryptographic provenance to the scientific supply chain. By anchoring analytical lab reports to decentralized storage (IPFS) and binding them to cryptographic signatures on the Solana blockchain, we shift the ecosystem from "trust-based" to "verification-based." 
 
-PepVerify acts as a public good: a highly dense, unalterable "Bloomberg Terminal" for scientific transparency, where reputation is algorithmically derived from immutable on-chain evidence rather than marketing claims.
+PepTrace acts as a public good: a highly dense, unalterable "Bloomberg Terminal" for scientific transparency, where reputation is algorithmically derived from immutable on-chain evidence rather than marketing claims.
 
 ---
 
 ## 🏛️ Protocol Architecture
 
-The PepVerify protocol operates through a deterministic verification pipeline:
+The PepTrace protocol operates through a deterministic verification pipeline:
 
 1. **Evidence Ingestion:** A researcher or supplier submits a 3rd-party analytical report (PDF).
 2. **Decentralized Storage (IPFS):** The document is pinned to the InterPlanetary File System, generating a permanent, tamper-proof Content Identifier (CID).
@@ -66,7 +66,7 @@ The PepVerify protocol operates through a deterministic verification pipeline:
 
 ## 💻 Technical Specifications
 
-PepVerify is engineered for high performance, utilizing a modern, production-ready stack designed for rapid data retrieval and seamless Web3 interaction.
+PepTrace is engineered for high performance, utilizing a modern, production-ready stack designed for rapid data retrieval and seamless Web3 interaction.
 
 ### Frontend Client
 - **Framework:** Next.js 15 (App Router)
@@ -112,8 +112,8 @@ This platform is a composite of extraordinary open-source technologies. We ackno
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/punchhero/pepverify.git
-   cd pepverify
+   git clone https://github.com/punchhero/PepTrace.git
+   cd PepTrace
    ```
 
 2. **Install dependencies:**
