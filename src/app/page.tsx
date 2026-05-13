@@ -50,9 +50,9 @@ export default function LandingPage() {
         </div>
 
         <div className="hidden md:flex items-center gap-7 text-[13px] text-[#888]">
-          <a href="#how-it-works" className="hover:text-white transition-colors duration-200">How it works</a>
-          <a href="#suppliers" className="hover:text-white transition-colors duration-200">Suppliers</a>
-          <a href="#governance" className="hover:text-white transition-colors duration-200">Governance</a>
+          <Link href="/vision" className="hover:text-white transition-colors duration-200">Vision</Link>
+          <Link href="/methodology" className="hover:text-white transition-colors duration-200">Methodology</Link>
+          <Link href="/governance" className="hover:text-white transition-colors duration-200">Governance</Link>
         </div>
 
         <div className="flex items-center gap-3">
@@ -518,7 +518,10 @@ export default function LandingPage() {
           </div>
           <div className="flex items-center gap-6 text-[12px] text-[#444]">
             {[
-              { label: "Join Waitlist", href: "/waitlist" },
+              { label: "Vision", href: "/vision" },
+              { label: "Methodology", href: "/methodology" },
+              { label: "Governance", href: "/governance" },
+              { label: "Waitlist", href: "/waitlist" },
             ].map(l => (
               <Link key={l.href} href={l.href} className="hover:text-[#888] transition-colors">{l.label}</Link>
             ))}

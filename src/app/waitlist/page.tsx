@@ -9,6 +9,7 @@ import { toast } from "sonner";
 export default function WaitlistPage() {
   const [email, setEmail] = useState("");
   const [xAccount, setXAccount] = useState("");
+  const [role, setRole] = useState("Researcher");
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
@@ -17,7 +18,7 @@ export default function WaitlistPage() {
     setLoading(true);
     
     try {
-      const result = await submitWaitlist(email, xAccount);
+      const result = await submitWaitlist(email, xAccount, role);
       if (result.success) {
         setSubmitted(true);
         toast.success("You've been added to the waitlist!");
@@ -93,6 +94,22 @@ export default function WaitlistPage() {
                         placeholder="@username"
                       />
                     </div>
+                    <div>
+                      <label htmlFor="role" className="block text-[12px] font-medium text-[#A1A1AA] mb-1.5">What best describes you?</label>
+                      <select 
+                        id="role"
+                        value={role}
+                        onChange={(e) => setRole(e.target.value)}
+                        className="w-full bg-[#111] border border-[#333] rounded-md px-4 py-2.5 text-[14px] text-white focus:outline-none focus:border-[#555] transition-colors appearance-none"
+                      >
+                        <option value="Researcher">Researcher</option>
+                        <option value="Supplier">Supplier</option>
+                        <option value="Lab / Testing Partner">Lab / Testing Partner</option>
+                        <option value="Developer">Developer</option>
+                        <option value="Community Member">Community Member</option>
+                        <option value="Investor / Contributor">Investor / Contributor</option>
+                      </select>
+                    </div>
                     
                     <button 
                       type="submit" 
@@ -102,6 +119,9 @@ export default function WaitlistPage() {
                       {loading ? "Joining..." : "Join Waitlist"} <ArrowRight className="w-4 h-4" />
                     </button>
                   </form>
+                  <p className="mt-6 text-center text-[12px] text-[#888]">
+                    PepTrace is currently onboarding early researchers, suppliers, testing partners, and governance contributors.
+                  </p>
                 </>
              )}
            </div>
