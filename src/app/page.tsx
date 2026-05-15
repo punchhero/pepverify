@@ -107,6 +107,15 @@ export default function LandingPage() {
               Cryptographically secure provenance for COAs, HPLC, and LC-MS evidence.
             </motion.p>
 
+            {/* Contract Address */}
+            {/* To change this later, just search for "000000000000000000000000000000" in this file and replace it */}
+            <motion.div variants={fade} className="mb-8">
+              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-lg bg-[#111] border border-[#222]">
+                <span className="text-[12px] font-medium text-[#888] uppercase tracking-wider">CA</span>
+                <code className="text-[13px] font-mono text-[#EAEAEA]">000000000000000000000000000000</code>
+              </div>
+            </motion.div>
+
             {/* CTAs */}
             <motion.div variants={fade} className="flex flex-col sm:flex-row gap-3">
               <Link
