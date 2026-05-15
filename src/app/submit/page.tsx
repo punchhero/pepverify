@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { MOCK_SUPPLIERS, MOCK_COMPOUNDS } from "@/lib/data";
-import { Check, ChevronRight, UploadCloud, FileText, Wallet, Fingerprint, Terminal } from "lucide-react";
+import { Check, ChevronRight, UploadCloud, FileText, Wallet, Fingerprint, Terminal, ShieldCheck } from "lucide-react";
 import { useWallet, useConnection } from "@solana/wallet-adapter-react";
 import { Transaction, SystemProgram, PublicKey } from "@solana/web3.js";
 import { toast } from "sonner";
