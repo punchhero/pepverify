@@ -273,20 +273,20 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl mx-auto">
             {[
               {
-                n: "01", icon: TestTube2, title: "Report Submitted",
-                body: "A supplier uploads a third-party COA, HPLC-UV, or LC-MS PDF to the platform.",
+                n: "01", icon: TestTube2, title: "Evidence Upload",
+                body: "Verified suppliers or independent researchers upload third-party COA, HPLC, or LC-MS lab tests.",
               },
               {
-                n: "02", icon: Cpu, title: "IPFS Pinning",
-                body: "The document is pinned to IPFS via Pinata — a permanent, tamper-proof Content Identifier is generated.",
+                n: "02", icon: Cpu, title: "DAO Moderation & IPFS",
+                body: "Independent submissions enter DAO review. Once verified, the document is permanently pinned to IPFS.",
               },
               {
                 n: "03", icon: Activity, title: "On-Chain Attestation",
-                body: "Metadata and CID are signed by the submitter's Solana wallet and anchored via the SAS protocol.",
+                body: "Metadata and IPFS CID are cryptographically signed and anchored via the SAS protocol.",
               },
               {
-                n: "04", icon: Microscope, title: "Permanent Record",
-                body: "The evidence is now immutable. Trust scores update algorithmically. Anyone can verify the chain of custody.",
+                n: "04", icon: Microscope, title: "Public Record",
+                body: "The evidence becomes immutable. Trust scores update algorithmically based on verification history.",
               },
             ].map(({ n, icon: Icon, title, body }) => (
               <motion.div

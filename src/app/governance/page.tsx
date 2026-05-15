@@ -56,10 +56,10 @@ export default function GovernancePage() {
             {[
               { icon: Target, title: "Verification Standards", desc: "Voting on acceptable testing methodologies and lab accreditation requirements." },
               { icon: ShieldAlert, title: "Supplier Tier Reviews", desc: "Auditing and upgrading/downgrading suppliers based on empirical track records." },
-              { icon: Coins, title: "Treasury Allocation", desc: "Directing protocol resources to development, marketing, and infrastructure." },
+              { icon: Microscope, title: "Evidence Moderation", desc: "Reviewing and approving independent lab tests submitted by consumers before publication." },
               { icon: Scale, title: "Dispute Resolution", desc: "Reviewing flagged or contradictory Certificates of Analysis from the community." },
+              { icon: Coins, title: "Treasury Allocation", desc: "Directing protocol resources to development, marketing, and infrastructure." },
               { icon: Users, title: "Community Proposals", desc: "Submitting and voting on major architectural or UI/UX protocol upgrades." },
-              { icon: Microscope, title: "Research Funding", desc: "Allocating grants for independent, third-party compound testing." },
             ].map(({ icon: Icon, title, desc }) => (
               <div key={title} className="p-6 rounded-xl border border-[#222] bg-[#0A0A0A] hover:border-[#333] transition-colors group">
                 <Icon className="w-5 h-5 text-[#A371F7] mb-4" />

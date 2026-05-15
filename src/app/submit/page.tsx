@@ -264,6 +264,14 @@ export default function SubmitEvidencePage() {
                 </pre>
               </div>
 
+              <div className="p-4 bg-[#5E6AD2]/10 border border-[#5E6AD2]/20 rounded-lg flex items-start gap-3 shadow-sm">
+                <ShieldCheck className="w-4 h-4 text-[#5E6AD2] shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="font-medium text-[#5E6AD2] text-[13px]">DAO Moderation Notice</h4>
+                  <p className="text-[12px] text-[#5E6AD2]/80 mt-1">Note: Evidence submitted by independent researchers or consumers will enter a pending state and must pass DAO moderation before being published to the public index.</p>
+                </div>
+              </div>
+
               {!connected && (
                 <div className="p-4 bg-[#E3B341]/10 border border-[#E3B341]/20 rounded-lg flex items-start gap-3 shadow-sm">
                   <Wallet className="w-4 h-4 text-[#E3B341] shrink-0 mt-0.5" />

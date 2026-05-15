@@ -35,12 +35,10 @@ export default function MethodologyPage() {
         <div>
           <h2 className="text-[28px] font-semibold tracking-tight text-white mb-6 border-l-4 border-[#2DD4BF] pl-4">1. Evidence Standards</h2>
           <div className="space-y-4 text-[16px] text-[#A1A1AA] leading-[1.7]">
-            <p>All data on the PepTrace network must be backed by rigorous analytical evidence. The system accepts specific document types to establish compound validity.</p>
+            <p>All data on the PepTrace network must be backed by rigorous analytical evidence. The system accepts two primary tracks of document submission:</p>
             <ul className="list-disc pl-6 space-y-2 mt-4 text-[#EAEAEA]">
-              <li><strong>Certificates of Analysis (COAs):</strong> Verifying purity and identity from accredited third-party labs.</li>
-              <li><strong>HPLC (High-Performance Liquid Chromatography):</strong> For quantitative purity profiling.</li>
-              <li><strong>LC-MS (Liquid Chromatography–Mass Spectrometry):</strong> For precise molecular mass verification.</li>
-              <li><strong>Batch Verification:</strong> Ensuring longitudinal consistency across supplier manufacturing runs.</li>
+              <li><strong>Track 1: Verified Supplier Uploads.</strong> Suppliers with established cryptographic credibility can directly anchor Certificates of Analysis (COAs), HPLC, and LC-MS reports to the chain.</li>
+              <li><strong>Track 2: Independent Submissions.</strong> Researchers and consumers are encouraged to submit their own independent third-party lab tests. These submissions enter a pending state and must pass DAO moderation before being published.</li>
             </ul>
           </div>
         </div>
@@ -64,11 +62,11 @@ export default function MethodologyPage() {
         </div>
 
         <div>
-          <h2 className="text-[28px] font-semibold tracking-tight text-white mb-6 border-l-4 border-[#A371F7] pl-4">3. Community Review</h2>
+          <h2 className="text-[28px] font-semibold tracking-tight text-white mb-6 border-l-4 border-[#A371F7] pl-4">3. DAO Moderation & Community Review</h2>
           <div className="space-y-4 text-[16px] text-[#A1A1AA] leading-[1.7]">
-            <p>Verification is not a black box. The evidence review process is fully transparent and open to the scientific community.</p>
-            <p>Public verification discussion happens directly on the evidence metadata layer. If a COA appears manipulated (e.g., matching pixel noise from a previous report), the community flagging system initiates a dispute escalation.</p>
-            <p>This peer-to-peer review acts as the ultimate immune system against fraudulent data.</p>
+            <p>Verification is not a black box. The evidence review process is fully transparent and actively moderated by the scientific community through the PepTrace DAO.</p>
+            <p>Before any independent consumer or researcher test is officially indexed and aggregated into a supplier&apos;s overall trust score, it is thoroughly reviewed by DAO members. This prevents spam, verifies lab accreditation, and ensures malicious actors cannot artificially inflate or suppress scores.</p>
+            <p>Post-publication, public verification discussion happens directly on the evidence metadata layer. If a COA appears manipulated, the community flagging system initiates a dispute escalation.</p>
           </div>
         </div>
 

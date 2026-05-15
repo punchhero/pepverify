@@ -41,7 +41,7 @@ export default function VisionPage() {
           <div className="space-y-4 text-[16px] text-[#A1A1AA] leading-[1.7]">
             <p>The distribution and sourcing of research peptides suffer from a systemic reproducibility and trust crisis. Suppliers operate in opaque environments where analytical testing results—such as Certificates of Analysis (COAs), High-Performance Liquid Chromatography (HPLC), and Mass Spectrometry (MS) reports—are frequently manipulated, reused across disparate batches, or quietly deleted.</p>
             <p>Without a decentralized source of truth, independent researchers are forced to rely on subjective, easily manipulated community forums for supplier validation, leading to compromised research integrity and potential safety hazards.</p>
-            <p><strong>PepTrace introduces cryptographic provenance to the scientific supply chain.</strong> By anchoring analytical lab reports to decentralized storage and binding them to cryptographic signatures, PepTrace acts as a highly dense, unalterable &quot;Bloomberg Terminal&quot; for scientific transparency.</p>
+            <p><strong>PepTrace introduces cryptographic provenance to the scientific supply chain.</strong> While verified suppliers anchor primary batch data, we empower researchers and consumers to submit their own independent third-party lab tests. To ensure maximum integrity, consumer-submitted evidence undergoes rigorous DAO moderation before being published to the public index.</p>
           </div>
         </div>
 
@@ -127,10 +127,10 @@ export default function VisionPage() {
             
             <h3 className="text-[18px] font-medium text-white mt-8 mb-4 flex items-center gap-2"><Cpu className="w-4 h-4 text-[#5E6AD2]" /> Protocol Workflow</h3>
             <ol className="list-decimal pl-6 space-y-2 text-[#EAEAEA]">
-              <li><strong>Evidence Ingestion:</strong> A researcher or supplier submits a 3rd-party analytical report.</li>
+              <li><strong>Evidence Ingestion:</strong> A verified supplier or an independent researcher submits a 3rd-party analytical report.</li>
               <li><strong>Decentralized Storage:</strong> Uploaded to IPFS, generating a permanent Content Identifier (CID).</li>
-              <li><strong>Metadata Extraction:</strong> Parsing Compound ID, Batch Number, Purity, and Lab Identity.</li>
-              <li><strong>Cryptographic Anchoring:</strong> Signed via the Solana Attestation Service (SAS) and recorded permanently on Solana.</li>
+              <li><strong>DAO Moderation:</strong> Submissions from independent researchers enter a pending state and must pass DAO community review to prevent spam and verify lab credentials before publication.</li>
+              <li><strong>Cryptographic Anchoring:</strong> Once approved (or if submitted by a verified supplier), the metadata and CID are signed via the Solana Attestation Service (SAS) and recorded permanently.</li>
             </ol>
 
             <h3 className="text-[18px] font-medium text-white mt-8 mb-4 flex items-center gap-2"><Server className="w-4 h-4 text-[#5E6AD2]" /> Infrastructure</h3>
