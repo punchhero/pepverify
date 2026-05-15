@@ -15,8 +15,8 @@ import { clusterApiUrl } from "@solana/web3.js";
 import "@solana/wallet-adapter-react-ui/styles.css";
 
 export const WalletProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  // Use devnet for the mock platform
-  const endpoint = useMemo(() => clusterApiUrl("devnet"), []);
+  // Use mainnet for production
+  const endpoint = useMemo(() => process.env.NEXT_PUBLIC_SOLANA_RPC_URL || clusterApiUrl("mainnet-beta"), []);
 
   const wallets = useMemo(
     () => [new PhantomWalletAdapter(), new SolflareWalletAdapter()],
