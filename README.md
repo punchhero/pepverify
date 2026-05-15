@@ -60,6 +60,7 @@ The PepTrace protocol operates through a deterministic verification pipeline:
 - **Algorithmic Trust Scoring:** Supplier reputation is dynamically calculated based on the volume, recency, and verified purity of their on-chain attestations.
 - **Evidence Vault:** A decentralized, searchable repository of all historical lab reports linked to specific batches.
 - **DAO Governance:** Community-driven dispute resolution for conflicting reports and decentralized curation of verified suppliers.
+  Powered by $CAO: 5LdiAnXVcizAe2newmPe2zyrvu3Sb12St9XxM1bTpump
 - **Enterprise-Grade UI/UX:** A high-density, document-centric interface built for researchers, avoiding the "crypto-casino" aesthetics typical of early Web3 projects.
 
 ---
