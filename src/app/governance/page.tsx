@@ -94,10 +94,10 @@ export default function GovernancePage() {
           </h2>
           <div className="flex justify-center">
             <Link
-              href="/waitlist"
+              href="/dao"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md bg-[#EAEAEA] text-[#0A0A0A] text-[14px] font-medium hover:bg-white transition-colors"
             >
-              Apply for Governance <ArrowRight className="w-4 h-4" />
+              Enter DAO <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>

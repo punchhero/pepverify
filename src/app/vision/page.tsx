@@ -153,10 +153,10 @@ export default function VisionPage() {
           </h2>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
-              href="/waitlist"
+              href="/dashboard"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md bg-[#EAEAEA] text-[#0A0A0A] text-[14px] font-medium hover:bg-white transition-colors"
             >
-              Join Waitlist <ArrowRight className="w-4 h-4" />
+              Access Terminal <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href="/governance"

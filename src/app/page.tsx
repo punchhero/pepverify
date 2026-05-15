@@ -378,8 +378,8 @@ export default function LandingPage() {
               </p>
               <h2 className="text-[36px] font-semibold tracking-[-0.03em] text-[#EAEAEA]">Ranked by on-chain evidence.</h2>
             </div>
-            <Link href="/waitlist" className="text-[13px] font-medium text-[#A1A1AA] hover:text-[#EAEAEA] hover:border-[#444] bg-transparent transition-colors flex items-center gap-1.5 border border-[#333] px-4 py-2 rounded-md shadow-sm">
-              Join Waitlist <ArrowRight className="w-3.5 h-3.5" />
+            <Link href="/dashboard" className="text-[13px] font-medium text-[#A1A1AA] hover:text-[#EAEAEA] hover:border-[#444] bg-transparent transition-colors flex items-center gap-1.5 border border-[#333] px-4 py-2 rounded-md shadow-sm">
+              Access Terminal <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </motion.div>
 
@@ -457,8 +457,8 @@ export default function LandingPage() {
               ))}
             </ul>
             <div className="mt-10">
-              <Link href="/waitlist" className="text-[13px] font-medium text-[#A1A1AA] hover:text-[#EAEAEA] hover:border-[#444] bg-transparent transition-colors flex items-center gap-1.5 border border-[#333] px-4 py-2 rounded-md inline-flex shadow-sm">
-                Join Waitlist <ArrowRight className="w-3.5 h-3.5" />
+              <Link href="/dao" className="text-[13px] font-medium text-[#A1A1AA] hover:text-[#EAEAEA] hover:border-[#444] bg-transparent transition-colors flex items-center gap-1.5 border border-[#333] px-4 py-2 rounded-md inline-flex shadow-sm">
+                Enter DAO <ArrowRight className="w-3.5 h-3.5" />
               </Link>
             </div>
           </motion.div>
@@ -500,10 +500,10 @@ export default function LandingPage() {
           </motion.p>
           <motion.div variants={fade} className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
-              href="/waitlist"
+              href="/dashboard"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md bg-[#EAEAEA] text-[#0A0A0A] text-[14px] font-medium hover:bg-white transition-all duration-200 shadow-sm"
             >
-              Join the Waitlist <ArrowRight className="w-4 h-4" />
+              Launch Platform <ArrowRight className="w-4 h-4" />
             </Link>
           </motion.div>
         </motion.div>
@@ -525,7 +525,6 @@ export default function LandingPage() {
               { label: "Vision", href: "/vision" },
               { label: "Methodology", href: "/methodology" },
               { label: "Governance", href: "/governance" },
-              { label: "Waitlist", href: "/waitlist" },
             ].map(l => (
               <Link key={l.href} href={l.href} className="hover:text-[#888] transition-colors">{l.label}</Link>
             ))}
