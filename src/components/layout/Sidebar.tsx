@@ -2,13 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Database, ShieldCheck, Landmark, Trophy, User } from "lucide-react";
+import { LayoutDashboard, Database, ShieldCheck, Trophy, User } from "lucide-react";
 
 const NAV_ITEMS = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { name: "Directory", href: "/directory", icon: Database },
   { name: "Submit Evidence", href: "/submit", icon: ShieldCheck },
-  { name: "Governance", href: "/governance", icon: Landmark },
   { name: "Leaderboard", href: "/leaderboard", icon: Trophy },
   { name: "Profile", href: "/profile/me", icon: User },
 ];
