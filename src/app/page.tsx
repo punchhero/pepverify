@@ -56,11 +56,14 @@ export default function LandingPage() {
         </div>
 
         <div className="flex items-center gap-3">
+          <Link href="/dashboard" className="text-[13px] text-[#888] hover:text-white transition-colors duration-200 hidden md:block">
+            Sign in
+          </Link>
           <Link
-            href="/waitlist"
+            href="/dashboard"
             className="inline-flex items-center gap-1.5 text-[13px] font-medium bg-[#EAEAEA] text-[#0A0A0A] px-4 py-2 rounded-md hover:bg-white transition-all duration-200 shadow-sm"
           >
-            Join Waitlist <ArrowRight className="w-3.5 h-3.5" />
+            Launch App <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
       </nav>
@@ -107,17 +110,17 @@ export default function LandingPage() {
             {/* CTAs */}
             <motion.div variants={fade} className="flex flex-col sm:flex-row gap-3">
               <Link
-                href="/waitlist"
+                href="/dashboard"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md bg-[#EAEAEA] text-[#0A0A0A] text-[14px] font-medium hover:bg-white transition-all duration-200 shadow-sm"
               >
-                Join Waitlist <ArrowRight className="w-4 h-4" />
+                Access Terminal <Terminal className="w-4 h-4" />
               </Link>
-              <a
-                href="#how-it-works"
+              <Link
+                href="/waitlist"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md border border-[#333] bg-transparent text-[#A1A1AA] text-[14px] font-medium hover:text-[#EAEAEA] hover:border-[#444] transition-all duration-200"
               >
-                Learn More
-              </a>
+                Join Waitlist
+              </Link>
             </motion.div>
           </motion.div>
 
@@ -518,6 +521,7 @@ export default function LandingPage() {
           </div>
           <div className="flex items-center gap-6 text-[12px] text-[#444]">
             {[
+              { label: "Dashboard", href: "/dashboard" },
               { label: "Vision", href: "/vision" },
               { label: "Methodology", href: "/methodology" },
               { label: "Governance", href: "/governance" },
